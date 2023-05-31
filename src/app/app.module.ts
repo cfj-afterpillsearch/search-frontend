@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'medical-institution-search', component: MedicalInstitutionSearchComponent },
   { path: 'pharmacy-search', component: PharmacySearchComponent },
-  { path: 'medical-institutions', component: MedicalInstitutionsComponent }
+  { path: 'medical-institutions', component: MedicalInstitutionsComponent },
 ];
 
 @NgModule({
@@ -21,13 +21,10 @@ const routes: Routes = [
     HomeComponent,
     MedicalInstitutionSearchComponent,
     PharmacySearchComponent,
-    MedicalInstitutionsComponent
+    MedicalInstitutionsComponent,
   ],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot(routes)
-  ],
+  imports: [BrowserModule, RouterModule.forRoot(routes)],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
