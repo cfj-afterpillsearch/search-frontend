@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-medical-institutions',
@@ -8,9 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MedicalInstitutionsComponent implements OnInit {
   currentLocation = '';
-  hospitals: unknown[] = [];
-
-  // constructor(private apiService: ApiService) { }
+  medicalInstitutions: unknown[] = [];
 
   ngOnInit() {
     this.getCurrentLocation();
@@ -18,13 +15,11 @@ export class MedicalInstitutionsComponent implements OnInit {
   }
 
   getCurrentLocation() {
-    // 現在地の取得処理を実装する
     this.currentLocation = '東京都';
   }
 
   getMedicalInstitutions() {
-    // APIサービスを使用して病院情報を取得する処理を実装する
-    this.hospitals = [
+    this.medicalInstitutions = [
       {
         name: '北里大学 北里研究所病院',
         address: '東京都渋谷区',

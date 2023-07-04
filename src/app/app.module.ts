@@ -4,14 +4,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { MedicalInstitutionSearchComponent } from './medical-institution-search/medical-institution-search.component';
-import { PharmacySearchComponent } from './pharmacy-search/pharmacy-search.component';
+import { SearchComponent } from './search/search.component';
 import { MedicalInstitutionsComponent } from './medical-institutions/medical-institutions.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'medical-institution-search', component: MedicalInstitutionSearchComponent },
-  { path: 'pharmacy-search', component: PharmacySearchComponent },
+  { path: 'search', component: SearchComponent },
   { path: 'medical-institutions', component: MedicalInstitutionsComponent },
 ];
 
@@ -19,8 +17,7 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
-    MedicalInstitutionSearchComponent,
-    PharmacySearchComponent,
+    SearchComponent,
     MedicalInstitutionsComponent,
   ],
   imports: [BrowserModule, RouterModule.forRoot(routes)],
