@@ -1,4 +1,4 @@
-export interface MedicalInstitute {
+export interface MedicalInstitution {
   name: string,
   address: string,
   tel: string,

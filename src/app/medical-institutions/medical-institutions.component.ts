@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {MedicalInstitute} from "../medical-institute";
+import {MedicalInstitution} from "../medical-institution";
+import {MedicalInstitutionService} from "../medical-institution.service";
 
 @Component({
   selector: 'app-medical-institutions',
@@ -7,28 +8,27 @@ import {MedicalInstitute} from "../medical-institute";
   styleUrls: ['./medical-institutions.component.css'],
 })
 export class MedicalInstitutionsComponent implements OnInit {
-  medicalInstitutions: MedicalInstitute[] = [];
+  medicalInstitutions: MedicalInstitution[] = [];
 
-  ngOnInit() {
-    this.getMedicalInstitutions();
+  constructor(private medicalInstitutionService: MedicalInstitutionService) {
   }
 
-  getMedicalInstitutions() {
-    this.medicalInstitutions = [
-      {
-        name: '北里大学 北里研究所病院',
-        address: '東京都渋谷区',
-        url: 'https://hospital-a.example.com',
-        tel: '03-3444-6161',
-        memo_available_time: '平日 8：30-11：30土（第4除く） 8：30-11：30',
+  ngOnInit() {
+    this.getMedicalInstitutionsByCurrentLocation();
+  }
+
+  getMedicalInstitutionsByCurrentLocation() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        this.medicalInstitutionService.getMedicalInstitutionsByCurrentLocation(latitude, longitude)
+          .subscribe(medicalInstitutions => this.medicalInstitutions = medicalInstitutions);
       },
-      {
-        name: '北里大学 北里研究所病院',
-        address: '東京都渋谷区',
-        url: 'https://hospital-b.example.com',
-        tel: '03-3444-6161',
-        memo_available_time: '平日 8：30-11：30土（第4除く） 8：30-11：30',
-      },
-    ];
+      (error) => {
+        console.error('現在地の取得に失敗しました', error);
+      }
+    );
   }
 }
