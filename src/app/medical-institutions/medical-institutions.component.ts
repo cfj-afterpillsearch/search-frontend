@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {MedicalInstitute} from "../medical-institute";
 
 @Component({
   selector: 'app-medical-institutions',
@@ -6,16 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./medical-institutions.component.css'],
 })
 export class MedicalInstitutionsComponent implements OnInit {
-  currentLocation = '';
-  medicalInstitutions: unknown[] = [];
+  medicalInstitutions: MedicalInstitute[] = [];
 
   ngOnInit() {
-    this.getCurrentLocation();
     this.getMedicalInstitutions();
-  }
-
-  getCurrentLocation() {
-    this.currentLocation = '東京都';
   }
 
   getMedicalInstitutions() {
@@ -23,16 +18,16 @@ export class MedicalInstitutionsComponent implements OnInit {
       {
         name: '北里大学 北里研究所病院',
         address: '東京都渋谷区',
-        website: 'https://hospital-a.example.com',
-        phoneNumber: '03-3444-6161',
-        officeHours: '平日 8：30-11：30土（第4除く） 8：30-11：30',
+        url: 'https://hospital-a.example.com',
+        tel: '03-3444-6161',
+        memo_available_time: '平日 8：30-11：30土（第4除く） 8：30-11：30',
       },
       {
         name: '北里大学 北里研究所病院',
         address: '東京都渋谷区',
-        website: 'https://hospital-b.example.com',
-        phoneNumber: '03-3444-6161',
-        officeHours: '平日 8：30-11：30土（第4除く） 8：30-11：30',
+        url: 'https://hospital-b.example.com',
+        tel: '03-3444-6161',
+        memo_available_time: '平日 8：30-11：30土（第4除く） 8：30-11：30',
       },
     ];
   }
