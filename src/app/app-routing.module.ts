@@ -7,8 +7,9 @@ import {MedicalInstitutionsComponent} from "./medical-institutions/medical-insti
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'search', component: SearchComponent },
-  { path: 'medical-institutions', component: MedicalInstitutionsComponent },
+  { path: 'medical-institutions', component: SearchComponent},
+  { path: 'medical-institutions/current-location', component: MedicalInstitutionsComponent},
+  { path: 'medical-institutions/address', component: MedicalInstitutionsComponent},
 ];
 
 @NgModule({
