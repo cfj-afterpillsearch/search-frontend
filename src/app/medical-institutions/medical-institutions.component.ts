@@ -32,8 +32,25 @@ export class MedicalInstitutionsComponent implements OnInit {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
 
-        this.medicalInstitutionService.getMedicalInstitutionsByCurrentLocation(latitude, longitude)
-          .subscribe(medicalInstitutions => this.medicalInstitutions = medicalInstitutions);
+        // this.medicalInstitutionService.getMedicalInstitutionsByCurrentLocation(latitude, longitude)
+        //   .subscribe(medicalInstitutions => this.medicalInstitutions = medicalInstitutions);
+
+        this.medicalInstitutions = [
+          {
+            name: '北里大学 北里研究所病院',
+            address: '東京都渋谷区',
+            url: 'https://hospital-a.example.com',
+            tel: '03-3444-6161',
+            memo_available_time: '平日 8：30-11：30土（第4除く） 8：30-11：30',
+          },
+          {
+            name: '北里大学 北里研究所病院',
+            address: '東京都渋谷区',
+            url: 'https://hospital-b.example.com',
+            tel: '03-3444-6161',
+            memo_available_time: '平日 8：30-11：30土（第4除く） 8：30-11：30',
+          },
+        ];
       },
       (error) => {
         console.error('現在地の取得に失敗しました', error);
