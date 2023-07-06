@@ -1,14 +1,12 @@
-<h1>{{ currentLocation }}の検索結果</h1>
-
 <ul>
-  <li *ngFor="let hospital of hospitals">
-    <h3>{{ hospital.name }}</h3>
-    <p>{{ hospital.address }}</p>
+  <li *ngFor="let medicalInstitute of medicalInstitutions">
+    <h3>{{ medicalInstitute.name }}</h3>
+    <p>{{ medicalInstitute.address }}</p>
     <p>
-      <a [href]="hospital.website" target="_blank">{{ hospital.website }}</a>
+      <a [href]="medicalInstitute.url" target="_blank">{{ medicalInstitute.url }}</a>
     </p>
-    <p>{{ hospital.phoneNumber }}</p>
+    <p>{{ medicalInstitute.tel }}</p>
     医療機関における緊急避妊にかかる対面診療への対応可能時間帯：
-    <p>{{ hospital.officeHours }}</p>
+    <p>{{ medicalInstitute.memo_available_time }}</p>
   </li>
 </ul>

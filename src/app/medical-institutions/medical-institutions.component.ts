@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-// import { ApiService } from '../api.service';
+import {MedicalInstitution} from "../medical-institution";
+import {MedicalInstitutionService} from "../medical-institution.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-medical-institutions',
@@ -7,38 +9,52 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./medical-institutions.component.css'],
 })
 export class MedicalInstitutionsComponent implements OnInit {
-  currentLocation = '';
-  hospitals: unknown[] = [];
+  medicalInstitutions: MedicalInstitution[] = [];
 
-  // constructor(private apiService: ApiService) { }
+  constructor(private medicalInstitutionService: MedicalInstitutionService, private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
-    this.getCurrentLocation();
-    this.getMedicalInstitutions();
+    this.route.url.subscribe(urlSegments => {
+      const path = urlSegments.map(segment => segment.path).join('/');
+      if (path === 'medical-institutions/current-location') {
+        this.getMedicalInstitutionsByCurrentLocation();
+      }
+      if (path === 'medical-institutions/address') {
+        // TODO
+      }
+    });
   }
 
-  getCurrentLocation() {
-    // 現在地の取得処理を実装する
-    this.currentLocation = '東京都';
-  }
+  getMedicalInstitutionsByCurrentLocation() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
 
-  getMedicalInstitutions() {
-    // APIサービスを使用して病院情報を取得する処理を実装する
-    this.hospitals = [
-      {
-        name: '北里大学 北里研究所病院',
-        address: '東京都渋谷区',
-        website: 'https://hospital-a.example.com',
-        phoneNumber: '03-3444-6161',
-        officeHours: '平日 8：30-11：30土（第4除く） 8：30-11：30',
+        // this.medicalInstitutionService.getMedicalInstitutionsByCurrentLocation(latitude, longitude)
+        //   .subscribe(medicalInstitutions => this.medicalInstitutions = medicalInstitutions);
+
+        this.medicalInstitutions = [
+          {
+            name: '北里大学 北里研究所病院',
+            address: '東京都渋谷区',
+            url: 'https://hospital-a.example.com',
+            tel: '03-3444-6161',
+            memo_available_time: '平日 8：30-11：30土（第4除く） 8：30-11：30',
+          },
+          {
+            name: '北里大学 北里研究所病院',
+            address: '東京都渋谷区',
+            url: 'https://hospital-b.example.com',
+            tel: '03-3444-6161',
+            memo_available_time: '平日 8：30-11：30土（第4除く） 8：30-11：30',
+          },
+        ];
       },
-      {
-        name: '北里大学 北里研究所病院',
-        address: '東京都渋谷区',
-        website: 'https://hospital-b.example.com',
-        phoneNumber: '03-3444-6161',
-        officeHours: '平日 8：30-11：30土（第4除く） 8：30-11：30',
-      },
-    ];
+      (error) => {
+        console.error('現在地の取得に失敗しました', error);
+      }
+    );
   }
 }

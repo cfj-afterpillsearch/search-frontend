@@ -14,7 +14,7 @@ export class HomeComponent {
   }
 
   navigateToMedicalInstitutionSearch() {
-    this.router.navigate(['/medical-institution-search']);
+    this.router.navigate(['/search']);
   }
 
   navigateToPharmacySearch() {
