@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MedicalInstitution} from "../medical-institution";
 import {MedicalInstitutionService} from "../medical-institution.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-medical-institutions',
@@ -10,11 +11,19 @@ import {MedicalInstitutionService} from "../medical-institution.service";
 export class MedicalInstitutionsComponent implements OnInit {
   medicalInstitutions: MedicalInstitution[] = [];
 
-  constructor(private medicalInstitutionService: MedicalInstitutionService) {
+  constructor(private medicalInstitutionService: MedicalInstitutionService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.getMedicalInstitutionsByCurrentLocation();
+    this.route.url.subscribe(urlSegments => {
+      const path = urlSegments.map(segment => segment.path).join('/');
+      if (path === 'medical-institutions/current-location') {
+        this.getMedicalInstitutionsByCurrentLocation();
+      }
+      if (path === 'medical-institutions/address') {
+        // TODO
+      }
+    });
   }
 
   getMedicalInstitutionsByCurrentLocation() {
