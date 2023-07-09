@@ -6,6 +6,7 @@ import { SearchComponent } from './search/search.component';
 import { MedicalInstitutionsComponent } from './medical-institutions/medical-institutions.component';
 import { AppRoutingModule } from './app-routing.module';
 import {HttpClientModule} from "@angular/common/http";
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import {HttpClientModule} from "@angular/common/http";
     HomeComponent,
     SearchComponent,
     MedicalInstitutionsComponent,
+    HeaderComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
