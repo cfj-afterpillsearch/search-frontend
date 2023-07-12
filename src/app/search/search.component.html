@@ -1,11 +1,11 @@
 <div class="flex flex-col items-center">
   <app-button [link]="'/medical-institutions/current-location'">現在地で探す</app-button>
   <hr />
-  <select>
-    <option>東京都</option>
-  </select>
-  <select>
-    <option>町田市</option>
-  </select>
+  <app-select id="prefectures">
+    <option value="" selected>東京都</option>
+  </app-select>
+  <app-select id="municipalities">
+    <option value="" selected>町田市</option>
+  </app-select>
   <app-button [link]="'/medical-institutions/current-location'">条件で探す</app-button>
 </div>
