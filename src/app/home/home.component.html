@@ -1,6 +1,4 @@
-オンライン診療可能な婦人科とアフターピルを処方してくれる薬局の検索システム
-<div class="container">
-  <button (click)="openPillNyan()">詳しく知る</button>
-  <button (click)="navigateToMedicalInstitutionSearch()">医療機関を探す</button>
-  <button (click)="navigateToPharmacySearch()">薬局を探す</button>
+<div class="flex flex-col items-center">
+  <app-button [link]="'/medical-institutions'">医療機関をさがす</app-button>
+  <app-button>薬局をさがす</app-button>
 </div>
