@@ -7,6 +7,7 @@ import { MedicalInstitutionsComponent } from './medical-institutions/medical-ins
 import { AppRoutingModule } from './app-routing.module';
 import {HttpClientModule} from "@angular/common/http";
 import { HeaderComponent } from './header/header.component';
+import { ButtonComponent } from './button/button.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { HeaderComponent } from './header/header.component';
     SearchComponent,
     MedicalInstitutionsComponent,
     HeaderComponent,
+    ButtonComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
