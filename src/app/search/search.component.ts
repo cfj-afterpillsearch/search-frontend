@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {Addresses} from "../addresses";
 
 @Component({
   selector: 'app-search',
@@ -7,7 +8,7 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./search.component.css'],
 })
 export class SearchComponent implements OnInit{
-  locations: any = {};
+  addresses: Addresses = {};
   prefectures: string[] = [];
   municipalities: string[] = [];
   selectedPrefecture = '';
@@ -16,14 +17,14 @@ export class SearchComponent implements OnInit{
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.http.get<any>('assets/addresses.json').subscribe(data => {
-      this.locations = data;
+    this.http.get<Addresses>('assets/addresses.json').subscribe(data => {
+      this.addresses = data;
       this.prefectures = Object.keys(data);
     });
   }
 
   onPrefectureChange() {
-    this.municipalities = this.locations[this.selectedPrefecture] || [];
+    this.municipalities = this.addresses[this.selectedPrefecture] || [];
   }
 
 }
