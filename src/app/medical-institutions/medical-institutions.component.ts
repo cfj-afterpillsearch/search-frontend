@@ -10,18 +10,24 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class MedicalInstitutionsComponent implements OnInit {
   medicalInstitutions: MedicalInstitution[] = [];
+  prefecture = '';
+  municipality = '';
 
   constructor(private medicalInstitutionService: MedicalInstitutionService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.route.url.subscribe(urlSegments => {
-      const path = urlSegments.map(segment => segment.path).join('/');
-      if (path === 'medical-institutions/current-location') {
+    this.route.url.subscribe((urlSegments) => {
+      const searchType = urlSegments[1].path;
+      if (searchType === 'current-location') {
         this.getMedicalInstitutionsByCurrentLocation();
       }
-      if (path === 'medical-institutions/address') {
-        // TODO
+      if (searchType === 'address') {
+        this.route.queryParams.subscribe(params => {
+          this.prefecture = params['todofuken'];
+          this.municipality = params['shikuchoson'];
+          this.getMedicalInstitutionsByAddress();
+        });
       }
     });
   }
@@ -32,29 +38,18 @@ export class MedicalInstitutionsComponent implements OnInit {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
 
-        // this.medicalInstitutionService.getMedicalInstitutionsByCurrentLocation(latitude, longitude)
-        //   .subscribe(medicalInstitutions => this.medicalInstitutions = medicalInstitutions);
-
-        this.medicalInstitutions = [
-          {
-            name: '北里大学 北里研究所病院',
-            address: '東京都渋谷区',
-            url: 'https://hospital-a.example.com',
-            tel: '03-3444-6161',
-            memo_available_time: '平日 8：30-11：30土（第4除く） 8：30-11：30',
-          },
-          {
-            name: '北里大学 北里研究所病院',
-            address: '東京都渋谷区',
-            url: 'https://hospital-b.example.com',
-            tel: '03-3444-6161',
-            memo_available_time: '平日 8：30-11：30土（第4除く） 8：30-11：30',
-          },
-        ];
+        this.medicalInstitutionService.getMedicalInstitutionsByCurrentLocation(latitude, longitude)
+          .subscribe(apiResponse => {
+            this.medicalInstitutions = apiResponse.results
+          });
       },
       (error) => {
         console.error('現在地の取得に失敗しました', error);
       }
     );
+  }
+
+  getMedicalInstitutionsByAddress() {
+    this.medicalInstitutionService.getMedicalInstitutionsByAddress(this.prefecture, this.municipality).subscribe(apiResponse => this.medicalInstitutions = apiResponse.results);
   }
 }
