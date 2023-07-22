@@ -8,7 +8,7 @@ import { initFlowbite } from 'flowbite';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'afterpill-test';
+  title = 'afterpill-search';
 
   ngOnInit(): void {
     initFlowbite();
