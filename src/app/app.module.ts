@@ -9,6 +9,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { HeaderComponent } from './header/header.component';
 import { ButtonComponent } from './button/button.component';
 import {FormsModule} from "@angular/forms";
+import { SelectComponent } from './select/select.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import {FormsModule} from "@angular/forms";
     MedicalInstitutionsComponent,
     HeaderComponent,
     ButtonComponent,
+    SelectComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
