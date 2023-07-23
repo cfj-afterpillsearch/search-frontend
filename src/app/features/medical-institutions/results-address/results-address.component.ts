@@ -19,7 +19,7 @@ export class ResultsAddressComponent implements OnInit {
   constructor(private medicalInstitutionService: MedicalInstitutionService, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       this.prefecture = params['todofuken'];
       this.municipality = params['shikuchoson'];
       this.getMedicalInstitutionsByAddress();
@@ -31,7 +31,4 @@ export class ResultsAddressComponent implements OnInit {
       .getMedicalInstitutionsByAddress(this.prefecture, this.municipality)
       .subscribe((apiResponse) => (this.medicalInstitutions = apiResponse.results));
   }
-
 }
-
-
