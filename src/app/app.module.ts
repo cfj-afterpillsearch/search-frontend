@@ -7,7 +7,6 @@ import { MedicalInstitutionsComponent } from './medical-institutions/medical-ins
 import { AppRoutingModule } from './app-routing.module';
 import {HttpClientModule} from "@angular/common/http";
 import { HeaderComponent } from './header/header.component';
-import { ButtonComponent } from './button/button.component';
 import {FormsModule} from "@angular/forms";
 import { SelectComponent } from './select/select.component';
 
@@ -18,7 +17,6 @@ import { SelectComponent } from './select/select.component';
     SearchComponent,
     MedicalInstitutionsComponent,
     HeaderComponent,
-    ButtonComponent,
     SelectComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],

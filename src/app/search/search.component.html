@@ -1,5 +1,5 @@
 <div class="flex flex-col items-center">
-  <app-button [link]="'/medical-institutions/current-location'">現在地で探す</app-button>
+  <button class="btn" routerLink="/medical-institutions/current-location">現在地で探す</button>
   <hr />
   <select id="prefectures" [(ngModel)]="selectedPrefecture" (change)="onPrefectureChange()" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
     <option value="">都道府県を選択してください</option>
@@ -9,5 +9,5 @@
     <option value="">市区町村を選択してください</option>
     <option *ngFor="let municipality of municipalities" [value]="municipality">{{ municipality }}</option>
   </select>
-  <button (click)="onAddressSearch()" class="w-full max-w-xs text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">条件で探す</button>
+  <button class="btn" (click)="onAddressSearch()">条件で探す</button>
 </div>
