@@ -8,7 +8,7 @@ describe('MedicalInstitutionsComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [MedicalInstitutionsComponent],
+      imports: [MedicalInstitutionsComponent],
     });
     fixture = TestBed.createComponent(MedicalInstitutionsComponent);
     component = fixture.componentInstance;

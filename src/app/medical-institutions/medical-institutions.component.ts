@@ -2,11 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { MedicalInstitution } from '../medical-institution';
 import { MedicalInstitutionService } from '../medical-institution.service';
 import { ActivatedRoute } from '@angular/router';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-medical-institutions',
   templateUrl: './medical-institutions.component.html',
   styleUrls: ['./medical-institutions.component.css'],
+  standalone: true,
+  imports: [NgFor],
 })
 export class MedicalInstitutionsComponent implements OnInit {
   medicalInstitutions: MedicalInstitution[] = [];
