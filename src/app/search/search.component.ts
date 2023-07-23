@@ -1,14 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Addresses} from "../addresses";
-import { Router } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Addresses } from '../addresses';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
 })
-export class SearchComponent implements OnInit{
+export class SearchComponent implements OnInit {
   addresses: Addresses = {};
   prefectures: string[] = [];
   municipalities: string[] = [];
@@ -18,7 +18,7 @@ export class SearchComponent implements OnInit{
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
-    this.http.get<Addresses>('assets/addresses.json').subscribe(data => {
+    this.http.get<Addresses>('assets/addresses.json').subscribe((data) => {
       this.addresses = data;
       this.prefectures = Object.keys(data);
     });
@@ -32,8 +32,8 @@ export class SearchComponent implements OnInit{
     this.router.navigate(['/medical-institutions/address'], {
       queryParams: {
         todofuken: this.selectedPrefecture,
-        shikuchoson: this.selectedMunicipality
-      }
+        shikuchoson: this.selectedMunicipality,
+      },
     });
   }
 }

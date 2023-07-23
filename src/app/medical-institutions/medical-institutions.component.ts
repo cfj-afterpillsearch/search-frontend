@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {MedicalInstitution} from "../medical-institution";
-import {MedicalInstitutionService} from "../medical-institution.service";
-import {ActivatedRoute} from "@angular/router";
+import { MedicalInstitution } from '../medical-institution';
+import { MedicalInstitutionService } from '../medical-institution.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-medical-institutions',
@@ -13,8 +13,7 @@ export class MedicalInstitutionsComponent implements OnInit {
   prefecture = '';
   municipality = '';
 
-  constructor(private medicalInstitutionService: MedicalInstitutionService, private route: ActivatedRoute) {
-  }
+  constructor(private medicalInstitutionService: MedicalInstitutionService, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.url.subscribe((urlSegments) => {
@@ -23,7 +22,7 @@ export class MedicalInstitutionsComponent implements OnInit {
         this.getMedicalInstitutionsByCurrentLocation();
       }
       if (searchType === 'address') {
-        this.route.queryParams.subscribe(params => {
+        this.route.queryParams.subscribe((params) => {
           this.prefecture = params['todofuken'];
           this.municipality = params['shikuchoson'];
           this.getMedicalInstitutionsByAddress();
@@ -38,18 +37,21 @@ export class MedicalInstitutionsComponent implements OnInit {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
 
-        this.medicalInstitutionService.getMedicalInstitutionsByCurrentLocation(latitude, longitude)
-          .subscribe(apiResponse => {
-            this.medicalInstitutions = apiResponse.results
+        this.medicalInstitutionService
+          .getMedicalInstitutionsByCurrentLocation(latitude, longitude)
+          .subscribe((apiResponse) => {
+            this.medicalInstitutions = apiResponse.results;
           });
       },
       (error) => {
         console.error('現在地の取得に失敗しました', error);
-      }
+      },
     );
   }
 
   getMedicalInstitutionsByAddress() {
-    this.medicalInstitutionService.getMedicalInstitutionsByAddress(this.prefecture, this.municipality).subscribe(apiResponse => this.medicalInstitutions = apiResponse.results);
+    this.medicalInstitutionService
+      .getMedicalInstitutionsByAddress(this.prefecture, this.municipality)
+      .subscribe((apiResponse) => (this.medicalInstitutions = apiResponse.results));
   }
 }

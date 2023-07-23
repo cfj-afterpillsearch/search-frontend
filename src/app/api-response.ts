@@ -1,4 +1,4 @@
-import {MedicalInstitution} from "./medical-institution";
+import { MedicalInstitution } from './medical-institution';
 
 interface MetaData {
   itemsPerPage: number;
