@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Addresses } from '../../shared/addresses';
+import { Addresses } from '../../../shared/types/addresses';
 import { Router } from '@angular/router';
 import { NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ButtonComponent } from '../../shared/button/button.component';
+import { ButtonComponent } from '../../../shared/ui/button/button.component';
 
 @Component({
   selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css'],
+  templateUrl: './medical-institutions.component.html',
+  styleUrls: ['./medical-institutions.component.css'],
   standalone: true,
   imports: [ButtonComponent, FormsModule, NgFor],
 })
-export class SearchComponent implements OnInit {
+export class MedicalInstitutionsComponent implements OnInit {
   addresses: Addresses = {};
   prefectures: string[] = [];
   municipalities: string[] = [];
