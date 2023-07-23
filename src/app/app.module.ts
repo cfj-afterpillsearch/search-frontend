@@ -6,7 +6,6 @@ import { SearchComponent } from './search/search.component';
 import { MedicalInstitutionsComponent } from './medical-institutions/medical-institutions.component';
 import { AppRoutingModule } from './app-routing.module';
 import {HttpClientModule} from "@angular/common/http";
-import { HeaderComponent } from './header/header.component';
 import {FormsModule} from "@angular/forms";
 
 @NgModule({
@@ -15,7 +14,6 @@ import {FormsModule} from "@angular/forms";
     HomeComponent,
     SearchComponent,
     MedicalInstitutionsComponent,
-    HeaderComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
