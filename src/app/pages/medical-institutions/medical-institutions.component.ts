@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MedicalInstitution } from '../medical-institution';
-import { MedicalInstitutionService } from '../medical-institution.service';
+import { MedicalInstitution } from '../../shared/medical-institution';
+import { MedicalInstitutionService } from '../../shared/medical-institution.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgFor } from '@angular/common';
 
