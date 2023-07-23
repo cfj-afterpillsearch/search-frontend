@@ -8,7 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 import {HttpClientModule} from "@angular/common/http";
 import { HeaderComponent } from './header/header.component';
 import {FormsModule} from "@angular/forms";
-import { SelectComponent } from './select/select.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +16,6 @@ import { SelectComponent } from './select/select.component';
     SearchComponent,
     MedicalInstitutionsComponent,
     HeaderComponent,
-    SelectComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
