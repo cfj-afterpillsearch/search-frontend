@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply text-slate-750;
+  }
+  h2 {
+    @apply text-slate-750;
+  }
+  h3 {
+    @apply text-slate-750 text-2xl;
+  }
+  p {
+    @apply text-slate-750;
+  }
+  span {
+    @apply text-slate-750;
+  }
+}

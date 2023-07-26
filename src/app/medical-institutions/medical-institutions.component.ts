@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {MedicalInstitution} from "../medical-institution";
 import {MedicalInstitutionService} from "../medical-institution.service";
 import {ActivatedRoute} from "@angular/router";
+import { faEarthAsia } from '@fortawesome/free-solid-svg-icons';
+import { faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-medical-institutions',
@@ -12,6 +15,10 @@ export class MedicalInstitutionsComponent implements OnInit {
   medicalInstitutions: MedicalInstitution[] = [];
   prefecture = '';
   municipality = '';
+  faEarthAsia = faEarthAsia;
+  faPhone = faPhone;
+  faChevronLeft = faChevronLeft;
+  currentLocation = false;
 
   constructor(private medicalInstitutionService: MedicalInstitutionService, private route: ActivatedRoute) {
   }
@@ -20,6 +27,7 @@ export class MedicalInstitutionsComponent implements OnInit {
     this.route.url.subscribe((urlSegments) => {
       const searchType = urlSegments[1].path;
       if (searchType === 'current-location') {
+        this.currentLocation = true;
         this.getMedicalInstitutionsByCurrentLocation();
       }
       if (searchType === 'address') {
@@ -51,5 +59,13 @@ export class MedicalInstitutionsComponent implements OnInit {
 
   getMedicalInstitutionsByAddress() {
     this.medicalInstitutionService.getMedicalInstitutionsByAddress(this.prefecture, this.municipality).subscribe(apiResponse => this.medicalInstitutions = apiResponse.results);
+  }
+
+  copyTel(tel: string) {
+    navigator.clipboard.writeText(tel).then(() => {
+      alert('電話番号をクリップボードにコピーしました。')
+    }, () => {
+      alert('電話番号のコピーに失敗しました。')
+    })
   }
 }
