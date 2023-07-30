@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MedicalInstitution } from '../../../shared/medical-institution';
-import { MedicalInstitutionService } from '../../../shared/medical-institution.service';
+import { ApiService } from '../../../shared/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgFor } from '@angular/common';
 
@@ -16,7 +16,7 @@ export class ResultsAddressComponent implements OnInit {
   prefecture = '';
   municipality = '';
 
-  constructor(private medicalInstitutionService: MedicalInstitutionService, private route: ActivatedRoute) {}
+  constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
@@ -27,7 +27,7 @@ export class ResultsAddressComponent implements OnInit {
   }
 
   getMedicalInstitutionsByAddress() {
-    this.medicalInstitutionService
+    this.apiService
       .getMedicalInstitutionsByAddress(this.prefecture, this.municipality)
       .subscribe((apiResponse) => (this.medicalInstitutions = apiResponse.results));
   }

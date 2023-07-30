@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MedicalInstitution } from '../../../shared/medical-institution';
-import { MedicalInstitutionService } from '../../../shared/medical-institution.service';
+import { ApiService } from '../../../shared/api.service';
 import { NgFor } from '@angular/common';
 
 @Component({
@@ -13,7 +13,7 @@ import { NgFor } from '@angular/common';
 export class ResultsCurrentLocationComponent implements OnInit {
   medicalInstitutions: MedicalInstitution[] = [];
 
-  constructor(private medicalInstitutionService: MedicalInstitutionService) {}
+  constructor(private apiService: ApiService) {}
 
   ngOnInit() {
     this.getMedicalInstitutionsByCurrentLocation();
@@ -25,7 +25,7 @@ export class ResultsCurrentLocationComponent implements OnInit {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
 
-        this.medicalInstitutionService
+        this.apiService
           .getMedicalInstitutionsByCurrentLocation(latitude, longitude)
           .subscribe((apiResponse) => {
             this.medicalInstitutions = apiResponse.results;

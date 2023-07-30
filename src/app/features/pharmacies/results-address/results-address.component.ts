@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Pharmacy } from '../../../shared/pharmacy';
-import { PharmacyService } from '../../../shared/pharmacy.service';
+import { ApiService } from '../../../shared/api.service';
 import { ActivatedRoute } from '@angular/router';
 import {NgFor, NgIf} from '@angular/common';
 
@@ -16,7 +16,7 @@ export class ResultsAddressComponent implements OnInit {
   prefecture = '';
   municipality = '';
 
-  constructor(private pharmacyService: PharmacyService, private route: ActivatedRoute) {}
+  constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
@@ -27,7 +27,7 @@ export class ResultsAddressComponent implements OnInit {
   }
 
   getPharmaciesByAddress() {
-    this.pharmacyService
+    this.apiService
       .getPharmaciesByAddress(this.prefecture, this.municipality)
       .subscribe((apiResponse) => (this.pharmacies = apiResponse.results));
   }
