@@ -9,6 +9,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./features/medical-institutions/medical-institutions.module').then((m) => m.MedicalInstitutionsModule),
   },
+  {
+    path: 'pharmacies',
+    loadChildren: () =>
+      import('./features/pharmacies/pharmacies.module').then((m) => m.PharmaciesModule),
+  },
 ];
 
 @NgModule({
