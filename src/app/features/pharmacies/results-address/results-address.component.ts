@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { MedicalInstitution } from '../../../shared/medical-institution';
+import { Pharmacy } from '../../../shared/pharmacy';
 import { ApiService } from '../../../shared/api.service';
 import { ActivatedRoute } from '@angular/router';
-import { NgFor } from '@angular/common';
+import {NgFor, NgIf} from '@angular/common';
 
 @Component({
-  selector: 'app-medical-institutions',
+  selector: 'app-pharmacys',
   templateUrl: './results-address.component.html',
   styleUrls: ['./results-address.component.css'],
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, NgIf],
 })
 export class ResultsAddressComponent implements OnInit {
-  medicalInstitutions: MedicalInstitution[] = [];
+  pharmacies: Pharmacy[] = [];
   prefecture = '';
   municipality = '';
 
@@ -22,13 +22,13 @@ export class ResultsAddressComponent implements OnInit {
     this.route.queryParams.subscribe((params) => {
       this.prefecture = params['todofuken'];
       this.municipality = params['shikuchoson'];
-      this.getMedicalInstitutionsByAddress();
+      this.getPharmaciesByAddress();
     });
   }
 
-  getMedicalInstitutionsByAddress() {
+  getPharmaciesByAddress() {
     this.apiService
-      .getMedicalInstitutionsByAddress(this.prefecture, this.municipality)
-      .subscribe((apiResponse) => (this.medicalInstitutions = apiResponse.results));
+      .getPharmaciesByAddress(this.prefecture, this.municipality)
+      .subscribe((apiResponse) => (this.pharmacies = apiResponse.results));
   }
 }
