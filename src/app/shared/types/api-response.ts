@@ -21,14 +21,15 @@ interface Links {
   last: string;
 }
 
-export interface MedicalInstitutionApiResponse {
+interface ApiResponse {
   meta: MetaData;
   links: Links;
+}
+
+export interface MedicalInstitutionApiResponse extends ApiResponse{
   results: MedicalInstitution[];
 }
 
-export interface PharmacyApiResponse {
-  meta: MetaData;
-  links: Links;
+export interface PharmacyApiResponse extends ApiResponse{
   results: Pharmacy[];
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {PharmacyApiResponse} from './types/medical-institution-api-response';
+import {PharmacyApiResponse} from './types/api-response';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
