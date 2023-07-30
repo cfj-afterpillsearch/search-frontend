@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Pharmacy } from '../../../shared/pharmacy';
 import { PharmacyService } from '../../../shared/pharmacy.service';
-import { ActivatedRoute } from '@angular/router';
 import { NgFor } from '@angular/common';
 
 @Component({
@@ -14,7 +13,7 @@ import { NgFor } from '@angular/common';
 export class ResultsCurrentLocationComponent implements OnInit {
   pharmacies: Pharmacy[] = [];
 
-  constructor(private pharmacyService: PharmacyService, private route: ActivatedRoute) {}
+  constructor(private pharmacyService: PharmacyService) {}
 
   ngOnInit() {
     this.getPharmaciesByCurrentLocation();

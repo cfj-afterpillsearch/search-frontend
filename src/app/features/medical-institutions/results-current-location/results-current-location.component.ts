@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MedicalInstitution } from '../../../shared/medical-institution';
 import { MedicalInstitutionService } from '../../../shared/medical-institution.service';
-import { ActivatedRoute } from '@angular/router';
 import { NgFor } from '@angular/common';
 
 @Component({
@@ -14,7 +13,7 @@ import { NgFor } from '@angular/common';
 export class ResultsCurrentLocationComponent implements OnInit {
   medicalInstitutions: MedicalInstitution[] = [];
 
-  constructor(private medicalInstitutionService: MedicalInstitutionService, private route: ActivatedRoute) {}
+  constructor(private medicalInstitutionService: MedicalInstitutionService) {}
 
   ngOnInit() {
     this.getMedicalInstitutionsByCurrentLocation();
