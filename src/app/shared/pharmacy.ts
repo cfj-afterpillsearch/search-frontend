@@ -8,7 +8,8 @@ export interface Pharmacy {
   postalcode: string;
   address: string;
   tel: string;
-  url: string;
   memo_openinghours: string;
+  emergency_contact: string;
+  emergency_contact_phone: string;
   location: Location;
 }

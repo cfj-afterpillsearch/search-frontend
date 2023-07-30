@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Pharmacy } from '../../../shared/pharmacy';
 import { PharmacyService } from '../../../shared/pharmacy.service';
 import { ActivatedRoute } from '@angular/router';
-import { NgFor } from '@angular/common';
+import {NgFor, NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-pharmacys',
   templateUrl: './results-address.component.html',
   styleUrls: ['./results-address.component.css'],
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, NgIf],
 })
 export class ResultsAddressComponent implements OnInit {
   pharmacies: Pharmacy[] = [];

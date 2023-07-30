@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApiResponse } from './types/api-response';
+import { MedicalInstitutionApiResponse } from './types/medical-institution-api-response';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -9,13 +9,13 @@ import { HttpClient } from '@angular/common/http';
 export class MedicalInstitutionService {
   constructor(private http: HttpClient) {}
 
-  getMedicalInstitutionsByCurrentLocation(latitude: number, longitude: number): Observable<ApiResponse> {
+  getMedicalInstitutionsByCurrentLocation(latitude: number, longitude: number): Observable<MedicalInstitutionApiResponse> {
     const apiUrl = `https://apiserver-ts4nreykda-an.a.run.app/api/v1/search/current-location/medical-institutions?latitude=${latitude}&longitude=${longitude}`;
-    return this.http.get<ApiResponse>(apiUrl);
+    return this.http.get<MedicalInstitutionApiResponse>(apiUrl);
   }
 
-  getMedicalInstitutionsByAddress(todofuken: string, shikuchoson: string): Observable<ApiResponse> {
+  getMedicalInstitutionsByAddress(todofuken: string, shikuchoson: string): Observable<MedicalInstitutionApiResponse> {
     const apiUrl = `https://apiserver-ts4nreykda-an.a.run.app/api/v1/search/address/medical-institutions?todofuken=${todofuken}&shikuchoson=${shikuchoson}`;
-    return this.http.get<ApiResponse>(apiUrl);
+    return this.http.get<MedicalInstitutionApiResponse>(apiUrl);
   }
 }
