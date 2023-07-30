@@ -21,9 +21,10 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
               "src/assets",
-              "src/_redirects"
+              "src/favicon.ico",
+              "src/_redirects",
+              "src/robots.txt"
             ],
             "styles": [
               "src/styles.css"
