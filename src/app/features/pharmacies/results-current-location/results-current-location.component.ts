@@ -1,34 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-import { MedicalInstitution } from '../../../shared/medical-institution';
+import { Pharmacy } from '../../../shared/pharmacy';
 import { ApiService } from '../../../shared/api.service';
-import { NgFor } from '@angular/common';
+import {NgFor, NgIf} from '@angular/common';
 
 @Component({
-  selector: 'app-medical-institutions',
+  selector: 'app-pharmacies',
   templateUrl: './results-current-location.component.html',
   styleUrls: ['./results-current-location.component.css'],
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, NgIf],
 })
 export class ResultsCurrentLocationComponent implements OnInit {
-  medicalInstitutions: MedicalInstitution[] = [];
+  pharmacies: Pharmacy[] = [];
 
   constructor(private apiService: ApiService) {}
 
   ngOnInit() {
-    this.getMedicalInstitutionsByCurrentLocation();
+    this.getPharmaciesByCurrentLocation();
   }
 
-  getMedicalInstitutionsByCurrentLocation() {
+  getPharmaciesByCurrentLocation() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
 
         this.apiService
-          .getMedicalInstitutionsByCurrentLocation(latitude, longitude)
+          .getPharmaciesByCurrentLocation(latitude, longitude)
           .subscribe((apiResponse) => {
-            this.medicalInstitutions = apiResponse.results;
+            this.pharmacies = apiResponse.results;
           });
       },
       (error) => {
