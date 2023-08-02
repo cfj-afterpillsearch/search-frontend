@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {MedicalInstitutionApiResponse, PharmacyApiResponse} from './types/api-response';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  readonly apiUrlRoot = 'https://apiserver-ts4nreykda-an.a.run.app/api/v1/search';
+  readonly apiUrlRoot = `${environment.API_URL}/api/v1/search`;
 
   constructor(private http: HttpClient) {}
 
