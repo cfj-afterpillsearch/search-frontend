@@ -1,35 +1,6 @@
-<button routerLink="/medical-institutions" class="w-full bg-gray-350 h-16">
-  <fa-icon [icon]="faChevronLeft" class="text-2xl"></fa-icon>
-  <h3  
-    class=" text-center inline-block"
-    *ngIf="currentLocation; else addressComponent"
-  >
-    現在地周辺の医療機関
-  </h3>
-  <ng-template #addressComponent>
-    <h3>{{ municipality }}の医療機関</h3>
-  </ng-template>
-</button>
-
-
-<ul class="flex flex-col space-y-8 mx-5 mt-5">
-  <li *ngFor="let medicalInstitute of medicalInstitutions">
-    <h3 class="mb-1">{{ medicalInstitute.name }}</h3>
-    <a class="mb-1.5" [attr.href]="'https://www.google.co.jp/maps/place/' + medicalInstitute.address" target="_blank">
-      {{ medicalInstitute.address }}
-    </a>
-    <p class="mb-1.5">{{ medicalInstitute.memo_openinghours }}</p>
-    <div class="flex flex-row space-x-2">
-      <a [attr.href]="medicalInstitute.url" class="text-center inline-block bg-transparent border border-turquoise-300 w-48 h-10 py-1.5 rounded-lg text-turquoise-300 font-bold" target="_blank">
-        <fa-icon [icon]="faEarthAsia"></fa-icon>
-        ホームページ
-      </a>
-      <button class="bg-transparent border border-turquoise-300 w-48 py-1.5 rounded-lg" (click)="copyTel(medicalInstitute.tel)">
-        <fa-icon [icon]="faPhone" class="text-turquoise-300"></fa-icon>
-        <p class="inline-block font-bold text-turquoise-300">
-          予約・金額の確認
-        </p>
-      </button>
-    </div>
+<app-area-title-card>{{ municipality }}の医療機関</app-area-title-card>
+<ul class="flex flex-col space-y-11 mx-5 mt-5">
+  <li *ngFor="let medicalInstitution of medicalInstitutions" class>
+    <app-medical-institution-card [medicalInstitution]="medicalInstitution"></app-medical-institution-card>
   </li>
 </ul>
