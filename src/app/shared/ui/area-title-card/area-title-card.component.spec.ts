@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MedicalInstitutionCardComponent } from './area-title-card.component';
+import { AreaTitleCardComponent } from './area-title-card.component';
 
-describe('MedicalInstitutionCardComponent', () => {
-  let component: MedicalInstitutionCardComponent;
-  let fixture: ComponentFixture<MedicalInstitutionCardComponent>;
+describe('AreaTitleCardComponent', () => {
+  let component: AreaTitleCardComponent;
+  let fixture: ComponentFixture<AreaTitleCardComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [MedicalInstitutionCardComponent],
+      imports: [AreaTitleCardComponent],
     });
-    fixture = TestBed.createComponent(MedicalInstitutionCardComponent);
+    fixture = TestBed.createComponent(AreaTitleCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
