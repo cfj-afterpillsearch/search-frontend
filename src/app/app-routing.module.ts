@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './features/home/home.component';
+import { AboutComponent } from './features/about/about.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'about', component: AboutComponent },
   {
     path: 'medical-institutions',
     loadChildren: () =>
@@ -11,8 +13,7 @@ const routes: Routes = [
   },
   {
     path: 'pharmacies',
-    loadChildren: () =>
-      import('./features/pharmacies/pharmacies.module').then((m) => m.PharmaciesModule),
+    loadChildren: () => import('./features/pharmacies/pharmacies.module').then((m) => m.PharmaciesModule),
   },
 ];
 
