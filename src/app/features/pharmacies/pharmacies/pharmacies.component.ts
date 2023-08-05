@@ -34,6 +34,10 @@ export class PharmaciesComponent implements OnInit {
   }
 
   onAddressSearch() {
+    if (this.selectedPrefecture === '' || this.selectedMunicipality === '') {
+      window.alert('都道府県と市区町村を選択してください。');
+      return;
+    }
     this.router.navigate(['/pharmacies/address'], {
       queryParams: {
         todofuken: this.selectedPrefecture,
