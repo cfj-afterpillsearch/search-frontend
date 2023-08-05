@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {MedicalInstitutionApiResponse, PharmacyApiResponse} from './types/api-response';
+import { MedicalInstitutionApiResponse, PharmacyApiResponse } from './types/api-response';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
@@ -12,7 +12,10 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  getMedicalInstitutionsByCurrentLocation(latitude: number, longitude: number): Observable<MedicalInstitutionApiResponse> {
+  getMedicalInstitutionsByCurrentLocation(
+    latitude: number,
+    longitude: number,
+  ): Observable<MedicalInstitutionApiResponse> {
     const apiUrl = `${this.apiUrlRoot}/current-location/medical-institutions?latitude=${latitude}&longitude=${longitude}`;
     return this.http.get<MedicalInstitutionApiResponse>(apiUrl);
   }

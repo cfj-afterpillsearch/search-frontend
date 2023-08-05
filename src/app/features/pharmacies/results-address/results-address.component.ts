@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Pharmacy } from '../../../shared/pharmacy';
 import { ApiService } from '../../../shared/api.service';
 import { ActivatedRoute } from '@angular/router';
-import {NgFor, NgIf} from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-pharmacys',

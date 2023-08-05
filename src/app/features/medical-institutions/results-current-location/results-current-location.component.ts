@@ -25,11 +25,9 @@ export class ResultsCurrentLocationComponent implements OnInit {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
 
-        this.apiService
-          .getMedicalInstitutionsByCurrentLocation(latitude, longitude)
-          .subscribe((apiResponse) => {
-            this.medicalInstitutions = apiResponse.results;
-          });
+        this.apiService.getMedicalInstitutionsByCurrentLocation(latitude, longitude).subscribe((apiResponse) => {
+          this.medicalInstitutions = apiResponse.results;
+        });
       },
       (error) => {
         console.error('現在地の取得に失敗しました', error);

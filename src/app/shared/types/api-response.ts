@@ -1,5 +1,5 @@
 import { MedicalInstitution } from '../medical-institution';
-import {Pharmacy} from "../pharmacy";
+import { Pharmacy } from '../pharmacy';
 
 interface MetaData {
   itemsPerPage: number;
@@ -26,10 +26,10 @@ interface ApiResponse {
   links: Links;
 }
 
-export interface MedicalInstitutionApiResponse extends ApiResponse{
+export interface MedicalInstitutionApiResponse extends ApiResponse {
   results: MedicalInstitution[];
 }
 
-export interface PharmacyApiResponse extends ApiResponse{
+export interface PharmacyApiResponse extends ApiResponse {
   results: Pharmacy[];
 }
