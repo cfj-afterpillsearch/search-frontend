@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Addresses } from '../../../shared/types/addresses';
 import { Router } from '@angular/router';
-import { NgFor } from '@angular/common';
+import { NgClass, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ButtonComponent } from '../../../shared/ui/button/button.component';
 
@@ -11,7 +11,7 @@ import { ButtonComponent } from '../../../shared/ui/button/button.component';
   templateUrl: './medical-institutions.component.html',
   styleUrls: ['./medical-institutions.component.css'],
   standalone: true,
-  imports: [ButtonComponent, FormsModule, NgFor],
+  imports: [ButtonComponent, FormsModule, NgFor, NgClass],
 })
 export class MedicalInstitutionsComponent implements OnInit {
   addresses: Addresses = {};
@@ -34,7 +34,7 @@ export class MedicalInstitutionsComponent implements OnInit {
   }
 
   onAddressSearch() {
-    if (this.selectedPrefecture === '' || this.selectedMunicipality === '') {
+    if (!this.arePrefectureAndMunicipalitySelected()) {
       window.alert('都道府県と市区町村を選択してください。');
       return;
     }
@@ -44,5 +44,9 @@ export class MedicalInstitutionsComponent implements OnInit {
         shikuchoson: this.selectedMunicipality,
       },
     });
+  }
+
+  arePrefectureAndMunicipalitySelected() {
+    return this.selectedPrefecture !== '' && this.selectedMunicipality !== '';
   }
 }
