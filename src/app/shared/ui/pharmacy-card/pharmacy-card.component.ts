@@ -27,12 +27,17 @@ export class PharmacyCardComponent implements OnInit {
       lng: 0,
     },
   };
+
+  readonly regexpPhoneNumber =
+    /(0(\d{1}-\d{4}|\d{2}-\d{3}|\d{3}-\d{2}|\d{4}-\d{1})-\d{4}|0[5789]0-\d{4}-\d{4}|0120-\d{3}-\d{3})/;
+
   isEmergencyContact = false;
+
   faEarthAsia = faEarthAsia;
   faPhone = faPhone;
   faArrowUpRightFromSquare = faArrowUpRightFromSquare;
 
   ngOnInit() {
-    this.isEmergencyContact = this.pharmacy.emergency_contact === '有' ? true : false;
+    this.isEmergencyContact = this.regexpPhoneNumber.test(this.pharmacy.emergency_contact_phone);
   }
 }
