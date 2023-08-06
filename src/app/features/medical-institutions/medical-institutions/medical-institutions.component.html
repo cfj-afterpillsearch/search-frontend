@@ -18,10 +18,10 @@
     <option value="">市区町村を選択してください</option>
     <option *ngFor="let municipality of municipalities" [value]="municipality">{{ municipality }}</option>
   </select>
-  <button
-    (click)="onAddressSearch()"
-    [ngClass]="arePrefectureAndMunicipalitySelected() ? 'enabled-btn' : 'disabled-btn'"
+  <app-button
+    (onClick)="onAddressSearch()"
+    [disabled]="!arePrefectureAndMunicipalitySelected()"
   >
     条件で探す
-  </button>
+  </app-button>
 </div>
