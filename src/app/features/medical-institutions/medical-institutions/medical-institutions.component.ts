@@ -34,7 +34,7 @@ export class MedicalInstitutionsComponent implements OnInit {
   }
 
   onAddressSearch() {
-    if (!this.arePrefectureAndMunicipalitySelected()) {
+    if (!this.isPrefectureAndMunicipalitySelected()) {
       window.alert('都道府県と市区町村を選択してください。');
       return;
     }
@@ -46,7 +46,7 @@ export class MedicalInstitutionsComponent implements OnInit {
     });
   }
 
-  arePrefectureAndMunicipalitySelected() {
+  isPrefectureAndMunicipalitySelected() {
     return this.selectedPrefecture !== '' && this.selectedMunicipality !== '';
   }
 }
