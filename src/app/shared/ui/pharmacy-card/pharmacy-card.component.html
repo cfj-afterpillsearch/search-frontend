@@ -1,7 +1,11 @@
 <h1 class="mb-4 text-2xl">{{ pharmacy.name }}</h1>
 <p class="mb-2">
   {{ pharmacy.address }}
-  <a class="mb-2 text-turquoise-300" [attr.href]="'https://www.google.co.jp/maps/place/' + pharmacy.address" target="_blank">
+  <a
+    class="mb-2 text-turquoise-300"
+    [attr.href]="'https://www.google.co.jp/maps/place/' + pharmacy.address"
+    target="_blank"
+  >
     Map
     <fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon>
   </a>
@@ -9,20 +13,28 @@
 <p class="mb-2">{{ pharmacy.memo_openinghours }}</p>
 <p *ngIf="isEmergencyContact" class="mb-2">
   ※薬局に電話が通じなかった場合、
-  <a [attr.href]="'tel:' + pharmacy.emergency_contact_phone" class="text-turquoise-300">{{ pharmacy.emergency_contact_phone }}</a>
+  <a [attr.href]="'tel:' + pharmacy.emergency_contact_phone" class="text-turquoise-300">{{
+    pharmacy.emergency_contact_phone
+  }}</a>
   の連絡先へお電話ください。
 </p>
 <div class="flex flex-row space-x-2">
-  <a [attr.href]="'https://www.google.com/search?q=' + pharmacy.name + '&oq=' + pharmacy.name + '&sourceid=chrome&ie=UTF-8'" class="text-center inline-block bg-transparent border border-turquoise-300 w-48 h-10 py-1.5 rounded-lg text-turquoise-300 font-bold" target="_blank">
+  <a
+    [attr.href]="
+      'https://www.google.com/search?q=' + pharmacy.name
+    "
+    class="text-center inline-block bg-transparent border border-turquoise-300 w-48 h-10 py-1.5 rounded-lg text-turquoise-300 font-bold"
+    target="_blank"
+  >
     <fa-icon [icon]="faEarthAsia"></fa-icon>
     Google検索
   </a>
-  <a [attr.href]="'tel:' + pharmacy.tel" class="text-center inline-block bg-transparent border border-turquoise-300 w-48 h-10 py-1.5 rounded-lg text-turquoise-300 font-bold" target="_blank">
+  <a
+    [attr.href]="'tel:' + pharmacy.tel"
+    class="text-center inline-block bg-transparent border border-turquoise-300 w-48 h-10 py-1.5 rounded-lg text-turquoise-300 font-bold"
+    target="_blank"
+  >
     <fa-icon [icon]="faPhone" class="text-turquoise-300"></fa-icon>
-    <p class="inline-block font-bold text-turquoise-300">
-      予約・金額の確認
-    </p>
+    <p class="inline-block font-bold text-turquoise-300">予約・金額の確認</p>
   </a>
 </div>
-
-
