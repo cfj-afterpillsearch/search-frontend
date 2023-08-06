@@ -15,8 +15,8 @@ import { AreaTitleCardComponent } from '../../../shared/ui/area-title-card/area-
 })
 export class ResultsAddressComponent implements OnInit {
   medicalInstitutions: MedicalInstitution[] = [];
-  prefecture: string = '';
-  municipality: string = '';
+  prefecture = '';
+  municipality = '';
 
   constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 

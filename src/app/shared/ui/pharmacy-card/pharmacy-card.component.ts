@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faEarthAsia } from '@fortawesome/free-solid-svg-icons';
@@ -13,7 +13,7 @@ import { Pharmacy } from '../../pharmacy';
   standalone: true,
   imports: [NgIf, FontAwesomeModule],
 })
-export class PharmacyCardComponent {
+export class PharmacyCardComponent implements OnInit {
   @Input() pharmacy: Pharmacy = {
     name: '',
     postalcode: '',
@@ -24,10 +24,10 @@ export class PharmacyCardComponent {
     emergency_contact_phone: '',
     location: {
       lat: 0,
-      lng: 0
-    }
+      lng: 0,
+    },
   };
-  isEmergencyContact: boolean = false;
+  isEmergencyContact = false;
   faEarthAsia = faEarthAsia;
   faPhone = faPhone;
   faArrowUpRightFromSquare = faArrowUpRightFromSquare;
@@ -36,4 +36,3 @@ export class PharmacyCardComponent {
     this.isEmergencyContact = this.pharmacy.emergency_contact === '有' ? true : false;
   }
 }
-

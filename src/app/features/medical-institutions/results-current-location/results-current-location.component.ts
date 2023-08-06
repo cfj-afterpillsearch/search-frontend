@@ -14,9 +14,9 @@ import { AreaTitleCardComponent } from '../../../shared/ui/area-title-card/area-
 })
 export class ResultsCurrentLocationComponent implements OnInit {
   medicalInstitutions: MedicalInstitution[] = [];
-  prefecture: string = '';
-  municipality: string = '';
-  
+  prefecture = '';
+  municipality = '';
+
   constructor(private apiService: ApiService) {}
 
   ngOnInit() {
@@ -29,13 +29,11 @@ export class ResultsCurrentLocationComponent implements OnInit {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
 
-        this.apiService
-          .getMedicalInstitutionsByCurrentLocation(latitude, longitude)
-          .subscribe((apiResponse) => {
-            this.medicalInstitutions = apiResponse.results;
-            this.prefecture = apiResponse.meta.address_todofuken;
-            this.municipality = apiResponse.meta.address_shikuchoson;
-          });
+        this.apiService.getMedicalInstitutionsByCurrentLocation(latitude, longitude).subscribe((apiResponse) => {
+          this.medicalInstitutions = apiResponse.results;
+          this.prefecture = apiResponse.meta.address_todofuken;
+          this.municipality = apiResponse.meta.address_shikuchoson;
+        });
       },
       (error) => {
         console.error('現在地の取得に失敗しました', error);

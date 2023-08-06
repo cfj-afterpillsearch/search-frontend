@@ -7,7 +7,4 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
 })
-export class AreaTitleCardComponent {
-
-}
-
+export class AreaTitleCardComponent {}

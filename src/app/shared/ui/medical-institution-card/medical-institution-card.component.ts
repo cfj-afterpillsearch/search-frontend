@@ -22,12 +22,11 @@ export class MedicalInstitutionCardComponent {
     memo_openinghours: '',
     location: {
       lat: 0,
-      lng: 0
-    }
+      lng: 0,
+    },
   };
 
   faEarthAsia = faEarthAsia;
   faPhone = faPhone;
   faArrowUpRightFromSquare = faArrowUpRightFromSquare;
 }
-
