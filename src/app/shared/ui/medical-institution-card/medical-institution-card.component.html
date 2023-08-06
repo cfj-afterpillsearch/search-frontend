@@ -13,10 +13,7 @@
 <p class="mb-2">{{ medicalInstitution.memo_openinghours }}</p>
 <div class="flex flex-row space-x-2">
   <a
-    [attr.href]="
-      'https://www.google.com/search?q=' +
-      medicalInstitution.name
-    "
+    [attr.href]="'https://www.google.com/search?q=' + medicalInstitution.name"
     class="text-center inline-block bg-transparent border border-turquoise-300 w-48 h-10 py-1.5 rounded-lg text-turquoise-300 font-bold"
     target="_blank"
   >
