@@ -1,17 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {MedicalInstitutionApiResponse, PharmacyApiResponse} from './types/api-response';
+import { MedicalInstitutionApiResponse, PharmacyApiResponse } from './types/api-response';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  readonly apiUrlRoot = 'https://apiserver-ts4nreykda-an.a.run.app/api/v1/search';
+  readonly apiUrlRoot = `${environment.API_URL}/api/v1/search`;
 
   constructor(private http: HttpClient) {}
 
-  getMedicalInstitutionsByCurrentLocation(latitude: number, longitude: number): Observable<MedicalInstitutionApiResponse> {
+  getMedicalInstitutionsByCurrentLocation(
+    latitude: number,
+    longitude: number,
+  ): Observable<MedicalInstitutionApiResponse> {
     const apiUrl = `${this.apiUrlRoot}/current-location/medical-institutions?latitude=${latitude}&longitude=${longitude}`;
     return this.http.get<MedicalInstitutionApiResponse>(apiUrl);
   }

@@ -8,7 +8,7 @@ describe('ResultCurrentLocationComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ResultsCurrentLocationComponent]
+      declarations: [ResultsCurrentLocationComponent],
     });
     fixture = TestBed.createComponent(ResultsCurrentLocationComponent);
     component = fixture.componentInstance;

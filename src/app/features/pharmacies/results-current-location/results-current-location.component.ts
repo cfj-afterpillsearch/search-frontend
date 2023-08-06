@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Pharmacy } from '../../../shared/pharmacy';
 import { ApiService } from '../../../shared/api.service';
-import {NgFor, NgIf} from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-pharmacies',
@@ -25,11 +25,9 @@ export class ResultsCurrentLocationComponent implements OnInit {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
 
-        this.apiService
-          .getPharmaciesByCurrentLocation(latitude, longitude)
-          .subscribe((apiResponse) => {
-            this.pharmacies = apiResponse.results;
-          });
+        this.apiService.getPharmaciesByCurrentLocation(latitude, longitude).subscribe((apiResponse) => {
+          this.pharmacies = apiResponse.results;
+        });
       },
       (error) => {
         console.error('現在地の取得に失敗しました', error);

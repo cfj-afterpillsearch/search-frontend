@@ -11,8 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'pharmacies',
-    loadChildren: () =>
-      import('./features/pharmacies/pharmacies.module').then((m) => m.PharmaciesModule),
+    loadChildren: () => import('./features/pharmacies/pharmacies.module').then((m) => m.PharmaciesModule),
   },
 ];
 
