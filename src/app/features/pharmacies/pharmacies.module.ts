@@ -3,9 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { PharmaciesRoutingModule } from './pharmacies-routing.module';
 
-
 @NgModule({
   declarations: [],
-  imports: [CommonModule, PharmaciesRoutingModule]
+  imports: [CommonModule, PharmaciesRoutingModule],
 })
-export class PharmaciesModule { }
+export class PharmaciesModule {}
