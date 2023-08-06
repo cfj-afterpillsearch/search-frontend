@@ -1,14 +1,13 @@
-.chapter {
-  @apply text-xl text-gray-700 my-2 underline;
-}
-
 .block {
   @apply mb-8;
 }
 
+.chapter {
+  @apply text-xl text-gray-700 my-2 underline;
+}
+
 li {
-  list-style-type: disc;
-  @apply text-sm text-gray-700 ml-7 my-1;
+  @apply text-sm text-gray-700 ml-7 my-1 list-disc;
 }
 
 p {
