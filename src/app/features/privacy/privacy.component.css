@@ -1,0 +1,23 @@
+.chapter-text {
+  @apply text-xl text-gray-700 my-2 underline;
+}
+
+.chapter-box {
+  @apply mb-6;
+}
+
+h2 {
+  @apply font-bold;
+}
+
+li {
+  @apply text-sm text-gray-700 ml-7 my-1 list-disc;
+}
+
+p {
+  @apply text-sm text-gray-700 my-2 leading-5;
+}
+
+a {
+  @apply underline;
+}
