@@ -1,13 +1,13 @@
-.chapter-text {
-  @apply text-xl text-gray-700 my-2 underline;
+.chapter-box {
+  @apply mb-8;
 }
 
-.chapter-box {
-  @apply mb-6;
+.chapter-title {
+  @apply text-lg text-gray-700 my-2;
 }
 
 h2 {
-  @apply font-bold;
+  @apply font-bold text-xl;
 }
 
 li {
