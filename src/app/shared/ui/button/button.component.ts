@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { NgClass } from '@angular/common';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -6,8 +7,10 @@ import { RouterLink } from '@angular/router';
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.css'],
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, NgClass],
 })
 export class ButtonComponent {
   @Input() link = '';
+  @Input() disabled = false;
+  @Output() onClick = new EventEmitter<void>();
 }

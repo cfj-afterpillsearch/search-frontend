@@ -1,0 +1,23 @@
+.block {
+  @apply mb-8;
+}
+
+.chapter {
+  @apply text-xl text-gray-700 my-2 underline;
+}
+
+li {
+  @apply text-sm text-gray-700 ml-7 my-1 list-disc;
+}
+
+p {
+  @apply text-sm text-gray-700 my-2 leading-5;
+}
+
+a {
+  @apply underline;
+}
+
+.logo {
+  @apply h-12 mx-auto;
+}
