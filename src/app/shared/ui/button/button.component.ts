@@ -8,6 +8,9 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./button.component.css'],
   standalone: true,
   imports: [RouterLink, NgClass],
+  host: {
+    class: 'w-full'
+  }
 })
 export class ButtonComponent {
   @Input() link = '';
