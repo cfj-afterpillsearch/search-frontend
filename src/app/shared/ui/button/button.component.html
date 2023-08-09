@@ -1,7 +1,3 @@
-<button
-  [routerLink]="link ? link : null"
-  [ngClass]="disabled ? 'disabled' : 'enabled'"
-  (click)="onClick.emit()"
->
+<button [routerLink]="link ? link : null" [ngClass]="disabled ? 'disabled' : 'enabled'" (click)="clickEvent.emit()">
   <ng-content></ng-content>
 </button>

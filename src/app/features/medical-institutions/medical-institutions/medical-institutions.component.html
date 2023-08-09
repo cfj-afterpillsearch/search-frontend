@@ -24,11 +24,6 @@
         <option *ngFor="let municipality of municipalities" [value]="municipality">{{ municipality }}</option>
       </select>
     </div>
-    <app-button
-      (onClick)="onAddressSearch()"
-      [disabled]="!isPrefectureAndMunicipalitySelected()"
-    >
-      検索
-    </app-button>
+    <app-button (onClick)="onAddressSearch()" [disabled]="!isPrefectureAndMunicipalitySelected()"> 検索 </app-button>
   </section>
 </div>
