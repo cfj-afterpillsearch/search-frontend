@@ -1,12 +1,7 @@
-<ul>
-  <li *ngFor="let pharmacy of pharmacies">
-    <h3>{{ pharmacy.name }}</h3>
-    <p>{{ pharmacy.address }}</p>
-    <p>{{ pharmacy.tel }}</p>
-    医療機関における緊急避妊にかかる対面診療への対応可能時間帯：
-    <p>{{ pharmacy.memo_openinghours }}</p>
-    <p *ngIf="pharmacy.emergency_contact_phone">
-      ※薬局に電話が通じなかった場合、{{ pharmacy.emergency_contact_phone }}の連絡先へ電話ください。
-    </p>
+<app-area-title-card>{{ municipality }}周辺の薬局</app-area-title-card>
+
+<ul class="flex flex-col space-y-11 mx-5 mt-5">
+  <li *ngFor="let pharmacy of pharmacies" class>
+    <app-pharmacy-card [pharmacy]="pharmacy"></app-pharmacy-card>
   </li>
 </ul>

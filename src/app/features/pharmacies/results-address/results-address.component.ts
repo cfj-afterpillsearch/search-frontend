@@ -3,13 +3,15 @@ import { Pharmacy } from '../../../shared/pharmacy';
 import { ApiService } from '../../../shared/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgFor, NgIf } from '@angular/common';
+import { PharmacyCardComponent } from '../../../shared/ui/pharmacy-card/pharmacy-card.component';
+import { AreaTitleCardComponent } from '../../../shared/ui/area-title-card/area-title-card.component';
 
 @Component({
-  selector: 'app-pharmacys',
+  selector: 'app-pharmacies',
   templateUrl: './results-address.component.html',
   styleUrls: ['./results-address.component.css'],
   standalone: true,
-  imports: [NgFor, NgIf],
+  imports: [NgFor, NgIf, PharmacyCardComponent, AreaTitleCardComponent],
 })
 export class ResultsAddressComponent implements OnInit {
   pharmacies: Pharmacy[] = [];

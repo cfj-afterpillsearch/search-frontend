@@ -1,0 +1,31 @@
+<h1 class="mb-4 text-2xl">{{ medicalInstitution.name }}</h1>
+<p class="mb-2">
+  {{ medicalInstitution.address }}
+  <a
+    class="mb-2 text-turquoise-300"
+    [attr.href]="'https://www.google.co.jp/maps/place/' + medicalInstitution.address"
+    target="_blank"
+  >
+    Map
+    <fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon>
+  </a>
+</p>
+<p class="mb-2">{{ medicalInstitution.memo_openinghours }}</p>
+<div class="flex flex-row space-x-2">
+  <a
+    [attr.href]="'https://www.google.com/search?q=' + medicalInstitution.name"
+    class="text-center inline-block bg-transparent border border-turquoise-300 w-48 h-10 py-1.5 rounded-lg text-turquoise-300 font-bold"
+    target="_blank"
+  >
+    <fa-icon [icon]="faEarthAsia"></fa-icon>
+    Google検索
+  </a>
+  <a
+    [attr.href]="'tel:' + medicalInstitution.tel"
+    class="text-center inline-block bg-transparent border border-turquoise-300 w-48 h-10 py-1.5 rounded-lg text-turquoise-300 font-bold"
+    target="_blank"
+  >
+    <fa-icon [icon]="faPhone" class="text-turquoise-300"></fa-icon>
+    <p class="inline-block font-bold text-turquoise-300">予約・金額の確認</p>
+  </a>
+</div>

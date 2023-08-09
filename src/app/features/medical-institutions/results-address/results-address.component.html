@@ -1,12 +1,6 @@
-<ul>
-  <li *ngFor="let medicalInstitute of medicalInstitutions">
-    <h3>{{ medicalInstitute.name }}</h3>
-    <p>{{ medicalInstitute.address }}</p>
-    <p>
-      <a [href]="medicalInstitute.url" target="_blank">{{ medicalInstitute.url }}</a>
-    </p>
-    <p>{{ medicalInstitute.tel }}</p>
-    医療機関における緊急避妊にかかる対面診療への対応可能時間帯：
-    <p>{{ medicalInstitute.memo_openinghours }}</p>
+<app-area-title-card>{{ municipality }}の医療機関</app-area-title-card>
+<ul class="flex flex-col space-y-11 mx-5 mt-5">
+  <li *ngFor="let medicalInstitution of medicalInstitutions" class>
+    <app-medical-institution-card [medicalInstitution]="medicalInstitution"></app-medical-institution-card>
   </li>
 </ul>
