@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -12,5 +12,6 @@ import { RouterLink } from '@angular/router';
 export class ButtonComponent {
   @Input() link = '';
   @Input() disabled = false;
-  @Output() onClick = new EventEmitter<void>();
+  @Output() clickEvent = new EventEmitter<void>();
+  @HostBinding('class.w-full') wFull = true;
 }
