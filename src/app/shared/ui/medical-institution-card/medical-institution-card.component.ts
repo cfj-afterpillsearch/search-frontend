@@ -4,6 +4,7 @@ import { faEarthAsia } from '@fortawesome/free-solid-svg-icons';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { MedicalInstitution } from '../../medical-institution';
+import { GoogleTagManagerService } from 'angular-google-tag-manager'
 
 @Component({
   selector: 'app-medical-institution-card',
@@ -13,6 +14,8 @@ import { MedicalInstitution } from '../../medical-institution';
   imports: [FontAwesomeModule],
 })
 export class MedicalInstitutionCardComponent {
+  constructor(private gtmService: GoogleTagManagerService) {}
+
   @Input() medicalInstitution: MedicalInstitution = {
     name: '',
     postalcode: '',
@@ -29,4 +32,13 @@ export class MedicalInstitutionCardComponent {
   faEarthAsia = faEarthAsia;
   faPhone = faPhone;
   faArrowUpRightFromSquare = faArrowUpRightFromSquare;
+
+  searchButtonClickEvent() {
+    const gtmTag = {
+      event: 'search-button-click',
+      data: 'my-custom-event',
+    };
+    this.gtmService.pushTag(gtmTag);
+    alert('this is a custom event');
+  }
 }
