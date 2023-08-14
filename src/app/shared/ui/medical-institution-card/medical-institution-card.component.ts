@@ -33,12 +33,13 @@ export class MedicalInstitutionCardComponent {
   faPhone = faPhone;
   faArrowUpRightFromSquare = faArrowUpRightFromSquare;
 
-  searchButtonClickEvent() {
+  searchButtonPushTag(medicalInstitution: MedicalInstitution) {
     const gtmTag = {
       event: 'search-button-click',
-      data: 'my-custom-event',
+      data: {
+        name:medicalInstitution.name
+      },
     };
     this.gtmService.pushTag(gtmTag);
-    alert('this is a custom event');
   }
 }
