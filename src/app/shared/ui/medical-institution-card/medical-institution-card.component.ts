@@ -4,7 +4,7 @@ import { faEarthAsia } from '@fortawesome/free-solid-svg-icons';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { MedicalInstitution } from '../../medical-institution';
-import { GoogleTagManagerService } from 'angular-google-tag-manager'
+import { GoogleTagManagerService } from 'angular-google-tag-manager';
 
 @Component({
   selector: 'app-medical-institution-card',
@@ -35,9 +35,19 @@ export class MedicalInstitutionCardComponent {
 
   searchButtonPushTag(medicalInstitution: MedicalInstitution) {
     const gtmTag = {
-      event: 'search-button-click',
+      event: 'medical-institution-search-button-click',
       data: {
-        name:medicalInstitution.name
+        name: medicalInstitution.name,
+      },
+    };
+    this.gtmService.pushTag(gtmTag);
+  }
+
+  telButtonPushTag(medicalInstitution: MedicalInstitution) {
+    const gtmTag = {
+      event: 'medical-institution-tel-button-click',
+      data: {
+        name: medicalInstitution.name,
       },
     };
     this.gtmService.pushTag(gtmTag);
