@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faEarthAsia } from '@fortawesome/free-solid-svg-icons';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { MedicalInstitution } from '../../medical-institution';
 import { SharedModule } from "../../shared.module";
@@ -27,7 +27,7 @@ export class MedicalInstitutionCardComponent {
     },
   };
 
-  faEarthAsia = faEarthAsia;
+  faMagnifyingGlass = faMagnifyingGlass;
   faPhone = faPhone;
   faArrowUpRightFromSquare = faArrowUpRightFromSquare;
 }
