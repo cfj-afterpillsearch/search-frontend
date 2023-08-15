@@ -5,13 +5,14 @@ import { faEarthAsia } from '@fortawesome/free-solid-svg-icons';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { Pharmacy } from '../../pharmacy';
+import { SharedModule } from '../../shared.module';
 
 @Component({
   selector: 'app-pharmacy-card',
   templateUrl: './pharmacy-card.component.html',
   styleUrls: ['./pharmacy-card.component.css'],
   standalone: true,
-  imports: [NgIf, FontAwesomeModule],
+  imports: [NgIf, FontAwesomeModule, SharedModule],
 })
 export class PharmacyCardComponent implements OnInit {
   @Input() pharmacy: Pharmacy = {

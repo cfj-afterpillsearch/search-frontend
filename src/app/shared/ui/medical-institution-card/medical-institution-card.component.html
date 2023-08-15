@@ -10,7 +10,7 @@
     <fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon>
   </a>
 </p>
-<p class="mb-2">{{ medicalInstitution.memo_openinghours }}</p>
+<p class="mb-2" [innerHTML]="medicalInstitution.memo_openinghours | newlineToBrPipe"></p>
 <div class="flex flex-row space-x-2">
   <a
     [attr.href]="'https://www.google.com/search?q=' + medicalInstitution.name"
