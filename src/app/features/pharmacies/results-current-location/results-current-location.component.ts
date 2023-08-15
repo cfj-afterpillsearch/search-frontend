@@ -14,8 +14,8 @@ import { AreaTitleCardComponent } from '../../../shared/ui/area-title-card/area-
 })
 export class ResultsCurrentLocationComponent implements OnInit {
   pharmacies: Pharmacy[] = [];
-  prefecture = '';
-  municipality = '';
+  todofuken = '';
+  shikuchoson = '';
   constructor(private apiService: ApiService) {}
 
   ngOnInit() {
@@ -30,8 +30,8 @@ export class ResultsCurrentLocationComponent implements OnInit {
 
         this.apiService.getPharmaciesByCurrentLocation(latitude, longitude).subscribe((apiResponse) => {
           this.pharmacies = apiResponse.results;
-          this.prefecture = apiResponse.meta.address_todofuken;
-          this.municipality = apiResponse.meta.address_shikuchoson;
+          this.todofuken = apiResponse.meta.address_todofuken;
+          this.shikuchoson = apiResponse.meta.address_shikuchoson;
         });
       },
       (error) => {

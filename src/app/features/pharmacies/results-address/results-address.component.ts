@@ -15,22 +15,22 @@ import { AreaTitleCardComponent } from '../../../shared/ui/area-title-card/area-
 })
 export class ResultsAddressComponent implements OnInit {
   pharmacies: Pharmacy[] = [];
-  prefecture = '';
-  municipality = '';
+  todofuken = '';
+  shikuchoson = '';
 
   constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
-      this.prefecture = params['todofuken'];
-      this.municipality = params['shikuchoson'];
+      this.todofuken = params['todofuken'];
+      this.shikuchoson = params['shikuchoson'];
       this.getPharmaciesByAddress();
     });
   }
 
   getPharmaciesByAddress() {
     this.apiService
-      .getPharmaciesByAddress(this.prefecture, this.municipality)
+      .getPharmaciesByAddress(this.todofuken, this.shikuchoson)
       .subscribe((apiResponse) => (this.pharmacies = apiResponse.results));
   }
 }

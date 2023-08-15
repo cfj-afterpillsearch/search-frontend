@@ -15,38 +15,38 @@ import { ButtonComponent } from '../../../shared/ui/button/button.component';
 })
 export class MedicalInstitutionsComponent implements OnInit {
   addresses: Addresses = {};
-  prefectures: string[] = [];
-  municipalities: string[] = [];
-  selectedPrefecture = '';
-  selectedMunicipality = '';
+  todofukenList: string[] = [];
+  shikuchosonList: string[] = [];
+  selectedTodofuken = '';
+  selectedShikuchoson = '';
 
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
     this.http.get<Addresses>('assets/addresses.json').subscribe((data) => {
       this.addresses = data;
-      this.prefectures = Object.keys(data);
+      this.todofukenList = Object.keys(data);
     });
   }
 
-  onPrefectureChange() {
-    this.municipalities = this.addresses[this.selectedPrefecture] || [];
+  onTodofukenChange() {
+    this.shikuchosonList = this.addresses[this.selectedTodofuken] || [];
   }
 
   onAddressSearch() {
-    if (!this.isPrefectureAndMunicipalitySelected()) {
+    if (!this.isTodofukenAndShikuchosonSelected()) {
       window.alert('都道府県と市区町村を選択してください。');
       return;
     }
     this.router.navigate(['/medical-institutions/address'], {
       queryParams: {
-        todofuken: this.selectedPrefecture,
-        shikuchoson: this.selectedMunicipality,
+        todofuken: this.selectedTodofuken,
+        shikuchoson: this.selectedShikuchoson,
       },
     });
   }
 
-  isPrefectureAndMunicipalitySelected() {
-    return this.selectedPrefecture !== '' && this.selectedMunicipality !== '';
+  isTodofukenAndShikuchosonSelected() {
+    return this.selectedTodofuken !== '' && this.selectedShikuchoson !== '';
   }
 }

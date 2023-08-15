@@ -14,8 +14,8 @@ import { AreaTitleCardComponent } from '../../../shared/ui/area-title-card/area-
 })
 export class ResultsCurrentLocationComponent implements OnInit {
   medicalInstitutions: MedicalInstitution[] = [];
-  prefecture = '';
-  municipality = '';
+  todofuken = '';
+  shikuchoson = '';
 
   constructor(private apiService: ApiService) {}
 
@@ -31,8 +31,8 @@ export class ResultsCurrentLocationComponent implements OnInit {
 
         this.apiService.getMedicalInstitutionsByCurrentLocation(latitude, longitude).subscribe((apiResponse) => {
           this.medicalInstitutions = apiResponse.results;
-          this.prefecture = apiResponse.meta.address_todofuken;
-          this.municipality = apiResponse.meta.address_shikuchoson;
+          this.todofuken = apiResponse.meta.address_todofuken;
+          this.shikuchoson = apiResponse.meta.address_shikuchoson;
         });
       },
       (error) => {
