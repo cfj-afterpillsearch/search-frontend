@@ -4,14 +4,14 @@ import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { MedicalInstitution } from '../../medical-institution';
-import { SharedModule } from "../../shared.module";
+import { NewlineToBrPipe } from '../../newline-to-br.pipe';
 
 @Component({
     selector: 'app-medical-institution-card',
     templateUrl: './medical-institution-card.component.html',
     styleUrls: ['./medical-institution-card.component.css'],
     standalone: true,
-    imports: [FontAwesomeModule, SharedModule]
+    imports: [FontAwesomeModule, NewlineToBrPipe]
 })
 export class MedicalInstitutionCardComponent {
   @Input() medicalInstitution: MedicalInstitution = {
