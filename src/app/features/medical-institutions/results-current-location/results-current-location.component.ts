@@ -1,21 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { MedicalInstitution } from '../../../shared/medical-institution';
 import { ApiService } from '../../../shared/api.service';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { MedicalInstitutionCardComponent } from '../../../shared/ui/medical-institution-card/medical-institution-card.component';
 import { AreaTitleCardComponent } from '../../../shared/ui/area-title-card/area-title-card.component';
+import { LoadingSpinnerComponent } from 'src/app/shared/ui/loading-spinner/loading-spinner.component';
 
 @Component({
   selector: 'app-medical-institutions',
   templateUrl: './results-current-location.component.html',
   styleUrls: ['./results-current-location.component.css'],
   standalone: true,
-  imports: [NgFor, MedicalInstitutionCardComponent, AreaTitleCardComponent],
+  imports: [NgFor, NgIf, MedicalInstitutionCardComponent, AreaTitleCardComponent, LoadingSpinnerComponent],
 })
 export class ResultsCurrentLocationComponent implements OnInit {
   medicalInstitutions: MedicalInstitution[] = [];
   todofuken = '';
   shikuchoson = '';
+  loading = true;
 
   constructor(private apiService: ApiService) {}
 
@@ -33,6 +35,7 @@ export class ResultsCurrentLocationComponent implements OnInit {
           this.medicalInstitutions = apiResponse.results;
           this.todofuken = apiResponse.meta.address_todofuken;
           this.shikuchoson = apiResponse.meta.address_shikuchoson;
+          this.loading = false;
         });
       },
       (error) => {

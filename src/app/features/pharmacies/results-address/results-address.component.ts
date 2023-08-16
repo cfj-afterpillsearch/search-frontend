@@ -5,18 +5,20 @@ import { ActivatedRoute } from '@angular/router';
 import { NgFor, NgIf } from '@angular/common';
 import { PharmacyCardComponent } from '../../../shared/ui/pharmacy-card/pharmacy-card.component';
 import { AreaTitleCardComponent } from '../../../shared/ui/area-title-card/area-title-card.component';
+import { LoadingSpinnerComponent } from '../../../shared/ui/loading-spinner/loading-spinner.component';
 
 @Component({
   selector: 'app-pharmacies',
   templateUrl: './results-address.component.html',
   styleUrls: ['./results-address.component.css'],
   standalone: true,
-  imports: [NgFor, NgIf, PharmacyCardComponent, AreaTitleCardComponent],
+  imports: [NgFor, NgIf, PharmacyCardComponent, AreaTitleCardComponent, LoadingSpinnerComponent],
 })
 export class ResultsAddressComponent implements OnInit {
   pharmacies: Pharmacy[] = [];
   todofuken = '';
   shikuchoson = '';
+  loading = true;
 
   constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
@@ -31,6 +33,9 @@ export class ResultsAddressComponent implements OnInit {
   getPharmaciesByAddress() {
     this.apiService
       .getPharmaciesByAddress(this.todofuken, this.shikuchoson)
-      .subscribe((apiResponse) => (this.pharmacies = apiResponse.results));
+      .subscribe((apiResponse) => {
+        this.pharmacies = apiResponse.results;
+        this.loading = false;
+      });
   }
 }
