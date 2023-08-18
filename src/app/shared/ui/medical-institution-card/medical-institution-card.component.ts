@@ -38,6 +38,8 @@ export class MedicalInstitutionCardComponent {
       event: 'medical-institution-search-button-click',
       data: {
         name: medicalInstitution.name,
+        todofuken: medicalInstitution.name,
+        shikuchoson: medicalInstitution.name,
       },
     };
     this.gtmService.pushTag(gtmTag);
@@ -48,6 +50,8 @@ export class MedicalInstitutionCardComponent {
       event: 'medical-institution-tel-button-click',
       data: {
         name: medicalInstitution.name,
+        todofuken: medicalInstitution.name,
+        shikuchoson: medicalInstitution.name,
       },
     };
     this.gtmService.pushTag(gtmTag);
