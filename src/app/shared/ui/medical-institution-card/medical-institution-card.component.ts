@@ -28,6 +28,8 @@ export class MedicalInstitutionCardComponent {
       lng: 0,
     },
   };
+  @Input() todofuken: String = '';
+  @Input() shikuchoson: String = '';
 
   faEarthAsia = faEarthAsia;
   faPhone = faPhone;
@@ -38,6 +40,8 @@ export class MedicalInstitutionCardComponent {
       event: 'medical-institution-search-button-click',
       data: {
         name: medicalInstitution.name,
+        todofuken: this.todofuken,
+        shikuchoson: this.shikuchoson,
       },
     };
     this.gtmService.pushTag(gtmTag);
@@ -48,6 +52,8 @@ export class MedicalInstitutionCardComponent {
       event: 'medical-institution-tel-button-click',
       data: {
         name: medicalInstitution.name,
+        todofuken: medicalInstitution.name,
+        shikuchoson: medicalInstitution.name,
       },
     };
     this.gtmService.pushTag(gtmTag);
