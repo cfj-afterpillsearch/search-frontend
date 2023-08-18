@@ -35,25 +35,25 @@ export class MedicalInstitutionCardComponent {
   faPhone = faPhone;
   faArrowUpRightFromSquare = faArrowUpRightFromSquare;
 
-  searchButtonPushTag(medicalInstitution: MedicalInstitution) {
+  searchButtonPushTag(medicalInstitution: MedicalInstitution, todofuken: String, shikuchoson: String) {
     const gtmTag = {
       event: 'medical-institution-search-button-click',
       data: {
         name: medicalInstitution.name,
-        todofuken: this.todofuken,
-        shikuchoson: this.shikuchoson,
+        todofuken: todofuken,
+        shikuchoson: shikuchoson,
       },
     };
     this.gtmService.pushTag(gtmTag);
   }
 
-  telButtonPushTag(medicalInstitution: MedicalInstitution) {
+  telButtonPushTag(medicalInstitution: MedicalInstitution, todofuken: String, shikuchoson: String) {
     const gtmTag = {
       event: 'medical-institution-tel-button-click',
       data: {
         name: medicalInstitution.name,
-        todofuken: medicalInstitution.name,
-        shikuchoson: medicalInstitution.name,
+        todofuken: todofuken,
+        shikuchoson: shikuchoson,
       },
     };
     this.gtmService.pushTag(gtmTag);
