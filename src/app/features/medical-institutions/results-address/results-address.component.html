@@ -1,6 +1,6 @@
 <app-area-title-card>{{ municipality }}の医療機関</app-area-title-card>
 <ul class="flex flex-col space-y-11 mx-5 mt-5">
   <li *ngFor="let medicalInstitution of medicalInstitutions" class>
-    <app-medical-institution-card [medicalInstitution]="medicalInstitution" [todofuken]="prefecture" [shikuchoson]="municipality"></app-medical-institution-card>
+    <app-medical-institution-card [medicalInstitution]="medicalInstitution"></app-medical-institution-card>
   </li>
 </ul>

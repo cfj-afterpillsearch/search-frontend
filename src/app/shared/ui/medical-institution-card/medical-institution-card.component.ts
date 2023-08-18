@@ -28,32 +28,26 @@ export class MedicalInstitutionCardComponent {
       lng: 0,
     },
   };
-  @Input() todofuken: String = '';
-  @Input() shikuchoson: String = '';
 
   faEarthAsia = faEarthAsia;
   faPhone = faPhone;
   faArrowUpRightFromSquare = faArrowUpRightFromSquare;
 
-  searchButtonPushTag(medicalInstitution: MedicalInstitution, todofuken: String, shikuchoson: String) {
+  searchButtonPushTag(medicalInstitution: MedicalInstitution) {
     const gtmTag = {
       event: 'medical-institution-search-button-click',
       data: {
         name: medicalInstitution.name,
-        todofuken: todofuken,
-        shikuchoson: shikuchoson,
       },
     };
     this.gtmService.pushTag(gtmTag);
   }
 
-  telButtonPushTag(medicalInstitution: MedicalInstitution, todofuken: String, shikuchoson: String) {
+  telButtonPushTag(medicalInstitution: MedicalInstitution) {
     const gtmTag = {
       event: 'medical-institution-tel-button-click',
       data: {
         name: medicalInstitution.name,
-        todofuken: todofuken,
-        shikuchoson: shikuchoson,
       },
     };
     this.gtmService.pushTag(gtmTag);
