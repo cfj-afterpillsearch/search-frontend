@@ -10,22 +10,22 @@
     <fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon>
   </a>
 </p>
-<p class="mb-2">{{ medicalInstitution.memo_openinghours }}</p>
+<p class="mb-2" [innerHTML]="medicalInstitution.memo_openinghours | newlineToBrPipe"></p>
 <div class="flex flex-row space-x-2">
   <a
     [attr.href]="'https://www.google.com/search?q=' + medicalInstitution.name"
-    class="text-center inline-block bg-transparent border border-turquoise-300 w-48 h-10 py-1.5 rounded-lg text-turquoise-300 font-bold"
+    class="text-center inline-block text-white bg-primary-500 w-48 h-10 py-1.5 rounded-lg font-bold"
     target="_blank"
   >
-    <fa-icon [icon]="faEarthAsia"></fa-icon>
-    Google検索
+    <fa-icon [icon]="faMagnifyingGlass" class="mr-1"></fa-icon>
+    <p class="inline-block">検索する</p>
   </a>
   <a
     [attr.href]="'tel:' + medicalInstitution.tel"
-    class="text-center inline-block bg-transparent border border-turquoise-300 w-48 h-10 py-1.5 rounded-lg text-turquoise-300 font-bold"
+    class="text-center inline-block text-white bg-primary-500 w-48 h-10 py-1.5 rounded-lg font-bold"
     target="_blank"
   >
-    <fa-icon [icon]="faPhone" class="text-turquoise-300"></fa-icon>
-    <p class="inline-block font-bold text-turquoise-300">予約・金額の確認</p>
+    <fa-icon [icon]="faPhone" class="mr-1"></fa-icon>
+    <p class="inline-block font-bold">電話する</p>
   </a>
 </div>

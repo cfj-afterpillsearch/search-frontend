@@ -1,17 +1,18 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faEarthAsia } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { Pharmacy } from '../../pharmacy';
+import { NewlineToBrPipe } from '../../newline-to-br.pipe';
 
 @Component({
   selector: 'app-pharmacy-card',
   templateUrl: './pharmacy-card.component.html',
   styleUrls: ['./pharmacy-card.component.css'],
   standalone: true,
-  imports: [NgIf, FontAwesomeModule],
+  imports: [NgIf, FontAwesomeModule, NewlineToBrPipe],
 })
 export class PharmacyCardComponent implements OnInit {
   @Input() pharmacy: Pharmacy = {
@@ -33,7 +34,7 @@ export class PharmacyCardComponent implements OnInit {
 
   isEmergencyContact = false;
 
-  faEarthAsia = faEarthAsia;
+  faMagnifyingGlass = faMagnifyingGlass;
   faPhone = faPhone;
   faArrowUpRightFromSquare = faArrowUpRightFromSquare;
 
