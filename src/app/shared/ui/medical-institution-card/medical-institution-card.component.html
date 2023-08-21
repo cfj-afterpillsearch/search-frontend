@@ -16,6 +16,7 @@
     [attr.href]="'https://www.google.com/search?q=' + medicalInstitution.name"
     class="text-center inline-block text-white bg-primary-500 w-48 h-10 py-1.5 rounded-lg font-bold"
     target="_blank"
+    (click)="searchButtonPushTag(medicalInstitution)"
   >
     <fa-icon [icon]="faMagnifyingGlass" class="mr-1"></fa-icon>
     <p class="inline-block">検索する</p>
@@ -24,6 +25,7 @@
     [attr.href]="'tel:' + medicalInstitution.tel"
     class="text-center inline-block text-white bg-primary-500 w-48 h-10 py-1.5 rounded-lg font-bold"
     target="_blank"
+    (click)="telButtonPushTag(medicalInstitution)"
   >
     <fa-icon [icon]="faPhone" class="mr-1"></fa-icon>
     <p class="inline-block font-bold">電話する</p>

@@ -5,6 +5,7 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { Pharmacy } from '../../pharmacy';
+import { GoogleTagManagerService } from 'angular-google-tag-manager';
 import { NewlineToBrPipe } from '../../newline-to-br.pipe';
 
 @Component({
@@ -15,6 +16,8 @@ import { NewlineToBrPipe } from '../../newline-to-br.pipe';
   imports: [NgIf, FontAwesomeModule, NewlineToBrPipe],
 })
 export class PharmacyCardComponent implements OnInit {
+  constructor(private gtmService: GoogleTagManagerService) {}
+
   @Input() pharmacy: Pharmacy = {
     name: '',
     postalcode: '',
@@ -40,5 +43,25 @@ export class PharmacyCardComponent implements OnInit {
 
   ngOnInit() {
     this.isEmergencyContact = this.regexpPhoneNumber.test(this.pharmacy.emergency_contact_phone);
+  }
+
+  searchButtonPushTag(pharmacy: Pharmacy) {
+    const gtmTag = {
+      event: 'pharmacy-search-button-click',
+      data: {
+        name: pharmacy.name,
+      },
+    };
+    this.gtmService.pushTag(gtmTag);
+  }
+
+  telButtonPushTag(pharmacy: Pharmacy) {
+    const gtmTag = {
+      event: 'pharmacy-tel-button-click',
+      data: {
+        name: pharmacy.name,
+      },
+    };
+    this.gtmService.pushTag(gtmTag);
   }
 }
