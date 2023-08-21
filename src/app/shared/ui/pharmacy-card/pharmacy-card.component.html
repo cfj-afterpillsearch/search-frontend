@@ -1,4 +1,4 @@
-<h1 class="mb-4 text-2xl">{{ pharmacy.name }}</h1>
+<h1 class="mb-4 text-xl">{{ pharmacy.name }}</h1>
 <p class="mb-2">
   {{ pharmacy.address }}
   <a
@@ -10,28 +10,28 @@
     <fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon>
   </a>
 </p>
-<p class="mb-2">{{ pharmacy.memo_openinghours }}</p>
+<p class="mb-2" [innerHTML]="pharmacy.memo_openinghours | newlineToBrPipe"></p>
 <div class="flex flex-row space-x-2 mb-2">
   <a
     [attr.href]="'https://www.google.com/search?q=' + pharmacy.name"
-    class="text-center inline-block bg-transparent border border-turquoise-300 w-48 h-10 py-1.5 rounded-lg text-turquoise-300 font-bold"
+    class="text-center inline-block text-white bg-primary-500 w-48 h-10 py-1.5 rounded-lg font-bold"
     target="_blank"
     (click)="searchButtonPushTag(pharmacy)"
   >
-    <fa-icon [icon]="faEarthAsia"></fa-icon>
-    Google検索
+    <fa-icon [icon]="faMagnifyingGlass" class="mr-1"></fa-icon>
+    <p class="inline-block">検索する</p>
   </a>
   <a
     [attr.href]="'tel:' + pharmacy.tel"
-    class="text-center inline-block bg-transparent border border-turquoise-300 w-48 h-10 py-1.5 rounded-lg text-turquoise-300 font-bold"
+    class="text-center inline-block text-white bg-primary-500 w-48 h-10 py-1.5 rounded-lg font-bold"
     target="_blank"
     (click)="telButtonPushTag(pharmacy)"
   >
-    <fa-icon [icon]="faPhone" class="text-turquoise-300"></fa-icon>
-    <p class="inline-block font-bold text-turquoise-300">予約・金額の確認</p>
+    <fa-icon [icon]="faPhone" class="mr-1"></fa-icon>
+    <p class="inline-block">電話する</p>
   </a>
 </div>
 <div *ngIf="isEmergencyContact">
-  <p>薬局から緊急連絡先について下記のような連絡事項があります。</p>
+  <p>緊急連絡先は下記の通り</p>
   <p>{{ pharmacy.emergency_contact_phone }}</p>
 </div>

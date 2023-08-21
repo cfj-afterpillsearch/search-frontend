@@ -4,18 +4,21 @@ import { ApiService } from '../../../shared/api.service';
 import { NgFor, NgIf } from '@angular/common';
 import { PharmacyCardComponent } from '../../../shared/ui/pharmacy-card/pharmacy-card.component';
 import { AreaTitleCardComponent } from '../../../shared/ui/area-title-card/area-title-card.component';
+import { LoadingSpinnerComponent } from 'src/app/shared/ui/loading-spinner/loading-spinner.component';
 
 @Component({
   selector: 'app-pharmacies',
   templateUrl: './results-current-location.component.html',
   styleUrls: ['./results-current-location.component.css'],
   standalone: true,
-  imports: [NgFor, NgIf, PharmacyCardComponent, AreaTitleCardComponent],
+  imports: [NgFor, NgIf, PharmacyCardComponent, AreaTitleCardComponent, LoadingSpinnerComponent],
 })
 export class ResultsCurrentLocationComponent implements OnInit {
   pharmacies: Pharmacy[] = [];
-  prefecture = '';
-  municipality = '';
+  todofuken = '';
+  shikuchoson = '';
+  loading = true;
+
   constructor(private apiService: ApiService) {}
 
   ngOnInit() {
@@ -30,8 +33,9 @@ export class ResultsCurrentLocationComponent implements OnInit {
 
         this.apiService.getPharmaciesByCurrentLocation(latitude, longitude).subscribe((apiResponse) => {
           this.pharmacies = apiResponse.results;
-          this.prefecture = apiResponse.meta.address_todofuken;
-          this.municipality = apiResponse.meta.address_shikuchoson;
+          this.todofuken = apiResponse.meta.address_todofuken;
+          this.shikuchoson = apiResponse.meta.address_shikuchoson;
+          this.loading = false;
         });
       },
       (error) => {
