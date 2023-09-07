@@ -19,20 +19,22 @@ export class ResultsAddressComponent implements OnInit {
   shikuchoson = '';
   totalItems = 0;
   loading = true;
-
+  is_out_of_hours = '';
+  
   constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       this.todofuken = params['todofuken'];
       this.shikuchoson = params['shikuchoson'];
+      this.is_out_of_hours = params['is_out_of_hours'];
       this.getPharmaciesByAddress();
     });
   }
 
   getPharmaciesByAddress() {
     this.apiService
-      .getPharmaciesByAddress(this.todofuken, this.shikuchoson)
+      .getPharmaciesByAddress(this.todofuken, this.shikuchoson, this.is_out_of_hours)
       .subscribe((apiResponse) => {
         this.pharmacies = apiResponse.results;
         this.totalItems = apiResponse.meta.totalItems;

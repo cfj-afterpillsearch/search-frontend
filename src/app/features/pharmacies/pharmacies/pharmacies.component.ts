@@ -2,16 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Addresses } from '../../../shared/types/addresses';
 import { Router } from '@angular/router';
-import { NgClass, NgFor } from '@angular/common';
+import { NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ButtonComponent } from '../../../shared/ui/button/button.component';
+import { SearchRequirementsRadioComponent } from 'src/app/shared/ui/search-requirements-radio/search-requirements-radio.component'; 
+import { RadioMetaData, SearchRequirements } from 'src/app/shared/types/search-requirements';
 
 @Component({
   selector: 'app-search',
   templateUrl: './pharmacies.component.html',
   styleUrls: ['./pharmacies.component.css'],
   standalone: true,
-  imports: [ButtonComponent, FormsModule, NgFor, NgClass],
+  imports: [ButtonComponent, SearchRequirementsRadioComponent, FormsModule, NgFor],
 })
 export class PharmaciesComponent implements OnInit {
   addresses: Addresses = {};
@@ -19,6 +21,23 @@ export class PharmaciesComponent implements OnInit {
   shikuchosonList: string[] = [];
   selectedTodofuken = '';
   selectedShikuchoson = '';
+  currentLocationHasEmergencyContact = '';
+  addressHasEmergencyContact = '';
+  
+  searchRequirements: SearchRequirements = {
+    first: {
+      name: '指定なし',
+      value: '',
+    },
+    second: {
+      name: '有',
+      value: '1',
+    },
+    third: {
+      name: '無',
+      value: '0',
+    },
+  };
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -29,7 +48,26 @@ export class PharmaciesComponent implements OnInit {
     });
   }
 
-  onTodofukenChange() {
+  setSearchRequirements(radioMetaData: RadioMetaData) {
+    switch (radioMetaData.name) {
+      case 'currentLocationEmergencyContact':
+        this.currentLocationHasEmergencyContact = radioMetaData.value;
+        break;
+      case 'addressEmergencyContact':
+        this.addressHasEmergencyContact = radioMetaData.value;
+        break;
+    }
+  }
+
+  onCurrentLocationSearch() {
+    this.router.navigate(['/pharmacies/current-location'], {
+      queryParams: {
+        is_out_of_hours: this.currentLocationHasEmergencyContact,
+      },
+    });
+  }
+
+  onPrefectureChange() {
     this.shikuchosonList = this.addresses[this.selectedTodofuken] || [];
   }
 
@@ -42,6 +80,7 @@ export class PharmaciesComponent implements OnInit {
       queryParams: {
         todofuken: this.selectedTodofuken,
         shikuchoson: this.selectedShikuchoson,
+        is_out_of_hours: this.addressHasEmergencyContact,
       },
     });
   }

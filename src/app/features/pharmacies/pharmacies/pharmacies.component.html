@@ -1,31 +1,60 @@
 <div class="flex flex-col space-y-14 mt-3">
-  <section class="w-full flex flex-col items-center">
-    <h1 class="text-xl mb-2">現在地で探す</h1>
-    <app-button [link]="'/pharmacies/current-location'">検索</app-button>
-  </section>
-  <section class="w-full flex flex-col items-center">
-    <h1 class="text-xl mb-2">住所で探す</h1>
-    <div class="flex flex-col space-y-2 w-full mb-2">
-      <select
-        id="todofukenList"
-        [(ngModel)]="selectedTodofuken"
-        (change)="onTodofukenChange()"
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-7 text-center"
-      >
-        <option value="">都道府県を選択してください</option>
-        <option *ngFor="let todofuken of todofukenList" [value]="todofuken">{{ todofuken }}</option>
-      </select>
-      <select
-        id="shikuchosonList"
-        [(ngModel)]="selectedShikuchoson"
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-7 text-center"
-      >
-        <option value="">市区町村を選択してください</option>
-        <option *ngFor="let shikuchoson of shikuchosonList" [value]="shikuchoson">{{ shikuchoson }}</option>
-      </select>
+  <h1 class="text-xl mb-2">薬局検索</h1>
+  <section class="w-full flex flex-col space-y-5">
+    <div>
+      <h2 class="text-lg mb-2">現在地検索</h2>
+      <p class="text-base mb-2">現在地から6kmの範囲の薬局をさがします。</p>
     </div>
-    <app-button (clickEvent)="onAddressSearch()" [disabled]="!isTodofukenAndShikuchosonSelected()">
-      検索
-    </app-button>
+    <div class="w-full mt-4">
+      <app-search-requirements-radio
+        [name]="'currentLocationEmergencyContact'"
+        [searchRequirements]="searchRequirements"
+        (searchRequirementsEvent)="setSearchRequirements($event)"
+      >
+        時間外対応
+      </app-search-requirements-radio>
+    </div>
+    <app-button (clickEvent)="onCurrentLocationSearch()">検索</app-button>
   </section>
-</div>
+  <section class="w-full flex flex-col space-y-5">
+    <div>
+      <h2 class="text-lg mb-2">住所検索</h2>
+      <p class="text-base mb-2">住所から医療機関をさがします。</p>
+    </div>
+    <div class="flex flex-col space-y-4 w-full">
+      <div>
+        <p class="text-xs">都道府県</p>
+        <select
+          id="todofukenList"
+          [(ngModel)]="selectedTodofuken"
+          (change)="onTodofukenChange()"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-7 text-center"
+        >
+          <option value="">都道府県を選択してください</option>
+          <option *ngFor="let todofuken of todofukenList" [value]="todofuken">{{ todofuken }}</option>
+        </select>
+      </div>
+      <div>
+        <p class="text-xs">市区町村</p>
+        <select
+          id="shikuchosonList"
+          [(ngModel)]="selectedShikuchoson"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-7 text-center"
+        >
+          <option value="">市区町村を選択してください</option>
+          <option *ngFor="let shikuchoson of shikuchosonList" [value]="shikuchoson">{{ shikuchoson }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="w-full">
+      <app-search-requirements-radio
+        [name]="'addressEmergencyContact'"
+        [searchRequirements]="searchRequirements"
+        (searchRequirementsEvent)="setSearchRequirements($event)"
+      >
+        時間外対応
+      </app-search-requirements-radio>
+    </div>
+    <app-button (clickEvent)="onAddressSearch()" [disabled]="!isPrefectureAndMunicipalitySelected()"> 検索 </app-button>
+    </section>
+  </div>
