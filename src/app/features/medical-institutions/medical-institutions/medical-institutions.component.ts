@@ -56,7 +56,7 @@ export class MedicalInstitutionsComponent implements OnInit {
         this.currentLocationIsOpenSunday = radioMetaData.value;
         break;
       case 'currentLocationHoliday':
-        this.currentLocationIsOpenSunday = radioMetaData.value;
+        this.currentLocationIsOpenHoliday = radioMetaData.value;
         break;
       case 'addressSunday':
         this.addressIsOpenSunday = radioMetaData.value;
