@@ -11,4 +11,6 @@ export interface MedicalInstitution {
   url: string;
   memo_openinghours: string;
   location: Location;
+  isOpenSunday: boolean;
+  isOpenHoliday: boolean;
 }
