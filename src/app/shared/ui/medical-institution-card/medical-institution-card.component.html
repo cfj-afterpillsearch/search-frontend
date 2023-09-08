@@ -26,18 +26,14 @@
   </div>
   <div class="flex-col space-y-4">
     <button
-      [attr.href]="'https://www.google.com/search?q=' + medicalInstitution.name"
       class="bg-blue-300 p-2 w-full h-12 flex items-center shadow"
-      target="_blank"
       (click)="searchButtonPushTag(medicalInstitution)"
     >
       <fa-icon [icon]="faMagnifyingGlass" [size]="'xl'" class="ml-8 mr-4"></fa-icon>
       <div class="text-sm leading-5 font-normal text-left">この医療機関を検索して調べる</div>
     </button>
     <button
-      [attr.href]="'tel:' + medicalInstitution.tel"
       class="bg-blue-300 p-2 w-full h-12 flex items-center shadow"
-      target="_blank"
       (click)="telButtonPushTag(medicalInstitution)"
     >
       <fa-icon [icon]="faPhone" [size]="'xl'" class="ml-8 mr-4"></fa-icon>
