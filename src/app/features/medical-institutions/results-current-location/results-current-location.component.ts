@@ -17,6 +17,7 @@ export class ResultsCurrentLocationComponent implements OnInit {
   medicalInstitutions: MedicalInstitution[] = [];
   todofuken = '';
   shikuchoson = '';
+  totalItems = 0;
   loading = true;
 
   constructor(private apiService: ApiService) {}
@@ -35,6 +36,7 @@ export class ResultsCurrentLocationComponent implements OnInit {
           this.medicalInstitutions = apiResponse.results;
           this.todofuken = apiResponse.meta.address_todofuken;
           this.shikuchoson = apiResponse.meta.address_shikuchoson;
+          this.totalItems = apiResponse.meta.totalItems;
           this.loading = false;
         });
       },
