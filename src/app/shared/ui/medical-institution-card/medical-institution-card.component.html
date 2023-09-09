@@ -1,11 +1,7 @@
 <div class="p-2 bg-gray-50 shadow-xl">
   <div class="flex mb-4">
-    <ng-container *ngIf="medicalInstitution.isOpenSunday">
-      <div class="badge bg-red-100">日曜診療：◯</div>
-    </ng-container>
-    <ng-container *ngIf="medicalInstitution.isOpenHoliday">
-      <div class="badge bg-yellow-100">祝日診療：◯</div>
-    </ng-container>
+    <div *ngIf="medicalInstitution.isOpenSunday" class="badge bg-red-100 mr-1">日曜診療：◯</div>
+    <div *ngIf="medicalInstitution.isOpenHoliday" class="badge bg-yellow-100">祝日診療：◯</div>
   </div>
   <h3 class="text-lg leading-7 font-bold">{{ medicalInstitution.name }}</h3>
   <div class="mb-4 text-sm leading-5 font-normal">
