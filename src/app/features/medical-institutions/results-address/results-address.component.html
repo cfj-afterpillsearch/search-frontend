@@ -1,5 +1,8 @@
 <ng-container *ngIf="loading">
-  <app-loading-spinner></app-loading-spinner>
+  <div class="flex flex-col items-center">
+    <div class="loading loading-spinner loading-lg mt-40"></div>
+    <div class="text-base leading-6 font-normal mt-20">{{todofuken}}{{shikuchoson}}の医療機関を検索しています</div>
+</div>
 </ng-container>
 <ng-container *ngIf="!loading">
 <div class="mb-8">
