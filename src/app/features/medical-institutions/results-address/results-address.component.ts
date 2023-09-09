@@ -18,6 +18,7 @@ export class ResultsAddressComponent implements OnInit {
   medicalInstitutions: MedicalInstitution[] = [];
   todofuken = '';
   shikuchoson = '';
+  totalItems = 0;
   loading = true;
 
   constructor(private apiService: ApiService, private route: ActivatedRoute) {}
@@ -35,6 +36,7 @@ export class ResultsAddressComponent implements OnInit {
       .getMedicalInstitutionsByAddress(this.todofuken, this.shikuchoson)
       .subscribe((apiResponse) => {
         this.medicalInstitutions = apiResponse.results;
+        this.totalItems = apiResponse.meta.totalItems;
         this.loading = false;
       });
   }
