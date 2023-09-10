@@ -1,7 +1,5 @@
 <div class="p-2 bg-gray-50 shadow-xl">
-  <div class="flex mb-4">
-    <div *ngIf="isEmergencyContact" class="badge bg-red-100 mr-1">時間外対応：有</div>
-  </div>
+  <div *ngIf="isEmergencyContact" class="badge bg-red-100 mr-1 mb-4">時間外対応：有</div>
   <h3 class="text-lg leading-7 font-bold">{{ pharmacy.name }}</h3>
   <div class="mb-4 text-sm leading-5 font-normal">
     {{ pharmacy.address }}
