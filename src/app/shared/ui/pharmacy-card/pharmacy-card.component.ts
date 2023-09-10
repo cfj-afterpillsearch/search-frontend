@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { Pharmacy } from '../../pharmacy';
 import { GoogleTagManagerService } from 'angular-google-tag-manager';
@@ -13,7 +13,7 @@ import { NewlineToBrPipe } from '../../newline-to-br.pipe';
   templateUrl: './pharmacy-card.component.html',
   styleUrls: ['./pharmacy-card.component.css'],
   standalone: true,
-  imports: [NgIf, FontAwesomeModule, NewlineToBrPipe],
+    imports: [FontAwesomeModule, NewlineToBrPipe, NgIf]
 })
 export class PharmacyCardComponent implements OnInit {
   constructor(private gtmService: GoogleTagManagerService) {}
@@ -46,6 +46,7 @@ export class PharmacyCardComponent implements OnInit {
   }
 
   searchButtonPushTag(pharmacy: Pharmacy) {
+    window.open(`https://www.google.com/search?q=${pharmacy.name}`, '_blank');
     const gtmTag = {
       event: 'pharmacy-search-button-click',
       data: {
@@ -56,6 +57,7 @@ export class PharmacyCardComponent implements OnInit {
   }
 
   telButtonPushTag(pharmacy: Pharmacy) {
+    window.open(`tel:${pharmacy.tel}`, '_blank');
     const gtmTag = {
       event: 'pharmacy-tel-button-click',
       data: {
