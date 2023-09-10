@@ -18,6 +18,7 @@ export class ResultsAddressComponent implements OnInit {
   pharmacies: Pharmacy[] = [];
   todofuken = '';
   shikuchoson = '';
+  totalItems = 0;
   loading = true;
 
   constructor(private apiService: ApiService, private route: ActivatedRoute) {}
@@ -35,6 +36,7 @@ export class ResultsAddressComponent implements OnInit {
       .getPharmaciesByAddress(this.todofuken, this.shikuchoson)
       .subscribe((apiResponse) => {
         this.pharmacies = apiResponse.results;
+        this.totalItems = apiResponse.meta.totalItems;
         this.loading = false;
       });
   }
