@@ -1,5 +1,5 @@
 <div class="p-2 bg-gray-50 shadow-xl">
-  <div *ngIf="isEmergencyContact" class="badge bg-red-100 mr-1 mb-4">時間外対応：有</div>
+  <div *ngIf="isEmergencyContact" class="badge bg-green-200 mr-1 mb-4">時間外対応：有</div>
   <h3 class="text-lg leading-7 font-bold">{{ pharmacy.name }}</h3>
   <div class="mb-4 text-sm leading-5 font-normal">
     {{ pharmacy.address }}
@@ -25,14 +25,14 @@
   </div>
   <div class="flex-col space-y-4">
     <button
-      class="bg-blue-300 p-2 w-full h-12 flex items-center shadow"
+      class="bg-green-200 p-2 w-full h-12 flex items-center shadow"
       (click)="searchButtonPushTag(pharmacy)"
     >
       <fa-icon [icon]="faMagnifyingGlass" [size]="'xl'" class="ml-8 mr-4"></fa-icon>
       <div class="text-sm leading-5 font-normal text-left">この薬局を検索して調べる</div>
     </button>
     <button
-      class="bg-blue-300 p-2 w-full h-12 flex items-center shadow"
+      class="bg-green-200 p-2 w-full h-12 flex items-center shadow"
       (click)="telButtonPushTag(pharmacy)"
     >
       <fa-icon [icon]="faPhone" [size]="'xl'" class="ml-8 mr-4"></fa-icon>
