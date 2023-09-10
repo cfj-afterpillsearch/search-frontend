@@ -18,7 +18,7 @@
     <div class="text-base leading-6 font-normal" [innerHTML]="pharmacy.memo_openinghours | newlineToBrPipe"></div>
   </div>
   <div class="mb-4">
-    <div class="text-xs leading-4 font-bold">
+    <div *ngIf="isEmergencyContact" class="text-xs leading-4 font-bold">
       時間外の電話番号：
     </div>
     <div class="text-base leading-6 font-normal">{{pharmacy.emergency_contact_phone}}</div>
