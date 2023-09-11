@@ -5,14 +5,13 @@ import { ActivatedRoute } from '@angular/router';
 import { NgFor, NgIf } from '@angular/common';
 import { MedicalInstitutionCardComponent } from '../../../shared/ui/medical-institution-card/medical-institution-card.component';
 import { AreaTitleCardComponent } from '../../../shared/ui/area-title-card/area-title-card.component';
-import { LoadingSpinnerComponent } from 'src/app/shared/ui/loading-spinner/loading-spinner.component';
 
 @Component({
   selector: 'app-medical-institutions',
   templateUrl: './results-address.component.html',
   styleUrls: ['./results-address.component.css'],
   standalone: true,
-  imports: [NgFor, NgIf, MedicalInstitutionCardComponent, AreaTitleCardComponent, LoadingSpinnerComponent],
+  imports: [NgFor, NgIf, MedicalInstitutionCardComponent, AreaTitleCardComponent],
 })
 export class ResultsAddressComponent implements OnInit {
   medicalInstitutions: MedicalInstitution[] = [];

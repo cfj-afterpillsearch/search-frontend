@@ -5,14 +5,13 @@ import { ActivatedRoute } from '@angular/router';
 import { NgFor, NgIf } from '@angular/common';
 import { PharmacyCardComponent } from '../../../shared/ui/pharmacy-card/pharmacy-card.component';
 import { AreaTitleCardComponent } from '../../../shared/ui/area-title-card/area-title-card.component';
-import { LoadingSpinnerComponent } from '../../../shared/ui/loading-spinner/loading-spinner.component';
 
 @Component({
   selector: 'app-pharmacies',
   templateUrl: './results-address.component.html',
   styleUrls: ['./results-address.component.css'],
   standalone: true,
-  imports: [NgFor, NgIf, PharmacyCardComponent, AreaTitleCardComponent, LoadingSpinnerComponent],
+  imports: [NgFor, NgIf, PharmacyCardComponent, AreaTitleCardComponent],
 })
 export class ResultsAddressComponent implements OnInit {
   pharmacies: Pharmacy[] = [];
