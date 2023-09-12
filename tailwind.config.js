@@ -4,7 +4,9 @@ module.exports = {
     "./src/**/*.{html,ts}",
     "./node_modules/flowbite/**/*.js"
   ],
-  darkMode: 'class',
+  daisyui: {
+    themes: ['light'],
+  },
   theme: {
     extend: {
       colors: {
