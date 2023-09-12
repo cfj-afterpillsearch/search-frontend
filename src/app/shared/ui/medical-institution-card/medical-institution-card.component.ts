@@ -50,7 +50,7 @@ export class MedicalInstitutionCardComponent {
   }
 
   telButtonPushTag(medicalInstitution: MedicalInstitution) {
-    window.open(`tel:${medicalInstitution.tel}`, '_blank');
+    window.open(`tel:${medicalInstitution.tel}`);
     const gtmTag = {
       event: 'medical-institution-tel-button-click',
       data: {

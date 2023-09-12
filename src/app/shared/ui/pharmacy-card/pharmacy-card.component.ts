@@ -57,7 +57,7 @@ export class PharmacyCardComponent implements OnInit {
   }
 
   telButtonPushTag(pharmacy: Pharmacy) {
-    window.open(`tel:${pharmacy.tel}`, '_blank');
+    window.open(`tel:${pharmacy.tel}`);
     const gtmTag = {
       event: 'pharmacy-tel-button-click',
       data: {
