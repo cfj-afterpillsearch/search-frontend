@@ -21,7 +21,7 @@ export class ResultsCurrentLocationComponent implements OnInit {
   loading = true;
 
   is_out_of_hours = '';
-  
+
   constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
   ngOnInit() {

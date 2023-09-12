@@ -1,36 +1,46 @@
-import { NgClass } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgClass, NgFor } from '@angular/common';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ApsRadioComponent } from '../aps-radio/aps-radio.component';
-import { SearchRequirements } from '../../types/search-requirements';
-import { RadioMetaData } from '../../types/search-requirements';
+import { RadioMetaData, SearchRequirement } from '../../types/search-requirements';
 
 @Component({
   selector: 'app-search-requirements-radio',
   templateUrl: './search-requirements-radio.component.html',
   styleUrls: ['./search-requirements-radio.component.css'],
   standalone: true,
-  imports: [RouterLink, NgClass, ApsRadioComponent],
+  imports: [RouterLink, NgClass, NgFor, ApsRadioComponent],
 })
-export class SearchRequirementsRadioComponent {
-  @Input() searchRequirements: SearchRequirements = {
-    first: {
-      name: '',
-      value: '',
-    },
-    second: {
-      name: '',
-      value: '',
-    },
-    third: {
-      name: '',
-      value: '',
-    },
-  };
-  @Input() name = '';
-  @Output() searchRequirementsEvent = new EventEmitter<RadioMetaData>();
+export class SearchRequirementsRadioComponent implements OnInit {
+  flexBasis = '';
 
-  selectRequirement(value: RadioMetaData) {
+  @Input() radioMetaDatas: RadioMetaData[] = [];
+  @Input() name = '';
+  @Input() styleChecked = '';
+  @Output() searchRequirementsEvent = new EventEmitter<SearchRequirement>();
+
+  ngOnInit() {
+    this.setFlexBasis(this.radioMetaDatas.length)
+  }
+
+  selectRequirement(value: SearchRequirement) {
     this.searchRequirementsEvent.emit(value);
+  }
+
+  setFlexBasis(value: number) {
+    switch (value) {
+      case 1:
+        this.flexBasis = 'basis-1/1';
+        break;
+      case 2:
+        this.flexBasis = 'basis-1/2';
+        break;
+      case 3:
+        this.flexBasis = 'basis-1/3';
+        break;
+      default:
+        this.flexBasis = 'basis-1/4';
+        break;
+    }
   }
 }

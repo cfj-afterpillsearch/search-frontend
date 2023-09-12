@@ -1,7 +1,7 @@
 import { NgClass } from '@angular/common';
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { RadioMetaData } from '../../types/search-requirements';
+import { RadioMetaData, SearchRequirement } from '../../types/search-requirements';
 
 @Component({
   selector: 'app-aps-radio',
@@ -12,23 +12,22 @@ import { RadioMetaData } from '../../types/search-requirements';
 })
 export class ApsRadioComponent implements OnInit {
   @Input() id = '';
-  @Input() name = '';
-  @Input() value = '';
-  @Output() radioEvent = new EventEmitter<RadioMetaData>();
-
-  radioMetaData: RadioMetaData = {
-    name: this.name,
-    value: this.value,
+  @Input() radioMetaData: RadioMetaData = {
+    label: '',
+    value: '',
+    initialIsChecked: false
   };
+  @Input() name = '';
+  @Input() styleChecked = '';
+  @Output() radioEvent = new EventEmitter<SearchRequirement>();
 
   ngOnInit() {
-    console.log(this.radioMetaData);
   }
 
   selectRadio() {
     this.radioEvent.emit({
       name: this.name,
-      value: this.value,
+      radioMetaData: this.radioMetaData
     });
   }
 }

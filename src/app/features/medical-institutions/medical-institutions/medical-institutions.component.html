@@ -8,14 +8,14 @@
     <div class="w-full mt-4">
       <app-search-requirements-radio
         [name]="'currentLocationSunday'"
-        [searchRequirements]="searchRequirements"
+        [radioMetaDatas]="radioMetaDatas"
         (searchRequirementsEvent)="setSearchRequirements($event)"
       >
         日曜診療
       </app-search-requirements-radio>
       <app-search-requirements-radio
         [name]="'currentLocationHoliday'"
-        [searchRequirements]="searchRequirements"
+        [radioMetaDatas]="radioMetaDatas"
         (searchRequirementsEvent)="setSearchRequirements($event)"
       >
         祝日診療
@@ -56,14 +56,14 @@
     <div class="w-full">
       <app-search-requirements-radio
         [name]="'addressSunday'"
-        [searchRequirements]="searchRequirements"
+        [radioMetaDatas]="radioMetaDatas"
         (searchRequirementsEvent)="setSearchRequirements($event)"
       >
         日曜診療
       </app-search-requirements-radio>
       <app-search-requirements-radio
         [name]="'addressHoliday'"
-        [searchRequirements]="searchRequirements"
+        [radioMetaDatas]="radioMetaDatas"
         (searchRequirementsEvent)="setSearchRequirements($event)"
       >
         祝日診療

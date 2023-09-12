@@ -1,10 +1,10 @@
-export interface SearchRequirements {
-  first: RadioMetaData;
-  second: RadioMetaData;
-  third: RadioMetaData;
+export interface RadioMetaData {
+  label: string;
+  value: string;
+  initialIsChecked: boolean;
 }
 
-export interface RadioMetaData {
+export interface SearchRequirement {
   name: string;
-  value: string;
+  radioMetaData: RadioMetaData
 }

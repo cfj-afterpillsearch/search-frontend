@@ -2,12 +2,14 @@
   <label class="text-xs">
     <input
       type="radio"
-      class="radio checked:bg-primary-500"
+      class="radio "
+      [ngClass]="styleChecked"
       [id]="id"
       [name]="name"
-      [value]="value"
+      [value]="radioMetaData.value"
       (click)="selectRadio()"
+      [checked]="radioMetaData.initialIsChecked"
     />
-    <ng-content></ng-content>
+    {{ radioMetaData.label }}
   </label>
 </div>
