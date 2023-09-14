@@ -1,33 +1,42 @@
-<h1 class="mb-4 text-2xl">{{ medicalInstitution.name }}</h1>
-<p class="mb-2">
-  {{ medicalInstitution.address }}
-  <a
-    class="mb-2 text-turquoise-300"
-    [attr.href]="'https://www.google.co.jp/maps/place/' + medicalInstitution.address"
-    target="_blank"
-  >
-    Map
-    <fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon>
-  </a>
-</p>
-<p class="mb-2" [innerHTML]="medicalInstitution.memo_openinghours | newlineToBrPipe"></p>
-<div class="flex flex-row space-x-2">
-  <a
-    [attr.href]="'https://www.google.com/search?q=' + medicalInstitution.name"
-    class="text-center inline-block text-white bg-primary-500 w-48 h-10 py-1.5 rounded-lg font-bold"
-    target="_blank"
-    (click)="searchButtonPushTag(medicalInstitution)"
-  >
-    <fa-icon [icon]="faMagnifyingGlass" class="mr-1"></fa-icon>
-    <p class="inline-block">検索する</p>
-  </a>
-  <a
-    [attr.href]="'tel:' + medicalInstitution.tel"
-    class="text-center inline-block text-white bg-primary-500 w-48 h-10 py-1.5 rounded-lg font-bold"
-    target="_blank"
-    (click)="telButtonPushTag(medicalInstitution)"
-  >
-    <fa-icon [icon]="faPhone" class="mr-1"></fa-icon>
-    <p class="inline-block font-bold">電話する</p>
-  </a>
+<div class="p-2 bg-gray-50 shadow-xl">
+  <div class="flex mb-4" *ngIf="medicalInstitution.isOpenSunday and medicalInstitution.isOpenHoliday">
+    <div *ngIf="medicalInstitution.isOpenSunday" class="badge bg-red-100 mr-1">日曜診療：◯</div>
+    <div *ngIf="medicalInstitution.isOpenHoliday" class="badge bg-yellow-100">祝日診療：◯</div>
+  </div>
+  <h3 class="text-lg leading-7 font-bold">{{ medicalInstitution.name }}</h3>
+  <div class="mb-4 text-sm leading-5 font-normal">
+    {{ medicalInstitution.address }}
+    <a
+      [attr.href]="'https://www.google.co.jp/maps/place/' + medicalInstitution.address"
+      target="_blank"
+    >
+      [地図]
+      <fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon>
+    </a>
+  </div>
+  <div class="mb-4">
+    <div class="text-xs leading-4 font-bold">
+      医療機関における緊急避妊にかかる対面診療への対応可能時間帯：
+    </div>
+    <div class="text-base leading-6 font-normal" [innerHTML]="medicalInstitution.memo_openinghours | newlineToBrPipe"></div>
+  </div>
+  <div class="flex-col space-y-4">
+    <button
+      class="bg-blue-300 p-2 w-full h-12 flex items-center shadow"
+      (click)="searchButtonPushTag(medicalInstitution)"
+    >
+      <fa-icon [icon]="faMagnifyingGlass" [size]="'xl'" class="ml-8 mr-4"></fa-icon>
+      <div class="text-sm leading-5 font-normal text-left">この医療機関を検索して調べる</div>
+    </button>
+    <button
+      class="bg-blue-300 p-2 w-full h-12 flex items-center shadow"
+      (click)="telButtonPushTag(medicalInstitution)"
+    >
+      <fa-icon [icon]="faPhone" [size]="'xl'" class="ml-8 mr-4"></fa-icon>
+      <div class="text-sm leading-5 font-normal text-left">
+        <div>この医療機関に電話する</div>
+        <div>({{ medicalInstitution.tel }})</div>
+      </div>
+    </button>
+  </div>
 </div>

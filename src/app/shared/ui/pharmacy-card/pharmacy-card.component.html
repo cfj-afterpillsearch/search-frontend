@@ -1,37 +1,45 @@
-<h1 class="mb-4 text-xl">{{ pharmacy.name }}</h1>
-<p class="mb-2">
-  {{ pharmacy.address }}
-  <a
-    class="mb-2 text-turquoise-300"
-    [attr.href]="'https://www.google.co.jp/maps/place/' + pharmacy.address"
-    target="_blank"
-  >
-    Map
-    <fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon>
-  </a>
-</p>
-<p class="mb-2" [innerHTML]="pharmacy.memo_openinghours | newlineToBrPipe"></p>
-<div class="flex flex-row space-x-2 mb-2">
-  <a
-    [attr.href]="'https://www.google.com/search?q=' + pharmacy.name"
-    class="text-center inline-block text-white bg-primary-500 w-48 h-10 py-1.5 rounded-lg font-bold"
-    target="_blank"
-    (click)="searchButtonPushTag(pharmacy)"
-  >
-    <fa-icon [icon]="faMagnifyingGlass" class="mr-1"></fa-icon>
-    <p class="inline-block">検索する</p>
-  </a>
-  <a
-    [attr.href]="'tel:' + pharmacy.tel"
-    class="text-center inline-block text-white bg-primary-500 w-48 h-10 py-1.5 rounded-lg font-bold"
-    target="_blank"
-    (click)="telButtonPushTag(pharmacy)"
-  >
-    <fa-icon [icon]="faPhone" class="mr-1"></fa-icon>
-    <p class="inline-block">電話する</p>
-  </a>
-</div>
-<div *ngIf="isEmergencyContact">
-  <p>緊急連絡先は下記の通り</p>
-  <p>{{ pharmacy.emergency_contact_phone }}</p>
+<div class="p-2 bg-gray-50 shadow-xl">
+  <div *ngIf="isEmergencyContact" class="badge bg-green-200 mr-1 mb-4">時間外対応：有</div>
+  <h3 class="text-lg leading-7 font-bold">{{ pharmacy.name }}</h3>
+  <div class="mb-4 text-sm leading-5 font-normal">
+    {{ pharmacy.address }}
+    <a
+      [attr.href]="'https://www.google.co.jp/maps/place/' + pharmacy.address"
+      target="_blank"
+    >
+      [地図]
+      <fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon>
+    </a>
+  </div>
+  <div class="mb-4">
+    <div class="text-xs leading-4 font-bold">
+      開局時間：
+    </div>
+    <div class="text-base leading-6 font-normal" [innerHTML]="pharmacy.memo_openinghours | newlineToBrPipe"></div>
+  </div>
+  <div class="mb-4">
+    <div *ngIf="isEmergencyContact" class="text-xs leading-4 font-bold">
+      時間外の電話番号：
+    </div>
+    <div class="text-base leading-6 font-normal">{{pharmacy.emergency_contact_phone}}</div>
+  </div>
+  <div class="flex-col space-y-4">
+    <button
+      class="bg-green-200 p-2 w-full h-12 flex items-center shadow"
+      (click)="searchButtonPushTag(pharmacy)"
+    >
+      <fa-icon [icon]="faMagnifyingGlass" [size]="'xl'" class="ml-8 mr-4"></fa-icon>
+      <div class="text-sm leading-5 font-normal text-left">この薬局を検索して調べる</div>
+    </button>
+    <button
+      class="bg-green-200 p-2 w-full h-12 flex items-center shadow"
+      (click)="telButtonPushTag(pharmacy)"
+    >
+      <fa-icon [icon]="faPhone" [size]="'xl'" class="ml-8 mr-4"></fa-icon>
+      <div class="text-sm leading-5 font-normal text-left">
+        <div>この薬局に電話する</div>
+        <div>({{ pharmacy.tel }})</div>
+      </div>
+    </button>
+  </div>
 </div>

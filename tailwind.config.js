@@ -4,6 +4,9 @@ module.exports = {
     "./src/**/*.{html,ts}",
     "./node_modules/flowbite/**/*.js"
   ],
+  daisyui: {
+    themes: ['light'],
+  },
   theme: {
     extend: {
       colors: {
@@ -25,6 +28,10 @@ module.exports = {
     },
   },
   plugins: [
-    require('flowbite/plugin')
+    require('flowbite/plugin'),
+    require("daisyui")
   ],
+  daisyui: {
+    themes: [],
+  },
 }
