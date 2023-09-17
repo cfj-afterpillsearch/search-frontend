@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ButtonComponent } from '../../../shared/ui/button/button.component';
-import { SearchRequirementsRadioComponent } from 'src/app/shared/ui/search-requirements-radio/search-requirements-radio.component'; 
+import { SearchRequirementsRadioComponent } from 'src/app/shared/ui/search-requirements-radio/search-requirements-radio.component';
 import { RadioMetaData, SearchRequirements } from 'src/app/shared/types/search-requirements';
 
 @Component({
@@ -23,7 +23,7 @@ export class PharmaciesComponent implements OnInit {
   selectedShikuchoson = '';
   currentLocationHasEmergencyContact = '';
   addressHasEmergencyContact = '';
-  
+
   searchRequirements: SearchRequirements = {
     first: {
       name: '指定なし',
@@ -67,7 +67,7 @@ export class PharmaciesComponent implements OnInit {
     });
   }
 
-  onPrefectureChange() {
+  onTodofukenChange() {
     this.shikuchosonList = this.addresses[this.selectedTodofuken] || [];
   }
 

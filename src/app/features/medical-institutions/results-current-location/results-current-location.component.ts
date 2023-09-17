@@ -38,13 +38,15 @@ export class ResultsCurrentLocationComponent implements OnInit {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
 
-        this.apiService.getMedicalInstitutionsByCurrentLocation(latitude, longitude, this.is_open_sunday, this.is_open_holiday).subscribe((apiResponse) => {
-          this.medicalInstitutions = apiResponse.results;
-          this.todofuken = apiResponse.meta.address_todofuken;
-          this.shikuchoson = apiResponse.meta.address_shikuchoson;
+        this.apiService
+          .getMedicalInstitutionsByCurrentLocation(latitude, longitude, this.is_open_sunday, this.is_open_holiday)
+          .subscribe((apiResponse) => {
+            this.medicalInstitutions = apiResponse.results;
+            this.todofuken = apiResponse.meta.address_todofuken;
+            this.shikuchoson = apiResponse.meta.address_shikuchoson;
           this.totalItems = apiResponse.meta.totalItems;
           this.loading = false;
-        });
+          });
       },
       (error) => {
         console.error('現在地の取得に失敗しました', error);

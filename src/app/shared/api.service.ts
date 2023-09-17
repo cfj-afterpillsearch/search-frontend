@@ -23,7 +23,7 @@ export class ApiService {
   }
 
   getMedicalInstitutionsByAddress(
-    todofuken: string, 
+    todofuken: string,
     shikuchoson: string,
     is_open_sunday: string,
     is_open_holiday: string,
@@ -33,22 +33,20 @@ export class ApiService {
   }
 
   getPharmaciesByCurrentLocation(
-    latitude: number, 
+    latitude: number,
     longitude: number,
-    is_open_sunday: string,
-    is_open_holiday: string,
+    is_out_of_hours: string,
   ): Observable<PharmacyApiResponse> {
-    const apiUrl = `${this.apiUrlRoot}/current-location/pharmacies?latitude=${latitude}&longitude=${longitude}&is_open_sunday=${is_open_sunday}&is_open_holiday=${is_open_holiday}`;
+    const apiUrl = `${this.apiUrlRoot}/current-location/pharmacies?latitude=${latitude}&longitude=${longitude}&is_out_of_hours=${is_out_of_hours}`;
     return this.http.get<PharmacyApiResponse>(apiUrl);
   }
 
   getPharmaciesByAddress(
-    todofuken: string, 
+    todofuken: string,
     shikuchoson: string,
-    is_open_sunday: string,
-    is_open_holiday: string,
+    is_out_of_hours: string,
   ): Observable<PharmacyApiResponse> {
-    const apiUrl = `${this.apiUrlRoot}/address/pharmacies?todofuken=${todofuken}&shikuchoson=${shikuchoson}&is_open_sunday=${is_open_sunday}&is_open_holiday=${is_open_holiday}`;
+    const apiUrl = `${this.apiUrlRoot}/address/pharmacies?todofuken=${todofuken}&shikuchoson=${shikuchoson}&is_out_of_hours=${is_out_of_hours}`;
     return this.http.get<PharmacyApiResponse>(apiUrl);
   }
 }

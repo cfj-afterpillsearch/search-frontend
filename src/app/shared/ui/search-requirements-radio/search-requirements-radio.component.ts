@@ -30,10 +30,7 @@ export class SearchRequirementsRadioComponent {
   @Input() name = '';
   @Output() searchRequirementsEvent = new EventEmitter<RadioMetaData>();
 
-  ngOnInit() {
-  }
-
   selectRequirement(value: RadioMetaData) {
-    this.searchRequirementsEvent.emit(value)
+    this.searchRequirementsEvent.emit(value);
   }
 }

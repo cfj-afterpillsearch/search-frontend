@@ -26,10 +26,9 @@ export class ResultsCurrentLocationComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
-      this.is_open_sunday = params['is_open_sunday'];
-      this.is_open_holiday = params['is_open_holiday'];
+      this.is_out_of_hours = params['is_out_of_hours'];
       this.getPharmaciesByCurrentLocation();
-    })
+    });
   }
 
   getPharmaciesByCurrentLocation() {
@@ -38,13 +37,15 @@ export class ResultsCurrentLocationComponent implements OnInit {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
 
-        this.apiService.getPharmaciesByCurrentLocation(latitude, longitude, this.is_out_of_hours).subscribe((apiResponse) => {
-          this.pharmacies = apiResponse.results;
-          this.todofuken = apiResponse.meta.address_todofuken;
-          this.shikuchoson = apiResponse.meta.address_shikuchoson;
+        this.apiService
+          .getPharmaciesByCurrentLocation(latitude, longitude, this.is_out_of_hours)
+          .subscribe((apiResponse) => {
+            this.pharmacies = apiResponse.results;
+            this.todofuken = apiResponse.meta.address_todofuken;
+            this.shikuchoson = apiResponse.meta.address_shikuchoson;
           this.totalItems = apiResponse.meta.totalItems;
           this.loading = false;
-        });
+          });
       },
       (error) => {
         console.error('現在地の取得に失敗しました', error);

@@ -20,7 +20,7 @@ export class ResultsAddressComponent implements OnInit {
   totalItems = 0;
   loading = true;
   is_out_of_hours = '';
-  
+
   constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
   ngOnInit() {

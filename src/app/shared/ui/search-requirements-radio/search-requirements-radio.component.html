@@ -3,32 +3,29 @@
     <ng-content></ng-content>
   </h3>
   <div class="flex flex-row">
-    <app-aps-radio 
-      [name]="name" 
+    <app-aps-radio
+      [name]="name"
       [value]="searchRequirements.first.value"
       class="basis-1/3"
       (radioEvent)="selectRequirement($event)"
     >
       {{ searchRequirements.first.name }}
     </app-aps-radio>
-    <app-aps-radio 
-      [name]="name" 
+    <app-aps-radio
+      [name]="name"
       [value]="searchRequirements.second.value"
       class="basis-1/3"
       (radioEvent)="selectRequirement($event)"
     >
-    {{ searchRequirements.second.name }}
+      {{ searchRequirements.second.name }}
     </app-aps-radio>
-    <app-aps-radio 
-      [name]="name" 
+    <app-aps-radio
+      [name]="name"
       [value]="searchRequirements.third.value"
       class="basis-1/3"
       (radioEvent)="selectRequirement($event)"
     >
-    {{ searchRequirements.third.name }}
+      {{ searchRequirements.third.name }}
     </app-aps-radio>
   </div>
 </div>
-
-
-

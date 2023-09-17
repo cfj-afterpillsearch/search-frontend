@@ -10,25 +10,25 @@ import { RadioMetaData } from '../../types/search-requirements';
   standalone: true,
   imports: [RouterLink, NgClass],
 })
-export class ApsRadioComponent {
-  @Input() id: string = '';
-  @Input() name: string = '';
-  @Input() value: string = '';
+export class ApsRadioComponent implements OnInit {
+  @Input() id = '';
+  @Input() name = '';
+  @Input() value = '';
   @Output() radioEvent = new EventEmitter<RadioMetaData>();
 
   radioMetaData: RadioMetaData = {
     name: this.name,
-    value: this.value
-  }
+    value: this.value,
+  };
 
   ngOnInit() {
-    console.log(this.radioMetaData)
+    console.log(this.radioMetaData);
   }
 
   selectRadio() {
     this.radioEvent.emit({
       name: this.name,
       value: this.value,
-    })
+    });
   }
 }
