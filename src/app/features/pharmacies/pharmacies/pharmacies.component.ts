@@ -22,8 +22,8 @@ export class PharmaciesComponent implements OnInit {
   shikuchosonList: string[] = [];
   selectedTodofuken = '';
   selectedShikuchoson = '';
-  currentLocationIsOutOfHours = '';
-  addressIsOutOfHours = '';
+  currentLocationIsOutOfHours = '0';
+  addressIsOutOfHours = '0';
 
   radioMetaDatas: RadioMetaData[] = [
     {
