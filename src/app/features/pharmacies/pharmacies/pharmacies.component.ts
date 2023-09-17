@@ -7,13 +7,14 @@ import { FormsModule } from '@angular/forms';
 import { ButtonComponent } from '../../../shared/ui/button/button.component';
 import { SearchRequirementsRadioComponent } from 'src/app/shared/ui/search-requirements-radio/search-requirements-radio.component';
 import { RadioMetaData, SearchRequirement } from 'src/app/shared/types/search-requirements';
+import { OutofhoursExplainTextComponent } from 'src/app/shared/ui/outofhours-explain-text/outofhours-explain-text.component';
 
 @Component({
   selector: 'app-search',
   templateUrl: './pharmacies.component.html',
   styleUrls: ['./pharmacies.component.css'],
   standalone: true,
-  imports: [ButtonComponent, SearchRequirementsRadioComponent, FormsModule, NgFor],
+  imports: [ButtonComponent, SearchRequirementsRadioComponent, OutofhoursExplainTextComponent, FormsModule, NgFor],
 })
 export class PharmaciesComponent implements OnInit {
   addresses: Addresses = {};
@@ -47,6 +48,7 @@ export class PharmaciesComponent implements OnInit {
   }
 
   setSearchRequirements(searchRequirement: SearchRequirement) {
+    console.log(searchRequirement.name)
     switch (searchRequirement.name) {
       case 'currentLocationIsOutOfHours':
         this.currentLocationIsOutOfHours = searchRequirement.radioMetaData.value;

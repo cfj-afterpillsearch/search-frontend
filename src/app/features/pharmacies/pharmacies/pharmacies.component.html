@@ -14,6 +14,7 @@
       >
         時間外対応
       </app-search-requirements-radio>
+      <app-outofhours-explain-text />
     </div>
     <app-button (clickEvent)="onCurrentLocationSearch()" [model]="'pharmacy'">検索</app-button>
   </section>
@@ -56,6 +57,7 @@
       >
         時間外対応
       </app-search-requirements-radio>
+      <app-outofhours-explain-text />
     </div>
     <app-button (clickEvent)="onAddressSearch()" [disabled]="!isTodofukenAndShikuchosonSelected()" [model]="'pharmacy'"> 検索 </app-button>
   </section>
