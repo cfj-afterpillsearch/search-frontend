@@ -3,7 +3,7 @@
   <section class="w-full flex flex-col space-y-5">
     <div>
       <h2 class="text-lg mb-2">現在地検索</h2>
-      <p class="text-base mb-2">現在地から6kmの範囲の薬局をさがします。</p>
+      <p class="text-xs mb-2">現在地から6kmの範囲の薬局をさがします。</p>
     </div>
     <div class="w-full mt-4">
       <app-search-requirements-radio
@@ -21,11 +21,11 @@
   <section class="w-full flex flex-col space-y-5">
     <div>
       <h2 class="text-lg mb-2">住所検索</h2>
-      <p class="text-base mb-2">住所から医療機関をさがします。</p>
+      <p class="text-xs mb-2">住所から医療機関をさがします。</p>
     </div>
     <div class="flex flex-col space-y-4 w-full">
       <div>
-        <p class="text-xs">都道府県</p>
+        <p class="text-sm">都道府県</p>
         <select
           id="todofukenList"
           [(ngModel)]="selectedTodofuken"
@@ -37,7 +37,7 @@
         </select>
       </div>
       <div>
-        <p class="text-xs">市区町村</p>
+        <p class="text-sm">市区町村</p>
         <select
           id="shikuchosonList"
           [(ngModel)]="selectedShikuchoson"

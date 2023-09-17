@@ -38,7 +38,7 @@ export class MedicalInstitutionsComponent implements OnInit {
       initialIsChecked: false
     },
     {
-      label: '○',
+      label: '◯',
       value: '1',
       initialIsChecked: false
     },
