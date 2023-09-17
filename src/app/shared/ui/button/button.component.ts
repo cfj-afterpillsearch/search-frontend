@@ -12,6 +12,7 @@ import { RouterLink } from '@angular/router';
 export class ButtonComponent {
   @Input() link = '';
   @Input() disabled = false;
+  @Input() model = '';
   @Output() clickEvent = new EventEmitter<void>();
   @HostBinding('class.w-full') wFull = true;
 }

@@ -9,12 +9,13 @@
       <app-search-requirements-radio
         [name]="'currentLocationIsOutOfHours'"
         [radioMetaDatas]="radioMetaDatas"
+        [styleChecked]="'medical-institution'"
         (searchRequirementsEvent)="setSearchRequirements($event)"
       >
         時間外対応
       </app-search-requirements-radio>
     </div>
-    <app-button (clickEvent)="onCurrentLocationSearch()">検索</app-button>
+    <app-button (clickEvent)="onCurrentLocationSearch()" [model]="'pharmacy'">検索</app-button>
   </section>
   <section class="w-full flex flex-col space-y-5">
     <div>
@@ -55,7 +56,6 @@
         時間外対応
       </app-search-requirements-radio>
     </div>
-    <app-button (clickEvent)="onAddressSearch()" [disabled]="!isTodofukenAndShikuchosonSelected()"> 検索 </app-button>
-    </section>
-  </div>
-  
+    <app-button (clickEvent)="onAddressSearch()" [disabled]="!isTodofukenAndShikuchosonSelected()" [model]="'pharmacy'"> 検索 </app-button>
+  </section>
+</div>

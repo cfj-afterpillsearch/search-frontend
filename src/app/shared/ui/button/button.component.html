@@ -1,3 +1,3 @@
-<button [routerLink]="link ? link : null" [ngClass]="disabled ? 'disabled' : 'enabled'" (click)="clickEvent.emit()">
+<button [routerLink]="link ? link : null" [disabled]="disabled" [ngClass]="[model]" (click)="clickEvent.emit()">
   <ng-content></ng-content>
 </button>

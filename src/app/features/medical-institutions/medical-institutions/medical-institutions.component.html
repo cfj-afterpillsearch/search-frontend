@@ -9,6 +9,7 @@
       <app-search-requirements-radio
         [name]="'currentLocationSunday'"
         [radioMetaDatas]="radioMetaDatas"
+        [styleChecked]="'medical-institution'"
         (searchRequirementsEvent)="setSearchRequirements($event)"
       >
         日曜診療
@@ -16,12 +17,13 @@
       <app-search-requirements-radio
         [name]="'currentLocationHoliday'"
         [radioMetaDatas]="radioMetaDatas"
+        [styleChecked]="'medical-institution'"
         (searchRequirementsEvent)="setSearchRequirements($event)"
       >
         祝日診療
       </app-search-requirements-radio>
     </div>
-    <app-button (clickEvent)="onCurrentLocationSearch()">検索</app-button>
+    <app-button (clickEvent)="onCurrentLocationSearch()" [model]="'medical-institution'">検索</app-button>
   </section>
   <section class="w-full flex flex-col space-y-5">
     <div>
@@ -57,6 +59,7 @@
       <app-search-requirements-radio
         [name]="'addressSunday'"
         [radioMetaDatas]="radioMetaDatas"
+        [styleChecked]="'medical-institution'"
         (searchRequirementsEvent)="setSearchRequirements($event)"
       >
         日曜診療
@@ -64,11 +67,12 @@
       <app-search-requirements-radio
         [name]="'addressHoliday'"
         [radioMetaDatas]="radioMetaDatas"
+        [styleChecked]="'medical-institution'"
         (searchRequirementsEvent)="setSearchRequirements($event)"
       >
         祝日診療
       </app-search-requirements-radio>
     </div>
-    <app-button (clickEvent)="onAddressSearch()" [disabled]="!isTodofukenAndShikuchosonSelected()"> 検索 </app-button>
+    <app-button (clickEvent)="onAddressSearch()" [disabled]="!isTodofukenAndShikuchosonSelected()" [model]="'medical-institution'"> 検索 </app-button>
   </section>
 </div>
