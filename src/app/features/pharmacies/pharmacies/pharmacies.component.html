@@ -9,7 +9,7 @@
       <app-search-requirements-radio
         [name]="'currentLocationIsOutOfHours'"
         [radioMetaDatas]="radioMetaDatas"
-        [styleChecked]="'medical-institution'"
+        [styleChecked]="'pharmacy'"
         (searchRequirementsEvent)="setSearchRequirements($event)"
       >
         時間外対応
@@ -51,6 +51,7 @@
       <app-search-requirements-radio
         [name]="'addressIsOutOfHours'"
         [radioMetaDatas]="radioMetaDatas"
+        [styleChecked]="'pharmacy'"
         (searchRequirementsEvent)="setSearchRequirements($event)"
       >
         時間外対応
