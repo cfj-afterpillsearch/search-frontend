@@ -2,7 +2,7 @@
   <h1 class="text-xl mb-2">医療機関検索</h1>
   <section class="w-full flex flex-col space-y-5">
     <div>
-      <h2 class="text-lg mb-2">現在地検索</h2>
+      <h2 class="text-lg mb-2">現在地から検索</h2>
       <p class="text-xs mb-2">現在地から6kmの範囲の医療機関をさがします。</p>
     </div>
     <div class="w-full mt-4">
@@ -23,36 +23,36 @@
         祝日診療
       </app-search-requirements-radio>
     </div>
-    <app-button (clickEvent)="onCurrentLocationSearch()" [model]="'medical-institution'">検索</app-button>
+    <app-button (clickEvent)="onCurrentLocationSearch()" [model]="'medical-institution'"> 現在地から検索 </app-button>
   </section>
   <section class="w-full flex flex-col space-y-5">
     <div>
-      <h2 class="text-lg mb-2">住所検索</h2>
+      <h2 class="text-lg mb-2">住所から検索</h2>
       <p class="text-xs mb-2">住所から医療機関をさがします。</p>
     </div>
     <div class="flex flex-col space-y-4 w-full">
       <div>
         <p class="text-sm">都道府県</p>
         <select
-        id="todofukenList"
-        [(ngModel)]="selectedTodofuken"
-        (change)="onTodofukenChange()"
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-7 text-center"
-      >
-        <option value="">都道府県を選択してください</option>
-        <option *ngFor="let todofuken of todofukenList" [value]="todofuken">{{ todofuken }}</option>
-      </select>
+          id="todofukenList"
+          [(ngModel)]="selectedTodofuken"
+          (change)="onTodofukenChange()"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-7 text-center"
+        >
+          <option value="">都道府県を選択してください</option>
+          <option *ngFor="let todofuken of todofukenList" [value]="todofuken">{{ todofuken }}</option>
+        </select>
       </div>
       <div>
         <p class="text-sm">市区町村</p>
         <select
-        id="shikuchosonList"
-        [(ngModel)]="selectedShikuchoson"
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-7 text-center"
-      >
-        <option value="">市区町村を選択してください</option>
-        <option *ngFor="let shikuchoson of shikuchosonList" [value]="shikuchoson">{{ shikuchoson }}</option>
-      </select>
+          id="shikuchosonList"
+          [(ngModel)]="selectedShikuchoson"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-7 text-center"
+        >
+          <option value="">市区町村を選択してください</option>
+          <option *ngFor="let shikuchoson of shikuchosonList" [value]="shikuchoson">{{ shikuchoson }}</option>
+        </select>
       </div>
     </div>
     <div class="w-full">
@@ -73,6 +73,12 @@
         祝日診療
       </app-search-requirements-radio>
     </div>
-    <app-button (clickEvent)="onAddressSearch()" [disabled]="!isTodofukenAndShikuchosonSelected()" [model]="'medical-institution'"> 検索 </app-button>
+    <app-button
+      (clickEvent)="onAddressSearch()"
+      [disabled]="!isTodofukenAndShikuchosonSelected()"
+      [model]="'medical-institution'"
+    >
+      住所から検索
+    </app-button>
   </section>
 </div>
