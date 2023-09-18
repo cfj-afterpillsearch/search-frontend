@@ -43,8 +43,8 @@ export class ResultsCurrentLocationComponent implements OnInit {
             this.pharmacies = apiResponse.results;
             this.todofuken = apiResponse.meta.address_todofuken;
             this.shikuchoson = apiResponse.meta.address_shikuchoson;
-          this.totalItems = apiResponse.meta.totalItems;
-          this.loading = false;
+            this.totalItems = apiResponse.meta.totalItems;
+            this.loading = false;
           });
       },
       (error) => {

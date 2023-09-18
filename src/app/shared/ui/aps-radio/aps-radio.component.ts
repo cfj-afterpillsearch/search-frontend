@@ -15,7 +15,7 @@ export class ApsRadioComponent {
   @Input() radioMetaData: RadioMetaData = {
     label: '',
     value: '',
-    initialIsChecked: false
+    initialIsChecked: false,
   };
   @Input() name = '';
   @Input() styleChecked = '';
@@ -24,7 +24,7 @@ export class ApsRadioComponent {
   selectRadio() {
     this.radioEvent.emit({
       name: this.name,
-      radioMetaData: this.radioMetaData
+      radioMetaData: this.radioMetaData,
     });
   }
 }

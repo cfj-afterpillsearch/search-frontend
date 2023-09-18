@@ -7,6 +7,4 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
 })
-export class OutofhoursExplainTextComponent {
-  
-}
+export class OutofhoursExplainTextComponent {}

@@ -29,12 +29,12 @@ export class PharmaciesComponent implements OnInit {
     {
       label: '指定なし',
       value: '0',
-      initialIsChecked: true
+      initialIsChecked: true,
     },
     {
       label: '有',
       value: '1',
-      initialIsChecked: false
+      initialIsChecked: false,
     },
   ];
 
@@ -48,7 +48,7 @@ export class PharmaciesComponent implements OnInit {
   }
 
   setSearchRequirements(searchRequirement: SearchRequirement) {
-    console.log(searchRequirement.name)
+    console.log(searchRequirement.name);
     switch (searchRequirement.name) {
       case 'currentLocationIsOutOfHours':
         this.currentLocationIsOutOfHours = searchRequirement.radioMetaData.value;

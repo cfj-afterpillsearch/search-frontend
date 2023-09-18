@@ -6,5 +6,5 @@ export interface RadioMetaData {
 
 export interface SearchRequirement {
   name: string;
-  radioMetaData: RadioMetaData
+  radioMetaData: RadioMetaData;
 }

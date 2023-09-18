@@ -30,17 +30,17 @@ export class MedicalInstitutionsComponent implements OnInit {
     {
       label: '指定なし',
       value: '0',
-      initialIsChecked: true
+      initialIsChecked: true,
     },
     {
       label: '△',
       value: '2',
-      initialIsChecked: false
+      initialIsChecked: false,
     },
     {
       label: '◯',
       value: '1',
-      initialIsChecked: false
+      initialIsChecked: false,
     },
   ];
 

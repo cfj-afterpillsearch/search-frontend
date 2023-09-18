@@ -13,7 +13,7 @@ import { NewlineToBrPipe } from '../../newline-to-br.pipe';
   templateUrl: './pharmacy-card.component.html',
   styleUrls: ['./pharmacy-card.component.css'],
   standalone: true,
-    imports: [FontAwesomeModule, NewlineToBrPipe, NgIf]
+  imports: [FontAwesomeModule, NewlineToBrPipe, NgIf],
 })
 export class PharmacyCardComponent implements OnInit {
   constructor(private gtmService: GoogleTagManagerService) {}

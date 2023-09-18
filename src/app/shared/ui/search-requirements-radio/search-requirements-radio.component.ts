@@ -20,7 +20,7 @@ export class SearchRequirementsRadioComponent implements OnInit {
   @Output() searchRequirementsEvent = new EventEmitter<SearchRequirement>();
 
   ngOnInit() {
-    this.setFlexBasis(this.radioMetaDatas.length)
+    this.setFlexBasis(this.radioMetaDatas.length);
   }
 
   selectRequirement(value: SearchRequirement) {

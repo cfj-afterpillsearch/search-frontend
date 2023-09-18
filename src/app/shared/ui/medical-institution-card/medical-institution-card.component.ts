@@ -8,13 +8,12 @@ import { GoogleTagManagerService } from 'angular-google-tag-manager';
 import { NewlineToBrPipe } from '../../newline-to-br.pipe';
 import { NgIf } from '@angular/common';
 
-
 @Component({
-    selector: 'app-medical-institution-card',
-    templateUrl: './medical-institution-card.component.html',
-    styleUrls: ['./medical-institution-card.component.css'],
-    standalone: true,
-    imports: [FontAwesomeModule, NewlineToBrPipe, NgIf]
+  selector: 'app-medical-institution-card',
+  templateUrl: './medical-institution-card.component.html',
+  styleUrls: ['./medical-institution-card.component.css'],
+  standalone: true,
+  imports: [FontAwesomeModule, NewlineToBrPipe, NgIf],
 })
 export class MedicalInstitutionCardComponent {
   constructor(private gtmService: GoogleTagManagerService) {}
