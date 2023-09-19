@@ -8,7 +8,7 @@
     <div class="w-full mt-4">
       <app-search-requirements-radio
         [name]="'currentLocationIsOutOfHours'"
-        [radios]="radios"
+        [radioList]="radioList"
         [styleChecked]="'pharmacy'"
         (searchRequirementsEvent)="setSearchRequirements($event)"
       >
@@ -51,7 +51,7 @@
     <div class="w-full">
       <app-search-requirements-radio
         [name]="'addressIsOutOfHours'"
-        [radios]="radios"
+        [radioList]="radioList"
         [styleChecked]="'pharmacy'"
         (searchRequirementsEvent)="setSearchRequirements($event)"
       >

@@ -14,13 +14,13 @@ import { Radio, SearchRequirement } from '../../types/search-requirements';
 export class SearchRequirementsRadioComponent implements OnInit {
   flexBasis = '';
 
-  @Input() radios: Radio[] = [];
+  @Input() radioList: Radio[] = [];
   @Input() name = '';
   @Input() styleChecked = '';
   @Output() searchRequirementsEvent = new EventEmitter<SearchRequirement>();
 
   ngOnInit() {
-    this.setFlexBasis(this.radios.length);
+    this.setFlexBasis(this.radioList.length);
   }
 
   selectRequirement(value: SearchRequirement) {

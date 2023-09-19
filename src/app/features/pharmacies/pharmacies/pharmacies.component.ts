@@ -25,7 +25,7 @@ export class PharmaciesComponent implements OnInit {
   currentLocationIsOutOfHours = '0';
   addressIsOutOfHours = '0';
 
-  radios: Radio[] = [
+  radioList: Radio[] = [
     {
       label: '指定なし',
       value: '0',

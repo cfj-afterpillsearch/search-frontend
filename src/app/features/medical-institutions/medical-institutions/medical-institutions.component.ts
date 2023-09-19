@@ -26,7 +26,7 @@ export class MedicalInstitutionsComponent implements OnInit {
   addressIsOpenSunday = '0';
   addressIsOpenHoliday = '0';
 
-  radios: Radio[] = [
+  radioList: Radio[] = [
     {
       label: '指定なし',
       value: '0',
