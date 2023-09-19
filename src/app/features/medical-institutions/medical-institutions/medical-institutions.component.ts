@@ -6,7 +6,7 @@ import { NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ButtonComponent } from '../../../shared/ui/button/button.component';
 import { SearchRequirementsRadioComponent } from 'src/app/shared/ui/search-requirements-radio/search-requirements-radio.component';
-import { RadioMetaData, SearchRequirement } from 'src/app/shared/types/search-requirements';
+import { Radio, SearchRequirement } from 'src/app/shared/types/search-requirements';
 
 @Component({
   selector: 'app-search',
@@ -26,7 +26,7 @@ export class MedicalInstitutionsComponent implements OnInit {
   addressIsOpenSunday = '0';
   addressIsOpenHoliday = '0';
 
-  radioMetaDatas: RadioMetaData[] = [
+  radioList: Radio[] = [
     {
       label: '指定なし',
       value: '0',

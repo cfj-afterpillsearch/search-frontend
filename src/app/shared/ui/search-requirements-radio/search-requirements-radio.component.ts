@@ -2,7 +2,7 @@ import { NgClass, NgFor } from '@angular/common';
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ApsRadioComponent } from '../aps-radio/aps-radio.component';
-import { RadioMetaData, SearchRequirement } from '../../types/search-requirements';
+import { Radio, SearchRequirement } from '../../types/search-requirements';
 
 @Component({
   selector: 'app-search-requirements-radio',
@@ -14,13 +14,13 @@ import { RadioMetaData, SearchRequirement } from '../../types/search-requirement
 export class SearchRequirementsRadioComponent implements OnInit {
   flexBasis = '';
 
-  @Input() radioMetaDatas: RadioMetaData[] = [];
+  @Input() radioList: Radio[] = [];
   @Input() name = '';
   @Input() styleChecked = '';
   @Output() searchRequirementsEvent = new EventEmitter<SearchRequirement>();
 
   ngOnInit() {
-    this.setFlexBasis(this.radioMetaDatas.length);
+    this.setFlexBasis(this.radioList.length);
   }
 
   selectRequirement(value: SearchRequirement) {
