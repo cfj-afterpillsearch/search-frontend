@@ -3,38 +3,25 @@
   <h3 class="text-lg leading-7 font-bold">{{ pharmacy.name }}</h3>
   <div class="mb-4 text-sm leading-5 font-normal">
     {{ pharmacy.address }}
-    <a
-      [attr.href]="'https://www.google.co.jp/maps/place/' + pharmacy.address"
-      target="_blank"
-    >
+    <a [attr.href]="'https://www.google.co.jp/maps/place/' + pharmacy.address" target="_blank">
       [地図]
       <fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon>
     </a>
   </div>
   <div class="mb-4">
-    <div class="text-xs leading-4 font-bold">
-      開局時間：
-    </div>
+    <div class="text-xs leading-4 font-bold">開局時間：</div>
     <div class="text-base leading-6 font-normal" [innerHTML]="pharmacy.memo_openinghours | newlineToBrPipe"></div>
   </div>
   <div class="mb-4">
-    <div *ngIf="isEmergencyContact" class="text-xs leading-4 font-bold">
-      時間外の電話番号：
-    </div>
-    <div class="text-base leading-6 font-normal">{{pharmacy.emergency_contact_phone}}</div>
+    <div *ngIf="isEmergencyContact" class="text-xs leading-4 font-bold">時間外の電話番号：</div>
+    <div class="text-base leading-6 font-normal">{{ pharmacy.emergency_contact_phone }}</div>
   </div>
   <div class="flex-col space-y-4">
-    <button
-      class="bg-green-200 p-2 w-full h-12 flex items-center shadow"
-      (click)="searchButtonPushTag(pharmacy)"
-    >
+    <button class="bg-green-200 p-2 w-full h-12 flex items-center shadow" (click)="searchButtonPushTag(pharmacy)">
       <fa-icon [icon]="faMagnifyingGlass" [size]="'xl'" class="ml-8 mr-4"></fa-icon>
       <div class="text-sm leading-5 font-normal text-left">この薬局を検索して調べる</div>
     </button>
-    <button
-      class="bg-green-200 p-2 w-full h-12 flex items-center shadow"
-      (click)="telButtonPushTag(pharmacy)"
-    >
+    <button class="bg-green-200 p-2 w-full h-12 flex items-center shadow" (click)="telButtonPushTag(pharmacy)">
       <fa-icon [icon]="faPhone" [size]="'xl'" class="ml-8 mr-4"></fa-icon>
       <div class="text-sm leading-5 font-normal text-left">
         <div>この薬局に電話する</div>

@@ -2,17 +2,19 @@
   <div class="flex flex-col items-center">
     <div class="loading loading-spinner loading-lg mt-40"></div>
     <div class="text-base leading-6 font-normal mt-20">現在地周辺の医療機関を検索しています</div>
-</div>
+  </div>
 </ng-container>
 <ng-container *ngIf="!loading">
-<div class="mb-8">
-  <h2 class="text-xl leading-7 font-normal">{{ shikuchoson }}周辺の医療機関</h2>
-  <div class="text-sm leading-5 font-normal" *ngIf="totalItems > 0; else noItems">{{totalItems}}件の医療機関が見つかりました。</div>
-  <ng-template class="text-sm leading-5 font-normal" #noItems>医療機関は見つかりませんでした。</ng-template>
-</div>
-<ul class="flex flex-col space-y-4">
-  <li *ngFor="let medicalInstitution of medicalInstitutions" class>
-    <app-medical-institution-card [medicalInstitution]="medicalInstitution"></app-medical-institution-card>
-  </li>
-</ul>
+  <div class="mb-8">
+    <h2 class="text-xl leading-7 font-normal">{{ shikuchoson }}周辺の医療機関</h2>
+    <div class="text-sm leading-5 font-normal" *ngIf="totalItems > 0; else noItems">
+      {{ totalItems }}件の医療機関が見つかりました。
+    </div>
+    <ng-template class="text-sm leading-5 font-normal" #noItems>医療機関は見つかりませんでした。</ng-template>
+  </div>
+  <ul class="flex flex-col space-y-4">
+    <li *ngFor="let medicalInstitution of medicalInstitutions" class>
+      <app-medical-institution-card [medicalInstitution]="medicalInstitution"></app-medical-institution-card>
+    </li>
+  </ul>
 </ng-container>
