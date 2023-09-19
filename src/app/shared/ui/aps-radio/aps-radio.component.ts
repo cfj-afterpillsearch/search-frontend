@@ -1,7 +1,7 @@
 import { NgClass } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { RadioMetaData, SearchRequirement } from '../../types/search-requirements';
+import { Radio, SearchRequirement } from '../../types/search-requirements';
 
 @Component({
   selector: 'app-aps-radio',
@@ -12,7 +12,7 @@ import { RadioMetaData, SearchRequirement } from '../../types/search-requirement
 })
 export class ApsRadioComponent {
   @Input() id = '';
-  @Input() radioMetaData: RadioMetaData = {
+  @Input() radio: Radio = {
     label: '',
     value: '',
     initialIsChecked: false,
@@ -24,7 +24,7 @@ export class ApsRadioComponent {
   selectRadio() {
     this.radioEvent.emit({
       name: this.name,
-      radioMetaData: this.radioMetaData,
+      radioMetaData: this.radio,
     });
   }
 }

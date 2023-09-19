@@ -1,4 +1,4 @@
-export interface RadioMetaData {
+export interface Radio {
   label: string;
   value: string;
   initialIsChecked: boolean;
@@ -6,5 +6,5 @@ export interface RadioMetaData {
 
 export interface SearchRequirement {
   name: string;
-  radioMetaData: RadioMetaData;
+  radioMetaData: Radio;
 }

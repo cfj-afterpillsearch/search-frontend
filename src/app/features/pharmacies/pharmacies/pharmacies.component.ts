@@ -6,7 +6,7 @@ import { NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ButtonComponent } from '../../../shared/ui/button/button.component';
 import { SearchRequirementsRadioComponent } from 'src/app/shared/ui/search-requirements-radio/search-requirements-radio.component';
-import { RadioMetaData, SearchRequirement } from 'src/app/shared/types/search-requirements';
+import { Radio, SearchRequirement } from 'src/app/shared/types/search-requirements';
 import { OutofhoursExplainTextComponent } from 'src/app/shared/ui/outofhours-explain-text/outofhours-explain-text.component';
 
 @Component({
@@ -25,7 +25,7 @@ export class PharmaciesComponent implements OnInit {
   currentLocationIsOutOfHours = '0';
   addressIsOutOfHours = '0';
 
-  radioMetaDatas: RadioMetaData[] = [
+  radios: Radio[] = [
     {
       label: '指定なし',
       value: '0',

@@ -8,7 +8,7 @@
     <div class="w-full mt-4">
       <app-search-requirements-radio
         [name]="'currentLocationSunday'"
-        [radioMetaDatas]="radioMetaDatas"
+        [radios]="radios"
         [styleChecked]="'medical-institution'"
         (searchRequirementsEvent)="setSearchRequirements($event)"
       >
@@ -16,7 +16,7 @@
       </app-search-requirements-radio>
       <app-search-requirements-radio
         [name]="'currentLocationHoliday'"
-        [radioMetaDatas]="radioMetaDatas"
+        [radios]="radios"
         [styleChecked]="'medical-institution'"
         (searchRequirementsEvent)="setSearchRequirements($event)"
       >
@@ -58,7 +58,7 @@
     <div class="w-full">
       <app-search-requirements-radio
         [name]="'addressSunday'"
-        [radioMetaDatas]="radioMetaDatas"
+        [radios]="radios"
         [styleChecked]="'medical-institution'"
         (searchRequirementsEvent)="setSearchRequirements($event)"
       >
@@ -66,7 +66,7 @@
       </app-search-requirements-radio>
       <app-search-requirements-radio
         [name]="'addressHoliday'"
-        [radioMetaDatas]="radioMetaDatas"
+        [radios]="radios"
         [styleChecked]="'medical-institution'"
         (searchRequirementsEvent)="setSearchRequirements($event)"
       >
