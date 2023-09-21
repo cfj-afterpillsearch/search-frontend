@@ -1,0 +1,11 @@
+label {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.medical-institute {
+  @apply checked:bg-blue-300;
+}
+
+.pharmacy {
+  @apply checked:bg-green-200;
+}

@@ -2,16 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Addresses } from '../../../shared/types/addresses';
 import { Router } from '@angular/router';
-import { NgClass, NgFor } from '@angular/common';
+import { NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ButtonComponent } from '../../../shared/ui/button/button.component';
+import { SearchRequirementsRadioComponent } from 'src/app/shared/ui/search-requirements-radio/search-requirements-radio.component';
+import { Radio, SearchRequirement } from 'src/app/shared/types/search-requirements';
+import { OutofhoursExplainTextComponent } from 'src/app/shared/ui/outofhours-explain-text/outofhours-explain-text.component';
 
 @Component({
   selector: 'app-search',
   templateUrl: './pharmacies.component.html',
   styleUrls: ['./pharmacies.component.css'],
   standalone: true,
-  imports: [ButtonComponent, FormsModule, NgFor, NgClass],
+  imports: [ButtonComponent, SearchRequirementsRadioComponent, OutofhoursExplainTextComponent, FormsModule, NgFor],
 })
 export class PharmaciesComponent implements OnInit {
   addresses: Addresses = {};
@@ -19,6 +22,21 @@ export class PharmaciesComponent implements OnInit {
   shikuchosonList: string[] = [];
   selectedTodofuken = '';
   selectedShikuchoson = '';
+  currentLocationIsOutOfHours = '0';
+  addressIsOutOfHours = '0';
+
+  radioList: Radio[] = [
+    {
+      label: '指定なし',
+      value: '0',
+      initialIsChecked: true,
+    },
+    {
+      label: '有',
+      value: '1',
+      initialIsChecked: false,
+    },
+  ];
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -26,6 +44,26 @@ export class PharmaciesComponent implements OnInit {
     this.http.get<Addresses>('assets/addresses.json').subscribe((data) => {
       this.addresses = data;
       this.todofukenList = Object.keys(data);
+    });
+  }
+
+  setSearchRequirements(searchRequirement: SearchRequirement) {
+    console.log(searchRequirement.name);
+    switch (searchRequirement.name) {
+      case 'currentLocationIsOutOfHours':
+        this.currentLocationIsOutOfHours = searchRequirement.radioMetaData.value;
+        break;
+      case 'addressIsOutOfHours':
+        this.addressIsOutOfHours = searchRequirement.radioMetaData.value;
+        break;
+    }
+  }
+
+  onCurrentLocationSearch() {
+    this.router.navigate(['/pharmacies/current-location'], {
+      queryParams: {
+        is_out_of_hours: this.currentLocationIsOutOfHours,
+      },
     });
   }
 
@@ -42,6 +80,7 @@ export class PharmaciesComponent implements OnInit {
       queryParams: {
         todofuken: this.selectedTodofuken,
         shikuchoson: this.selectedShikuchoson,
+        is_out_of_hours: this.addressIsOutOfHours,
       },
     });
   }

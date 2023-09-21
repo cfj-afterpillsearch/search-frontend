@@ -19,6 +19,8 @@ export class ResultsAddressComponent implements OnInit {
   shikuchoson = '';
   totalItems = 0;
   loading = true;
+  is_open_sunday = '';
+  is_open_holiday = '';
 
   constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
@@ -26,13 +28,15 @@ export class ResultsAddressComponent implements OnInit {
     this.route.queryParams.subscribe((params) => {
       this.todofuken = params['todofuken'];
       this.shikuchoson = params['shikuchoson'];
+      this.is_open_sunday = params['is_open_sunday'];
+      this.is_open_holiday = params['is_open_holiday'];
       this.getMedicalInstitutionsByAddress();
     });
   }
 
   getMedicalInstitutionsByAddress() {
     this.apiService
-      .getMedicalInstitutionsByAddress(this.todofuken, this.shikuchoson)
+      .getMedicalInstitutionsByAddress(this.todofuken, this.shikuchoson, this.is_open_sunday, this.is_open_holiday)
       .subscribe((apiResponse) => {
         this.medicalInstitutions = apiResponse.results;
         this.totalItems = apiResponse.meta.totalItems;

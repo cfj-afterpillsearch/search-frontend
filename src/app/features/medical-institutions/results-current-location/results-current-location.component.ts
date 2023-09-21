@@ -4,6 +4,7 @@ import { ApiService } from '../../../shared/api.service';
 import { NgFor, NgIf } from '@angular/common';
 import { MedicalInstitutionCardComponent } from '../../../shared/ui/medical-institution-card/medical-institution-card.component';
 import { AreaTitleCardComponent } from '../../../shared/ui/area-title-card/area-title-card.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-medical-institutions',
@@ -18,11 +19,17 @@ export class ResultsCurrentLocationComponent implements OnInit {
   shikuchoson = '';
   totalItems = 0;
   loading = true;
+  is_open_sunday = '';
+  is_open_holiday = '';
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.getMedicalInstitutionsByCurrentLocation();
+    this.route.queryParams.subscribe((params) => {
+      this.is_open_sunday = params['is_open_sunday'];
+      this.is_open_holiday = params['is_open_holiday'];
+      this.getMedicalInstitutionsByCurrentLocation();
+    });
   }
 
   getMedicalInstitutionsByCurrentLocation() {
@@ -31,13 +38,15 @@ export class ResultsCurrentLocationComponent implements OnInit {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
 
-        this.apiService.getMedicalInstitutionsByCurrentLocation(latitude, longitude).subscribe((apiResponse) => {
-          this.medicalInstitutions = apiResponse.results;
-          this.todofuken = apiResponse.meta.address_todofuken;
-          this.shikuchoson = apiResponse.meta.address_shikuchoson;
-          this.totalItems = apiResponse.meta.totalItems;
-          this.loading = false;
-        });
+        this.apiService
+          .getMedicalInstitutionsByCurrentLocation(latitude, longitude, this.is_open_sunday, this.is_open_holiday)
+          .subscribe((apiResponse) => {
+            this.medicalInstitutions = apiResponse.results;
+            this.todofuken = apiResponse.meta.address_todofuken;
+            this.shikuchoson = apiResponse.meta.address_shikuchoson;
+            this.totalItems = apiResponse.meta.totalItems;
+            this.loading = false;
+          });
       },
       (error) => {
         console.error('現在地の取得に失敗しました', error);

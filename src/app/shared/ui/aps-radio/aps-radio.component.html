@@ -1,0 +1,15 @@
+<div class="form-control">
+  <label class="text-xs">
+    <input
+      type="radio"
+      class="radio"
+      [ngClass]="styleChecked"
+      [id]="id"
+      [name]="name"
+      [value]="radio.value"
+      (click)="selectRadio()"
+      [checked]="radio.initialIsChecked"
+    />
+    {{ radio.label }}
+  </label>
+</div>

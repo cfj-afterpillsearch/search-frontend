@@ -4,6 +4,7 @@ import { ApiService } from '../../../shared/api.service';
 import { NgFor, NgIf } from '@angular/common';
 import { PharmacyCardComponent } from '../../../shared/ui/pharmacy-card/pharmacy-card.component';
 import { AreaTitleCardComponent } from '../../../shared/ui/area-title-card/area-title-card.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-pharmacies',
@@ -19,10 +20,15 @@ export class ResultsCurrentLocationComponent implements OnInit {
   totalItems = 0;
   loading = true;
 
-  constructor(private apiService: ApiService) {}
+  is_out_of_hours = '';
+
+  constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.getPharmaciesByCurrentLocation();
+    this.route.queryParams.subscribe((params) => {
+      this.is_out_of_hours = params['is_out_of_hours'];
+      this.getPharmaciesByCurrentLocation();
+    });
   }
 
   getPharmaciesByCurrentLocation() {
@@ -31,13 +37,15 @@ export class ResultsCurrentLocationComponent implements OnInit {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
 
-        this.apiService.getPharmaciesByCurrentLocation(latitude, longitude).subscribe((apiResponse) => {
-          this.pharmacies = apiResponse.results;
-          this.todofuken = apiResponse.meta.address_todofuken;
-          this.shikuchoson = apiResponse.meta.address_shikuchoson;
-          this.totalItems = apiResponse.meta.totalItems;
-          this.loading = false;
-        });
+        this.apiService
+          .getPharmaciesByCurrentLocation(latitude, longitude, this.is_out_of_hours)
+          .subscribe((apiResponse) => {
+            this.pharmacies = apiResponse.results;
+            this.todofuken = apiResponse.meta.address_todofuken;
+            this.shikuchoson = apiResponse.meta.address_shikuchoson;
+            this.totalItems = apiResponse.meta.totalItems;
+            this.loading = false;
+          });
       },
       (error) => {
         console.error('現在地の取得に失敗しました', error);
