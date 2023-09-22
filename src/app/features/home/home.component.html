@@ -1,4 +1,53 @@
-<div class="flex flex-col items-center space-y-10 mt-10">
-  <app-button [link]="'/medical-institutions'" [model]="'medical-institution'">医療機関をさがす</app-button>
-  <app-button [link]="'/pharmacies'" [model]="'pharmacy'">薬局をさがす</app-button>
+<div class="flex flex-col items-center space-y-5 mt-5">
+  <div>
+    <p>アフターピル(緊急避妊薬)が必要な時、日本では医師の処方箋が必要です。例えば、こんなことで困っていませんか？</p>
+
+    <ul>
+      <li>平日昼間に病院に行けない</li>
+      <li>近くに婦人科がない</li>
+      <li>日曜祝日なので近くのクリニックが閉まっている</li>
+    </ul>
+
+    <p>
+      アフターピル検索では、あなたに合った受診を支援します。土日祝日、地方で近くに産婦人科がない方、平日昼間に病院に行けない方などが、72時間に間に合う選択肢を一緒に探します。
+    </p>
+  </div>
+
+  <div>
+    <p>
+      アフターピルの入手方法は、3つの方法があり、それぞれ良い点・不便な点があります。詳しくは、ピルにゃんの「<a
+        href="https://pillnyan.jp/search_afterpill/"
+        target="_blank"
+        >〜オンライン診療or対面診療？〜緊急避妊薬の探し方</a
+      >」をご覧になり、ご自身に最適なパターンをお選びください。
+    </p>
+  </div>
+
+  <div>
+    <h2 class="chapter">(1) 対面診療パターン</h2>
+    <p>
+      直接医療機関に行って医師に診察してもらい、病院でアフターピルを受け取る方法です。<br />
+      アフターピル検索では、アフターピルを入手できる医療機関を検索できます。
+    </p>
+    <app-button [link]="'/medical-institutions'" [model]="'medical-institution'">医療機関をさがす</app-button>
+  </div>
+
+  <div>
+    <h2 class="chapter">(2) オンライン診療＋薬局で受け取りパターン</h2>
+    <p>
+      医師の診察はオンラインで行い、診察後に薬局でアフターピルを受け取る方法です。<br />
+      この方法は、クリニックと薬局の2つの予約が必要です。<br />
+      このパターンで診療できるクリニックや受診の流れはピルにゃんの「<a
+        href="https://pillnyan.jp/afterpill-pharmacy/"
+        target="_blank"
+        >緊急避妊薬の処方せん対応薬局検索</a
+      >」ページをご覧ください。 アフターピル検索では、アフターピルを受け取れる薬局を検索できます。
+    </p>
+    <app-button [link]="'/pharmacies'" [model]="'pharmacy'">薬局をさがす</app-button>
+  </div>
+
+  <div>
+    <h2 class="chapter">(3) オンライン診療＋郵送パターン</h2>
+    <p>医師の診察はオンラインで行い、後日アフターピルが郵送で送られ、自宅で受け取る方法です。</p>
+  </div>
 </div>
