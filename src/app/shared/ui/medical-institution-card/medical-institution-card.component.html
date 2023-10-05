@@ -1,5 +1,5 @@
 <div class="p-2 bg-gray-50 shadow-xl">
-  <div class="flex mb-4" *ngIf="medicalInstitution.isOpenSunday !== '' and: medicalInstitution.isOpenHoliday !== '' ">
+  <div class="flex mb-4" *ngIf="medicalInstitution.isOpenSunday !== '' || medicalInstitution.isOpenHoliday !== ''">
     <div *ngIf="medicalInstitution.isOpenSunday === '◯'" class="badge bg-red-100 mr-1">日曜診療：◯</div>
     <div *ngIf="medicalInstitution.isOpenHoliday === '◯'" class="badge bg-yellow-100">祝日診療：◯</div>
     <div *ngIf="medicalInstitution.isOpenSunday === '△'" class="badge bg-red-100 mr-1">日曜診療：△</div>
