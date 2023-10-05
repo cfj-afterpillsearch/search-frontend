@@ -29,8 +29,8 @@ export class MedicalInstitutionCardComponent {
       lat: 0,
       lng: 0,
     },
-    isOpenSunday: false,
-    isOpenHoliday: false,
+    isOpenSunday: '',
+    isOpenHoliday: '',
   };
 
   faMagnifyingGlass = faMagnifyingGlass;
