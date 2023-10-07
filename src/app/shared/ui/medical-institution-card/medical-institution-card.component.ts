@@ -38,7 +38,6 @@ export class MedicalInstitutionCardComponent {
   faArrowUpRightFromSquare = faArrowUpRightFromSquare;
 
   searchButtonPushTag(medicalInstitution: MedicalInstitution) {
-    window.open(`https://www.google.com/search?q=${medicalInstitution.name}`, '_blank');
     const gtmTag = {
       event: 'medical-institution-search-button-click',
       data: {
@@ -49,7 +48,6 @@ export class MedicalInstitutionCardComponent {
   }
 
   telButtonPushTag(medicalInstitution: MedicalInstitution) {
-    window.open(`tel:${medicalInstitution.tel}`);
     const gtmTag = {
       event: 'medical-institution-tel-button-click',
       data: {

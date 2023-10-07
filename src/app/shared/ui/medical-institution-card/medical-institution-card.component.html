@@ -21,19 +21,25 @@
     ></div>
   </div>
   <div class="flex-col space-y-4">
-    <button
+    <a
       class="bg-blue-300 p-2 w-full h-12 flex items-center shadow"
+      [attr.href]="'https://www.google.com/search?q=' + medicalInstitution.name"
+      target="_blank"
       (click)="searchButtonPushTag(medicalInstitution)"
     >
       <fa-icon [icon]="faMagnifyingGlass" [size]="'xl'" class="ml-8 mr-4"></fa-icon>
       <div class="text-sm leading-5 font-normal text-left">この医療機関を検索して調べる</div>
-    </button>
-    <button class="bg-blue-300 p-2 w-full h-12 flex items-center shadow" (click)="telButtonPushTag(medicalInstitution)">
+    </a>
+    <a
+      class="bg-blue-300 p-2 w-full h-12 flex items-center shadow"
+      [attr.href]="'tel:' + medicalInstitution.tel"
+      (click)="telButtonPushTag(medicalInstitution)"
+    >
       <fa-icon [icon]="faPhone" [size]="'xl'" class="ml-8 mr-4"></fa-icon>
       <div class="text-sm leading-5 font-normal text-left">
         <div>この医療機関に電話する</div>
         <div>({{ medicalInstitution.tel }})</div>
       </div>
-    </button>
+    </a>
   </div>
 </div>
