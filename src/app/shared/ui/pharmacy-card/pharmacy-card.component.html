@@ -17,16 +17,25 @@
     <div class="text-base leading-6 font-normal">{{ pharmacy.emergency_contact_phone }}</div>
   </div>
   <div class="flex-col space-y-4">
-    <button class="bg-green-200 p-2 w-full h-12 flex items-center shadow" (click)="searchButtonPushTag(pharmacy)">
+    <a
+      class="bg-green-200 p-2 w-full h-12 flex items-center shadow"
+      [attr.href]="'https://www.google.com/search?q=' + pharmacy.name"
+      target="_blank"
+      (click)="searchButtonPushTag(pharmacy)"
+    >
       <fa-icon [icon]="faMagnifyingGlass" [size]="'xl'" class="ml-8 mr-4"></fa-icon>
       <div class="text-sm leading-5 font-normal text-left">この薬局を検索して調べる</div>
-    </button>
-    <button class="bg-green-200 p-2 w-full h-12 flex items-center shadow" (click)="telButtonPushTag(pharmacy)">
+    </a>
+    <a
+      class="bg-green-200 p-2 w-full h-12 flex items-center shadow"
+      [attr.href]="'tel:' + pharmacy.tel"
+      (click)="telButtonPushTag(pharmacy)"
+    >
       <fa-icon [icon]="faPhone" [size]="'xl'" class="ml-8 mr-4"></fa-icon>
       <div class="text-sm leading-5 font-normal text-left">
         <div>この薬局に電話する</div>
         <div>({{ pharmacy.tel }})</div>
       </div>
-    </button>
+    </a>
   </div>
 </div>
