@@ -20,16 +20,32 @@ export class PharmaciesComponent implements OnInit {
   addresses: Addresses = {};
   todofukenList: string[] = [];
   shikuchosonList: string[] = [];
-  selectedTodofuken = '';
-  selectedShikuchoson = '';
-  currentLocationIsOutOfHours = '0';
-  addressIsOutOfHours = '0';
+  selectedTodofuken = this.getSessionStorageValue(sessionStorage.getItem('pharmacyTodofuken'), '');
+  selectedShikuchoson = this.getSessionStorageValue(sessionStorage.getItem('pharmacyShikuchoson'), '');
+  currentLocationIsOutOfHours = this.getSessionStorageValue(
+    sessionStorage.getItem('pharmacyCurrentLocationIsOutOfHours'),
+    '0',
+  );
+  addressIsOutOfHours = this.getSessionStorageValue(sessionStorage.getItem('pharmacyAddressIsOutOfHours'), '0');
 
-  radioList: Radio[] = [
+  currentLocationIsOutOfHoursRadioList: Radio[] = [
     {
       label: '指定なし',
       value: '0',
-      initialIsChecked: true,
+      initialIsChecked: false,
+    },
+    {
+      label: '有',
+      value: '1',
+      initialIsChecked: false,
+    },
+  ];
+
+  addressIsOutOfHoursRadioList: Radio[] = [
+    {
+      label: '指定なし',
+      value: '0',
+      initialIsChecked: false,
     },
     {
       label: '有',
@@ -44,11 +60,34 @@ export class PharmaciesComponent implements OnInit {
     this.http.get<Addresses>('assets/addresses.json').subscribe((data) => {
       this.addresses = data;
       this.todofukenList = Object.keys(data);
+      this.onTodofukenChange();
     });
+    this.setDefaultRadio(this.currentLocationIsOutOfHoursRadioList, this.currentLocationIsOutOfHours);
+    this.setDefaultRadio(this.addressIsOutOfHoursRadioList, this.addressIsOutOfHours);
+  }
+
+  setDefaultRadio(radioList: Radio[], value: string) {
+    switch (value) {
+      case '0':
+        radioList[0].initialIsChecked = true;
+        break;
+      case '1':
+        radioList[1].initialIsChecked = true;
+        break;
+      default:
+        break;
+    }
+  }
+
+  getSessionStorageValue(sessionStorageValue: string | null, defaultValue: string): string {
+    if (sessionStorageValue === null) {
+      return defaultValue;
+    } else {
+      return sessionStorageValue;
+    }
   }
 
   setSearchRequirements(searchRequirement: SearchRequirement) {
-    console.log(searchRequirement.name);
     switch (searchRequirement.name) {
       case 'currentLocationIsOutOfHours':
         this.currentLocationIsOutOfHours = searchRequirement.radioMetaData.value;
@@ -60,6 +99,7 @@ export class PharmaciesComponent implements OnInit {
   }
 
   onCurrentLocationSearch() {
+    sessionStorage.setItem('pharmacyCurrentLocationIsOutOfHours', this.currentLocationIsOutOfHours);
     this.router.navigate(['/pharmacies/current-location'], {
       queryParams: {
         is_out_of_hours: this.currentLocationIsOutOfHours,
@@ -76,6 +116,9 @@ export class PharmaciesComponent implements OnInit {
       window.alert('都道府県と市区町村を選択してください。');
       return;
     }
+    sessionStorage.setItem('pharmacyTodofuken', this.selectedTodofuken);
+    sessionStorage.setItem('pharmacyShikuchoson', this.selectedShikuchoson);
+    sessionStorage.setItem('pharmacyAddressIsOutOfHours', this.addressIsOutOfHours);
     this.router.navigate(['/pharmacies/address'], {
       queryParams: {
         todofuken: this.selectedTodofuken,
