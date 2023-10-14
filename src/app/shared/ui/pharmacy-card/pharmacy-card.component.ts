@@ -46,7 +46,6 @@ export class PharmacyCardComponent implements OnInit {
   }
 
   searchButtonPushTag(pharmacy: Pharmacy) {
-    window.open(`https://www.google.com/search?q=${pharmacy.name}`, '_blank');
     const gtmTag = {
       event: 'pharmacy-search-button-click',
       data: {
@@ -57,7 +56,6 @@ export class PharmacyCardComponent implements OnInit {
   }
 
   telButtonPushTag(pharmacy: Pharmacy) {
-    window.open(`tel:${pharmacy.tel}`);
     const gtmTag = {
       event: 'pharmacy-tel-button-click',
       data: {
