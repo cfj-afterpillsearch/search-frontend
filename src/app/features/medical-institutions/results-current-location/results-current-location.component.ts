@@ -21,6 +21,9 @@ export class ResultsCurrentLocationComponent implements OnInit {
   loading = true;
   is_open_sunday = '';
   is_open_holiday = '';
+  currentPage = 1;
+  totalPages = 1;
+  pageList: number[] = [];
 
   constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
@@ -39,18 +42,32 @@ export class ResultsCurrentLocationComponent implements OnInit {
         const longitude = position.coords.longitude;
 
         this.apiService
-          .getMedicalInstitutionsByCurrentLocation(latitude, longitude, this.is_open_sunday, this.is_open_holiday)
+          .getMedicalInstitutionsByCurrentLocation(latitude, longitude, this.is_open_sunday, this.is_open_holiday, this.currentPage)
           .subscribe((apiResponse) => {
             this.medicalInstitutions = apiResponse.results;
             this.todofuken = apiResponse.meta.address_todofuken;
             this.shikuchoson = apiResponse.meta.address_shikuchoson;
             this.totalItems = apiResponse.meta.totalItems;
+            this.totalPages = apiResponse.meta.totalPages;
             this.loading = false;
+            this.getPageList(this.totalPages)
           });
       },
       (error) => {
         console.error('現在地の取得に失敗しました', error);
       },
     );
+  }
+
+  getPageList(totalPages: number) {
+    this.pageList = [];
+    for (let i = 1; i <= totalPages; i++) {
+      this.pageList.push(i)
+    }
+  }
+
+  pager(page: number) {
+    this.currentPage = page;
+    this.getMedicalInstitutionsByCurrentLocation();
   }
 }

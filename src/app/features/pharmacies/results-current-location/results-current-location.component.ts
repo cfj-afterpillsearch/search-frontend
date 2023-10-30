@@ -19,8 +19,10 @@ export class ResultsCurrentLocationComponent implements OnInit {
   shikuchoson = '';
   totalItems = 0;
   loading = true;
-
   is_out_of_hours = '';
+  currentPage = 1;
+  totalPages = 1;
+  pageList: number[] = [];
 
   constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
@@ -38,18 +40,32 @@ export class ResultsCurrentLocationComponent implements OnInit {
         const longitude = position.coords.longitude;
 
         this.apiService
-          .getPharmaciesByCurrentLocation(latitude, longitude, this.is_out_of_hours)
+          .getPharmaciesByCurrentLocation(latitude, longitude, this.is_out_of_hours, this.currentPage)
           .subscribe((apiResponse) => {
             this.pharmacies = apiResponse.results;
             this.todofuken = apiResponse.meta.address_todofuken;
             this.shikuchoson = apiResponse.meta.address_shikuchoson;
             this.totalItems = apiResponse.meta.totalItems;
+            this.totalPages = apiResponse.meta.totalPages;
             this.loading = false;
+            this.getPageList(this.totalPages)
           });
       },
       (error) => {
         console.error('現在地の取得に失敗しました', error);
       },
     );
+  }
+
+  getPageList(totalPages: number) {
+    this.pageList = [];
+    for (let i = 1; i <= totalPages; i++) {
+      this.pageList.push(i)
+    }
+  }
+
+  pager(page: number) {
+    this.currentPage = page;
+    this.getPharmaciesByCurrentLocation();
   }
 }

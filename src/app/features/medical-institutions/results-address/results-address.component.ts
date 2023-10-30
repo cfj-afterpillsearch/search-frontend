@@ -21,6 +21,9 @@ export class ResultsAddressComponent implements OnInit {
   loading = true;
   is_open_sunday = '';
   is_open_holiday = '';
+  currentPage = 1;
+  totalPages = 1;
+  pageList: number[] = [];
 
   constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
@@ -36,11 +39,31 @@ export class ResultsAddressComponent implements OnInit {
 
   getMedicalInstitutionsByAddress() {
     this.apiService
-      .getMedicalInstitutionsByAddress(this.todofuken, this.shikuchoson, this.is_open_sunday, this.is_open_holiday)
+      .getMedicalInstitutionsByAddress(
+        this.todofuken, 
+        this.shikuchoson, 
+        this.is_open_sunday, 
+        this.is_open_holiday, 
+        this.currentPage
+      )
       .subscribe((apiResponse) => {
         this.medicalInstitutions = apiResponse.results;
         this.totalItems = apiResponse.meta.totalItems;
+        this.totalPages = apiResponse.meta.totalPages;
         this.loading = false;
+        this.getPageList(this.totalPages)
       });
+  }
+
+  getPageList(totalPages: number) {
+    this.pageList = [];
+    for (let i = 1; i <= totalPages; i++) {
+      this.pageList.push(i)
+    }
+  }
+
+  pager(page: number) {
+    this.currentPage = page;
+    this.getMedicalInstitutionsByAddress();
   }
 }
