@@ -5,6 +5,8 @@ import { NgFor, NgIf } from '@angular/common';
 import { PharmacyCardComponent } from '../../../shared/ui/pharmacy-card/pharmacy-card.component';
 import { AreaTitleCardComponent } from '../../../shared/ui/area-title-card/area-title-card.component';
 import { ActivatedRoute } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { ApsPaginationComponent } from 'src/app/shared/ui/aps-pagination/aps-pagination.component';
 import { Location } from '@angular/common';
 
@@ -26,7 +28,7 @@ export class ResultsCurrentLocationComponent implements OnInit {
   totalPages = 1;
   pageList: number[] = [];
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute, private location: Location) {}
+  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router, private location: Location) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
@@ -43,15 +45,21 @@ export class ResultsCurrentLocationComponent implements OnInit {
         const longitude = position.coords.longitude;
 
         this.apiService
-          .getPharmaciesByCurrentLocation(latitude, longitude, this.isOutOfHours, this.currentPage)
-          .subscribe((apiResponse) => {
+        .getPharmaciesByCurrentLocation(latitude, longitude, this.isOutOfHours, this.currentPage)
+        .subscribe({
+          next: (apiResponse) => {
             this.pharmacies = apiResponse.results;
             this.todofuken = apiResponse.meta.address_todofuken;
             this.shikuchoson = apiResponse.meta.address_shikuchoson;
             this.totalItems = apiResponse.meta.totalItems;
             this.totalPages = apiResponse.meta.totalPages;
             this.loading = false;
-          });
+          },
+          error: (error: HttpErrorResponse) => {
+            console.log(error);
+            this.router.navigate(['/error']);
+          }
+        });
       },
       (error) => {
         console.error('現在地の取得に失敗しました', error);

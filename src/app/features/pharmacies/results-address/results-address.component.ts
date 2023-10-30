@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Pharmacy } from '../../../shared/pharmacy';
 import { ApiService } from '../../../shared/api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgFor, NgIf } from '@angular/common';
 import { PharmacyCardComponent } from '../../../shared/ui/pharmacy-card/pharmacy-card.component';
 import { AreaTitleCardComponent } from '../../../shared/ui/area-title-card/area-title-card.component';
-import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 import { ApsPaginationComponent } from 'src/app/shared/ui/aps-pagination/aps-pagination.component';
 import { Location } from '@angular/common';
 
@@ -30,9 +30,8 @@ export class ResultsAddressComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private route: ActivatedRoute,
-    private router: Router,
     private location: Location,
-  ) {}
+    private router: Router) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
@@ -48,11 +47,17 @@ export class ResultsAddressComponent implements OnInit {
   getPharmaciesByAddress() {
     this.apiService
       .getPharmaciesByAddress(this.todofuken, this.shikuchoson, this.isOutOfHours, this.currentPage)
-      .subscribe((apiResponse) => {
-        this.pharmacies = apiResponse.results;
-        this.totalItems = apiResponse.meta.totalItems;
-        this.totalPages = apiResponse.meta.totalPages;
+      .subscribe({
+        next: (apiResponse) => {
+          this.pharmacies = apiResponse.results;
+          this.totalItems = apiResponse.meta.totalItems;
+          this.totalPages = apiResponse.meta.totalPages;
         this.loading = false;
+        },
+        error: (error: HttpErrorResponse) => {
+          console.log(error);
+          this.router.navigate(['/error']);
+        }
       });
   }
 

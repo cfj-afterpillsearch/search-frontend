@@ -4,7 +4,8 @@ import { ApiService } from '../../../shared/api.service';
 import { NgFor, NgIf } from '@angular/common';
 import { MedicalInstitutionCardComponent } from '../../../shared/ui/medical-institution-card/medical-institution-card.component';
 import { AreaTitleCardComponent } from '../../../shared/ui/area-title-card/area-title-card.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 import { ApsPaginationComponent } from 'src/app/shared/ui/aps-pagination/aps-pagination.component';
 import { Location } from '@angular/common';
 
@@ -27,7 +28,7 @@ export class ResultsCurrentLocationComponent implements OnInit {
   totalPages = 1;
   pageList: number[] = [];
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute, private location: Location) {}
+  constructor(private apiService: ApiService, private route: ActivatedRoute, private location: Location, private router: Router) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
@@ -52,13 +53,19 @@ export class ResultsCurrentLocationComponent implements OnInit {
             this.isOpenHoliday,
             this.currentPage,
           )
-          .subscribe((apiResponse) => {
-            this.medicalInstitutions = apiResponse.results;
+          .subscribe({
+            next: (apiResponse) => {
+              this.medicalInstitutions = apiResponse.results;
             this.todofuken = apiResponse.meta.address_todofuken;
             this.shikuchoson = apiResponse.meta.address_shikuchoson;
             this.totalItems = apiResponse.meta.totalItems;
             this.totalPages = apiResponse.meta.totalPages;
             this.loading = false;
+            },
+            error: (error: HttpErrorResponse) => {
+              console.log(error);
+              this.router.navigate(['/error']);
+            }
           });
       },
       (error) => {
