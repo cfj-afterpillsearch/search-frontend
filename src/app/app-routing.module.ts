@@ -20,7 +20,8 @@ const routes: Routes = [
     path: 'pharmacies',
     loadChildren: () => import('./features/pharmacies/pharmacies.module').then((m) => m.PharmaciesModule),
   },
-  { path: 'error', component: ErrorComponent}
+  { path: 'error/:errorCode', component: ErrorComponent },
+  { path: '**', pathMatch: 'full', redirectTo: 'error/404' },
 ];
 
 @NgModule({

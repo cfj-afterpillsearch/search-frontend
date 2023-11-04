@@ -1,1 +1,5 @@
-<p>error works!</p>
+<ng-container [ngSwitch]="errorCode">
+  <div *ngSwitchCase="404">404：ページが見つかりません</div>
+  <div *ngSwitchCase="500">500：再度お試しください</div>
+  <div *ngSwitchDefault>その他：エラー</div>
+</ng-container>
