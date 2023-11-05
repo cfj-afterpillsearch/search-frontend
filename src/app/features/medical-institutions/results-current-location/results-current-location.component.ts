@@ -44,10 +44,10 @@ export class ResultsCurrentLocationComponent implements OnInit {
           .subscribe({
             next: (apiResponse) => {
               this.medicalInstitutions = apiResponse.results;
-            this.todofuken = apiResponse.meta.address_todofuken;
-            this.shikuchoson = apiResponse.meta.address_shikuchoson;
-            this.totalItems = apiResponse.meta.totalItems;
-            this.loading = false;
+              this.todofuken = apiResponse.meta.address_todofuken;
+              this.shikuchoson = apiResponse.meta.address_shikuchoson;
+              this.totalItems = apiResponse.meta.totalItems;
+              this.loading = false;
             },
             error: (error: HttpErrorResponse) => {
               this.router.navigate(['error', error.status]);

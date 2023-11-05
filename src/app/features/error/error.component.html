@@ -1,5 +1,7 @@
-<ng-container [ngSwitch]="errorCode">
-  <div *ngSwitchCase="404">404：ページが見つかりません</div>
-  <div *ngSwitchCase="500">500：再度お試しください</div>
-  <div *ngSwitchDefault>その他：エラー</div>
-</ng-container>
+<div class="flex flex-col items-center">
+  <div class="text-xl mb-4">{{errorMessage}}</div>
+  <div *ngIf="errorDetailMessage">{{errorDetailMessage}}</div>
+  <div class="text-xs mb-8">エラーコード：{{errorCode}}</div>
+  <a routerLink="/" class="underline">ホームに戻る</a>
+  <a routerLink="/contact" class="underline">お問い合わせ</a>
+</div>
