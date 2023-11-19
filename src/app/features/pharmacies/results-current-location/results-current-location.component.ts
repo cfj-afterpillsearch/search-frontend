@@ -5,6 +5,8 @@ import { NgFor, NgIf } from '@angular/common';
 import { PharmacyCardComponent } from '../../../shared/ui/pharmacy-card/pharmacy-card.component';
 import { AreaTitleCardComponent } from '../../../shared/ui/area-title-card/area-title-card.component';
 import { ActivatedRoute } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pharmacies',
@@ -22,7 +24,7 @@ export class ResultsCurrentLocationComponent implements OnInit {
 
   is_out_of_hours = '';
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute) {}
+  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
@@ -38,14 +40,19 @@ export class ResultsCurrentLocationComponent implements OnInit {
         const longitude = position.coords.longitude;
 
         this.apiService
-          .getPharmaciesByCurrentLocation(latitude, longitude, this.is_out_of_hours)
-          .subscribe((apiResponse) => {
+        .getPharmaciesByCurrentLocation(latitude, longitude, this.is_out_of_hours)
+        .subscribe({
+          next: (apiResponse) => {
             this.pharmacies = apiResponse.results;
             this.todofuken = apiResponse.meta.address_todofuken;
             this.shikuchoson = apiResponse.meta.address_shikuchoson;
             this.totalItems = apiResponse.meta.totalItems;
             this.loading = false;
-          });
+          },
+          error: (error: HttpErrorResponse) => {
+            this.router.navigate(['error', error.status]);
+          }
+        });
       },
       (error) => {
         console.error('現在地の取得に失敗しました', error);

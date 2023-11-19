@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MedicalInstitution } from '../../../shared/medical-institution';
 import { ApiService } from '../../../shared/api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgFor, NgIf } from '@angular/common';
 import { MedicalInstitutionCardComponent } from '../../../shared/ui/medical-institution-card/medical-institution-card.component';
 import { AreaTitleCardComponent } from '../../../shared/ui/area-title-card/area-title-card.component';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-medical-institutions',
@@ -22,7 +23,7 @@ export class ResultsAddressComponent implements OnInit {
   is_open_sunday = '';
   is_open_holiday = '';
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute) {}
+  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
@@ -37,10 +38,15 @@ export class ResultsAddressComponent implements OnInit {
   getMedicalInstitutionsByAddress() {
     this.apiService
       .getMedicalInstitutionsByAddress(this.todofuken, this.shikuchoson, this.is_open_sunday, this.is_open_holiday)
-      .subscribe((apiResponse) => {
-        this.medicalInstitutions = apiResponse.results;
-        this.totalItems = apiResponse.meta.totalItems;
-        this.loading = false;
+      .subscribe({
+        next: (apiResponse) => {
+          this.medicalInstitutions = apiResponse.results;
+          this.totalItems = apiResponse.meta.totalItems;
+          this.loading = false;
+        },
+        error: (error: HttpErrorResponse) => {
+          this.router.navigate(['error', error.status]);
+        }
       });
   }
 }
