@@ -29,7 +29,7 @@ export class ApiService {
     is_open_sunday: string,
     is_open_holiday: string,
     page: number,
-    ): Observable<MedicalInstitutionApiResponse> {
+  ): Observable<MedicalInstitutionApiResponse> {
     const apiUrl = `${this.apiUrlRoot}/address/medical-institutions?todofuken=${todofuken}&shikuchoson=${shikuchoson}&is_open_sunday=${is_open_sunday}&is_open_holiday=${is_open_holiday}&page=${page}`;
     return this.http.get<MedicalInstitutionApiResponse>(apiUrl);
   }

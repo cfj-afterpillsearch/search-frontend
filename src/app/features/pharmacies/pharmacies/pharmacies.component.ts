@@ -20,6 +20,7 @@ export class PharmaciesComponent implements OnInit {
   addresses: Addresses = {};
   todofukenList: string[] = [];
   shikuchosonList: string[] = [];
+  initialPage = '1';
   selectedTodofuken = this.getSessionStorageValue(sessionStorage.getItem('pharmacyTodofuken'), '');
   selectedShikuchoson = this.getSessionStorageValue(sessionStorage.getItem('pharmacyShikuchoson'), '');
   currentLocationIsOutOfHours = this.getSessionStorageValue(
@@ -103,6 +104,7 @@ export class PharmaciesComponent implements OnInit {
     this.router.navigate(['/pharmacies/current-location'], {
       queryParams: {
         is_out_of_hours: this.currentLocationIsOutOfHours,
+        page: this.initialPage,
       },
     });
   }
@@ -124,6 +126,7 @@ export class PharmaciesComponent implements OnInit {
         todofuken: this.selectedTodofuken,
         shikuchoson: this.selectedShikuchoson,
         is_out_of_hours: this.addressIsOutOfHours,
+        page: this.initialPage,
       },
     });
   }

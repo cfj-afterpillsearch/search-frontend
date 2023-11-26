@@ -19,6 +19,7 @@ export class MedicalInstitutionsComponent implements OnInit {
   addresses: Addresses = {};
   todofukenList: string[] = [];
   shikuchosonList: string[] = [];
+  initialPage = '1';
   selectedTodofuken = this.getSessionStorageValue(sessionStorage.getItem('medicalInstitutionTodofuken'), '');
   selectedShikuchoson = this.getSessionStorageValue(sessionStorage.getItem('medicalInstitutionShikuchoson'), '');
   currentLocationIsOpenSunday = this.getSessionStorageValue(
@@ -172,6 +173,7 @@ export class MedicalInstitutionsComponent implements OnInit {
       queryParams: {
         is_open_sunday: this.currentLocationIsOpenSunday,
         is_open_holiday: this.currentLocationIsOpenHoliday,
+        page: this.initialPage,
       },
     });
   }
@@ -195,6 +197,7 @@ export class MedicalInstitutionsComponent implements OnInit {
         shikuchoson: this.selectedShikuchoson,
         is_open_sunday: this.addressIsOpenSunday,
         is_open_holiday: this.addressIsOpenHoliday,
+        page: this.initialPage,
       },
     });
   }
