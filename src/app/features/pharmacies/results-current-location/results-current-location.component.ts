@@ -56,8 +56,7 @@ export class ResultsCurrentLocationComponent implements OnInit {
             this.loading = false;
           },
           error: (error: HttpErrorResponse) => {
-            console.log(error);
-            this.router.navigate(['/error']);
+            this.router.navigate(['error', error.status]);
           }
         });
       },
