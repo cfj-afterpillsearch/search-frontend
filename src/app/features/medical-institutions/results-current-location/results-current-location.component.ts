@@ -5,8 +5,8 @@ import { NgFor, NgIf } from '@angular/common';
 import { MedicalInstitutionCardComponent } from '../../../shared/ui/medical-institution-card/medical-institution-card.component';
 import { AreaTitleCardComponent } from '../../../shared/ui/area-title-card/area-title-card.component';
 import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
 import { ApsPaginationComponent } from 'src/app/shared/ui/aps-pagination/aps-pagination.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-medical-institutions',
@@ -27,12 +27,13 @@ export class ResultsCurrentLocationComponent implements OnInit {
   totalPages = 1;
   pageList: number[] = [];
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) {}
+  constructor(private apiService: ApiService, private route: ActivatedRoute, private location: Location) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       this.isOpenSunday = params['is_open_sunday'];
       this.isOpenHoliday = params['is_open_holiday'];
+      this.overwritePageParamater(1);
       this.getMedicalInstitutionsByCurrentLocation();
     });
   }
@@ -66,14 +67,21 @@ export class ResultsCurrentLocationComponent implements OnInit {
     );
   }
 
+  overwritePageParamater(page: number) {
+    this.location.replaceState(
+      '/medical-institutions/current-location',
+      ('&is_open_sunday=' +
+        this.isOpenSunday +
+        '&is_open_holiday=' +
+        this.isOpenHoliday +
+        '&page=' +
+        page) as unknown as string,
+    );
+  }
+
   pager(page: number) {
     this.currentPage = page;
-    this.router.navigate(['/medical-institutions/current-location'], {
-      queryParams: {
-        is_open_sunday: this.isOpenSunday,
-        is_open_holiday: this.isOpenHoliday,
-        page: this.currentPage,
-      },
-    });
+    this.overwritePageParamater(this.currentPage);
+    this.getMedicalInstitutionsByCurrentLocation();
   }
 }

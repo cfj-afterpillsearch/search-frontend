@@ -5,8 +5,8 @@ import { NgFor, NgIf } from '@angular/common';
 import { PharmacyCardComponent } from '../../../shared/ui/pharmacy-card/pharmacy-card.component';
 import { AreaTitleCardComponent } from '../../../shared/ui/area-title-card/area-title-card.component';
 import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
 import { ApsPaginationComponent } from 'src/app/shared/ui/aps-pagination/aps-pagination.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-pharmacies',
@@ -26,11 +26,12 @@ export class ResultsCurrentLocationComponent implements OnInit {
   totalPages = 1;
   pageList: number[] = [];
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) {}
+  constructor(private apiService: ApiService, private route: ActivatedRoute, private location: Location) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       this.isOutOfHours = params['is_out_of_hours'];
+      this.overwritePageParamater(1);
       this.getPharmaciesByCurrentLocation();
     });
   }
@@ -58,13 +59,16 @@ export class ResultsCurrentLocationComponent implements OnInit {
     );
   }
 
+  overwritePageParamater(page: number) {
+    this.location.replaceState(
+      '/pharmacies/current-location',
+      ('&is_out_of_hours=' + this.isOutOfHours + '&page=' + page) as unknown as string,
+    );
+  }
+
   pager(page: number) {
     this.currentPage = page;
-    this.router.navigate(['/pharmacies/current-location'], {
-      queryParams: {
-        is_out_of_hours: this.isOutOfHours,
-        page: this.currentPage,
-      },
-    });
+    this.overwritePageParamater(this.currentPage);
+    this.getPharmaciesByCurrentLocation();
   }
 }
