@@ -7,6 +7,7 @@ import { PharmacyCardComponent } from '../../../shared/ui/pharmacy-card/pharmacy
 import { AreaTitleCardComponent } from '../../../shared/ui/area-title-card/area-title-card.component';
 import { Router } from '@angular/router';
 import { ApsPaginationComponent } from 'src/app/shared/ui/aps-pagination/aps-pagination.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-pharmacies',
@@ -26,14 +27,21 @@ export class ResultsAddressComponent implements OnInit {
   totalPages = 1;
   pageList: number[] = [];
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private apiService: ApiService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private location: Location,
+  ) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       this.todofuken = params['todofuken'];
       this.shikuchoson = params['shikuchoson'];
       this.isOutOfHours = params['is_out_of_hours'];
+      this.currentPage = params['page'];
       this.getPharmaciesByAddress();
+      this.overwritePageParamater();
     });
   }
 
@@ -45,14 +53,22 @@ export class ResultsAddressComponent implements OnInit {
         this.totalItems = apiResponse.meta.totalItems;
         this.totalPages = apiResponse.meta.totalPages;
         this.loading = false;
-        this.getPageList(this.totalPages);
       });
   }
 
-  getPageList(totalPages: number) {
-    this.pageList = [];
-    for (let i = 1; i <= totalPages; i++) {
-      this.pageList.push(i);
+  overwritePageParamater() {
+    if (this.currentPage > this.totalPages) {
+      this.currentPage = 1;
+      this.location.replaceState(
+        '/pharmacies/address',
+        'todofuken=' +
+          this.todofuken +
+          '&shikuchoson=' +
+          this.shikuchoson +
+          '&is_out_of_hours=' +
+          this.isOutOfHours +
+          '&page=1',
+      );
     }
   }
 

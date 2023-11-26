@@ -50,20 +50,12 @@ export class ResultsCurrentLocationComponent implements OnInit {
             this.totalItems = apiResponse.meta.totalItems;
             this.totalPages = apiResponse.meta.totalPages;
             this.loading = false;
-            this.getPageList(this.totalPages);
           });
       },
       (error) => {
         console.error('現在地の取得に失敗しました', error);
       },
     );
-  }
-
-  getPageList(totalPages: number) {
-    this.pageList = [];
-    for (let i = 1; i <= totalPages; i++) {
-      this.pageList.push(i);
-    }
   }
 
   pager(page: number) {

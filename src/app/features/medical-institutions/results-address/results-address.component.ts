@@ -7,6 +7,7 @@ import { MedicalInstitutionCardComponent } from '../../../shared/ui/medical-inst
 import { AreaTitleCardComponent } from '../../../shared/ui/area-title-card/area-title-card.component';
 import { Router } from '@angular/router';
 import { ApsPaginationComponent } from 'src/app/shared/ui/aps-pagination/aps-pagination.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-medical-institutions',
@@ -26,7 +27,12 @@ export class ResultsAddressComponent implements OnInit {
   currentPage = 1;
   totalPages = 1;
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private apiService: ApiService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private location: Location,
+  ) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
@@ -34,7 +40,9 @@ export class ResultsAddressComponent implements OnInit {
       this.shikuchoson = params['shikuchoson'];
       this.isOpenSunday = params['is_open_sunday'];
       this.isOpenHoliday = params['is_open_holiday'];
+      this.currentPage = params['page'];
       this.getMedicalInstitutionsByAddress();
+      this.overwritePageParamater();
     });
   }
 
@@ -53,6 +61,24 @@ export class ResultsAddressComponent implements OnInit {
         this.totalPages = apiResponse.meta.totalPages;
         this.loading = false;
       });
+  }
+
+  overwritePageParamater() {
+    if (this.currentPage > this.totalPages) {
+      this.currentPage = 1;
+      this.location.replaceState(
+        '/medical-institutions/address',
+        'todofuken=' +
+          this.todofuken +
+          '&shikuchoson=' +
+          this.shikuchoson +
+          '&is_open_sunday=' +
+          this.isOpenSunday +
+          '&is_open_holiday=' +
+          this.isOpenHoliday +
+          '&page=1',
+      );
+    }
   }
 
   pager(page: number) {
