@@ -52,7 +52,7 @@ export class ResultsAddressComponent implements OnInit {
           this.pharmacies = apiResponse.results;
           this.totalItems = apiResponse.meta.totalItems;
           this.totalPages = apiResponse.meta.totalPages;
-        this.loading = false;
+          this.loading = false;
         },
         error: (error: HttpErrorResponse) => {
           this.router.navigate(['error', error.status]);

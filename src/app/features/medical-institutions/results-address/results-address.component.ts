@@ -7,7 +7,7 @@ import { MedicalInstitutionCardComponent } from '../../../shared/ui/medical-inst
 import { AreaTitleCardComponent } from '../../../shared/ui/area-title-card/area-title-card.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ApsPaginationComponent } from 'src/app/shared/ui/aps-pagination/aps-pagination.component';
-import { Location } from '@angular/common';
+import { Location } from '@angular/common';=======
 
 @Component({
   selector: 'app-medical-institutions',
@@ -55,11 +55,16 @@ export class ResultsAddressComponent implements OnInit {
         this.isOpenHoliday,
         this.currentPage,
       )
-      .subscribe((apiResponse) => {
-        this.medicalInstitutions = apiResponse.results;
-        this.totalItems = apiResponse.meta.totalItems;
-        this.totalPages = apiResponse.meta.totalPages;
-        this.loading = false;
+      .subscribe({
+        next: (apiResponse) => {
+          this.medicalInstitutions = apiResponse.results;
+          this.totalItems = apiResponse.meta.totalItems;
+          this.totalPages = apiResponse.meta.totalPages;
+          this.loading = false;
+        },
+        error: (error: HttpErrorResponse) => {
+          this.router.navigate(['error', error.status]);
+        }
       });
   }
 
