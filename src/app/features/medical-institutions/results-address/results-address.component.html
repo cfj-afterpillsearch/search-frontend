@@ -17,4 +17,5 @@
       <app-medical-institution-card [medicalInstitution]="medicalInstitution"></app-medical-institution-card>
     </li>
   </ul>
+  <app-aps-pagination [totalPages]="totalPages" [currentPage]="currentPage" (pagerEvent)="pager($event)" />
 </ng-container>

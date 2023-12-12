@@ -17,8 +17,9 @@ export class ApiService {
     longitude: number,
     is_open_sunday: string,
     is_open_holiday: string,
+    page: number,
   ): Observable<MedicalInstitutionApiResponse> {
-    const apiUrl = `${this.apiUrlRoot}/current-location/medical-institutions?latitude=${latitude}&longitude=${longitude}&is_open_sunday=${is_open_sunday}&is_open_holiday=${is_open_holiday}`;
+    const apiUrl = `${this.apiUrlRoot}/current-location/medical-institutions?latitude=${latitude}&longitude=${longitude}&is_open_sunday=${is_open_sunday}&is_open_holiday=${is_open_holiday}&page=${page}`;
     return this.http.get<MedicalInstitutionApiResponse>(apiUrl);
   }
 
@@ -27,8 +28,9 @@ export class ApiService {
     shikuchoson: string,
     is_open_sunday: string,
     is_open_holiday: string,
+    page: number,
   ): Observable<MedicalInstitutionApiResponse> {
-    const apiUrl = `${this.apiUrlRoot}/address/medical-institutions?todofuken=${todofuken}&shikuchoson=${shikuchoson}&is_open_sunday=${is_open_sunday}&is_open_holiday=${is_open_holiday}`;
+    const apiUrl = `${this.apiUrlRoot}/address/medical-institutions?todofuken=${todofuken}&shikuchoson=${shikuchoson}&is_open_sunday=${is_open_sunday}&is_open_holiday=${is_open_holiday}&page=${page}`;
     return this.http.get<MedicalInstitutionApiResponse>(apiUrl);
   }
 
@@ -36,8 +38,9 @@ export class ApiService {
     latitude: number,
     longitude: number,
     is_out_of_hours: string,
+    page: number,
   ): Observable<PharmacyApiResponse> {
-    const apiUrl = `${this.apiUrlRoot}/current-location/pharmacies?latitude=${latitude}&longitude=${longitude}&is_out_of_hours=${is_out_of_hours}`;
+    const apiUrl = `${this.apiUrlRoot}/current-location/pharmacies?latitude=${latitude}&longitude=${longitude}&is_out_of_hours=${is_out_of_hours}&page=${page}`;
     return this.http.get<PharmacyApiResponse>(apiUrl);
   }
 
@@ -45,8 +48,9 @@ export class ApiService {
     todofuken: string,
     shikuchoson: string,
     is_out_of_hours: string,
+    page: number,
   ): Observable<PharmacyApiResponse> {
-    const apiUrl = `${this.apiUrlRoot}/address/pharmacies?todofuken=${todofuken}&shikuchoson=${shikuchoson}&is_out_of_hours=${is_out_of_hours}`;
+    const apiUrl = `${this.apiUrlRoot}/address/pharmacies?todofuken=${todofuken}&shikuchoson=${shikuchoson}&is_out_of_hours=${is_out_of_hours}&page=${page}`;
     return this.http.get<PharmacyApiResponse>(apiUrl);
   }
 }

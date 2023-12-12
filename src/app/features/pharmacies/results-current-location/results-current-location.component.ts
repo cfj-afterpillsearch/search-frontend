@@ -7,13 +7,15 @@ import { AreaTitleCardComponent } from '../../../shared/ui/area-title-card/area-
 import { ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { ApsPaginationComponent } from 'src/app/shared/ui/aps-pagination/aps-pagination.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-pharmacies',
   templateUrl: './results-current-location.component.html',
   styleUrls: ['./results-current-location.component.css'],
   standalone: true,
-  imports: [NgFor, NgIf, PharmacyCardComponent, AreaTitleCardComponent],
+  imports: [NgFor, NgIf, PharmacyCardComponent, AreaTitleCardComponent, ApsPaginationComponent],
 })
 export class ResultsCurrentLocationComponent implements OnInit {
   pharmacies: Pharmacy[] = [];
@@ -21,14 +23,17 @@ export class ResultsCurrentLocationComponent implements OnInit {
   shikuchoson = '';
   totalItems = 0;
   loading = true;
+  isOutOfHours = '';
+  currentPage = 1;
+  totalPages = 1;
+  pageList: number[] = [];
 
-  is_out_of_hours = '';
-
-  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) {}
+  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router, private location: Location) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
-      this.is_out_of_hours = params['is_out_of_hours'];
+      this.isOutOfHours = params['is_out_of_hours'];
+      this.overwritePageParamater(1);
       this.getPharmaciesByCurrentLocation();
     });
   }
@@ -40,13 +45,14 @@ export class ResultsCurrentLocationComponent implements OnInit {
         const longitude = position.coords.longitude;
 
         this.apiService
-        .getPharmaciesByCurrentLocation(latitude, longitude, this.is_out_of_hours)
+        .getPharmaciesByCurrentLocation(latitude, longitude, this.isOutOfHours, this.currentPage)
         .subscribe({
           next: (apiResponse) => {
             this.pharmacies = apiResponse.results;
             this.todofuken = apiResponse.meta.address_todofuken;
             this.shikuchoson = apiResponse.meta.address_shikuchoson;
             this.totalItems = apiResponse.meta.totalItems;
+            this.totalPages = apiResponse.meta.totalPages;
             this.loading = false;
           },
           error: (error: HttpErrorResponse) => {
@@ -58,5 +64,18 @@ export class ResultsCurrentLocationComponent implements OnInit {
         console.error('現在地の取得に失敗しました', error);
       },
     );
+  }
+
+  overwritePageParamater(page: number) {
+    this.location.replaceState(
+      '/pharmacies/current-location',
+      ('&is_out_of_hours=' + this.isOutOfHours + '&page=' + page) as unknown as string,
+    );
+  }
+
+  pager(page: number) {
+    this.currentPage = page;
+    this.overwritePageParamater(this.currentPage);
+    this.getPharmaciesByCurrentLocation();
   }
 }

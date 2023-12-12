@@ -6,13 +6,15 @@ import { MedicalInstitutionCardComponent } from '../../../shared/ui/medical-inst
 import { AreaTitleCardComponent } from '../../../shared/ui/area-title-card/area-title-card.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ApsPaginationComponent } from 'src/app/shared/ui/aps-pagination/aps-pagination.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-medical-institutions',
   templateUrl: './results-current-location.component.html',
   styleUrls: ['./results-current-location.component.css'],
   standalone: true,
-  imports: [NgFor, NgIf, MedicalInstitutionCardComponent, AreaTitleCardComponent],
+  imports: [NgFor, NgIf, MedicalInstitutionCardComponent, AreaTitleCardComponent, ApsPaginationComponent],
 })
 export class ResultsCurrentLocationComponent implements OnInit {
   medicalInstitutions: MedicalInstitution[] = [];
@@ -20,15 +22,19 @@ export class ResultsCurrentLocationComponent implements OnInit {
   shikuchoson = '';
   totalItems = 0;
   loading = true;
-  is_open_sunday = '';
-  is_open_holiday = '';
+  isOpenSunday = '';
+  isOpenHoliday = '';
+  currentPage = 1;
+  totalPages = 1;
+  pageList: number[] = [];
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) {}
+  constructor(private apiService: ApiService, private route: ActivatedRoute, private location: Location, private router: Router) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
-      this.is_open_sunday = params['is_open_sunday'];
-      this.is_open_holiday = params['is_open_holiday'];
+      this.isOpenSunday = params['is_open_sunday'];
+      this.isOpenHoliday = params['is_open_holiday'];
+      this.overwritePageParamater(1);
       this.getMedicalInstitutionsByCurrentLocation();
     });
   }
@@ -40,13 +46,20 @@ export class ResultsCurrentLocationComponent implements OnInit {
         const longitude = position.coords.longitude;
 
         this.apiService
-          .getMedicalInstitutionsByCurrentLocation(latitude, longitude, this.is_open_sunday, this.is_open_holiday)
+          .getMedicalInstitutionsByCurrentLocation(
+            latitude,
+            longitude,
+            this.isOpenSunday,
+            this.isOpenHoliday,
+            this.currentPage,
+          )
           .subscribe({
             next: (apiResponse) => {
               this.medicalInstitutions = apiResponse.results;
               this.todofuken = apiResponse.meta.address_todofuken;
               this.shikuchoson = apiResponse.meta.address_shikuchoson;
               this.totalItems = apiResponse.meta.totalItems;
+              this.totalPages = apiResponse.meta.totalPages;
               this.loading = false;
             },
             error: (error: HttpErrorResponse) => {
@@ -58,5 +71,23 @@ export class ResultsCurrentLocationComponent implements OnInit {
         console.error('現在地の取得に失敗しました', error);
       },
     );
+  }
+
+  overwritePageParamater(page: number) {
+    this.location.replaceState(
+      '/medical-institutions/current-location',
+      ('&is_open_sunday=' +
+        this.isOpenSunday +
+        '&is_open_holiday=' +
+        this.isOpenHoliday +
+        '&page=' +
+        page) as unknown as string,
+    );
+  }
+
+  pager(page: number) {
+    this.currentPage = page;
+    this.overwritePageParamater(this.currentPage);
+    this.getMedicalInstitutionsByCurrentLocation();
   }
 }

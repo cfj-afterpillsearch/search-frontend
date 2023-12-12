@@ -17,4 +17,5 @@
       <app-pharmacy-card [pharmacy]="pharmacy"></app-pharmacy-card>
     </li>
   </ul>
+  <app-aps-pagination [totalPages]="totalPages" [currentPage]="currentPage" (pagerEvent)="pager($event)" />
 </ng-container>

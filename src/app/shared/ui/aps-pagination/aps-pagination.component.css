@@ -1,0 +1,7 @@
+.btn-disabled {
+  @apply bg-gray-50;
+}
+
+.btn {
+  @apply font-normal;
+}
