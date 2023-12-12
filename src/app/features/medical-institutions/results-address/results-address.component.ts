@@ -7,7 +7,7 @@ import { MedicalInstitutionCardComponent } from '../../../shared/ui/medical-inst
 import { AreaTitleCardComponent } from '../../../shared/ui/area-title-card/area-title-card.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ApsPaginationComponent } from 'src/app/shared/ui/aps-pagination/aps-pagination.component';
-import { Location } from '@angular/common';=======
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-medical-institutions',
