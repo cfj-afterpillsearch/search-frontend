@@ -21,7 +21,7 @@ export class ResultsAddressComponent implements OnInit {
   todofuken = '';
   shikuchoson = '';
   totalItems = 0;
-  loading = true;
+  isLoading = true;
   isOutOfHours = '';
   currentPage = 1;
   totalPages = 1;
@@ -31,7 +31,8 @@ export class ResultsAddressComponent implements OnInit {
     private apiService: ApiService,
     private route: ActivatedRoute,
     private location: Location,
-    private router: Router) {}
+    private router: Router,
+  ) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
@@ -52,11 +53,11 @@ export class ResultsAddressComponent implements OnInit {
           this.pharmacies = apiResponse.results;
           this.totalItems = apiResponse.meta.totalItems;
           this.totalPages = apiResponse.meta.totalPages;
-          this.loading = false;
+          this.isLoading = false;
         },
         error: (error: HttpErrorResponse) => {
           this.router.navigate(['error', error.status]);
-        }
+        },
       });
   }
 

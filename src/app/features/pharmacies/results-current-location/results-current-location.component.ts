@@ -22,13 +22,18 @@ export class ResultsCurrentLocationComponent implements OnInit {
   todofuken = '';
   shikuchoson = '';
   totalItems = 0;
-  loading = true;
+  isLoading = true;
   isOutOfHours = '';
   currentPage = 1;
   totalPages = 1;
   pageList: number[] = [];
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router, private location: Location) {}
+  constructor(
+    private apiService: ApiService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private location: Location,
+  ) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
@@ -45,20 +50,20 @@ export class ResultsCurrentLocationComponent implements OnInit {
         const longitude = position.coords.longitude;
 
         this.apiService
-        .getPharmaciesByCurrentLocation(latitude, longitude, this.isOutOfHours, this.currentPage)
-        .subscribe({
-          next: (apiResponse) => {
-            this.pharmacies = apiResponse.results;
-            this.todofuken = apiResponse.meta.address_todofuken;
-            this.shikuchoson = apiResponse.meta.address_shikuchoson;
-            this.totalItems = apiResponse.meta.totalItems;
-            this.totalPages = apiResponse.meta.totalPages;
-            this.loading = false;
-          },
-          error: (error: HttpErrorResponse) => {
-            this.router.navigate(['error', error.status]);
-          }
-        });
+          .getPharmaciesByCurrentLocation(latitude, longitude, this.isOutOfHours, this.currentPage)
+          .subscribe({
+            next: (apiResponse) => {
+              this.pharmacies = apiResponse.results;
+              this.todofuken = apiResponse.meta.address_todofuken;
+              this.shikuchoson = apiResponse.meta.address_shikuchoson;
+              this.totalItems = apiResponse.meta.totalItems;
+              this.totalPages = apiResponse.meta.totalPages;
+              this.isLoading = false;
+            },
+            error: (error: HttpErrorResponse) => {
+              this.router.navigate(['error', error.status]);
+            },
+          });
       },
       (error) => {
         console.error('現在地の取得に失敗しました', error);

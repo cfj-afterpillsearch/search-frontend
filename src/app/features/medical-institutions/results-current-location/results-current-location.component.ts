@@ -21,14 +21,19 @@ export class ResultsCurrentLocationComponent implements OnInit {
   todofuken = '';
   shikuchoson = '';
   totalItems = 0;
-  loading = true;
+  isLoading = true;
   isOpenSunday = '';
   isOpenHoliday = '';
   currentPage = 1;
   totalPages = 1;
   pageList: number[] = [];
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute, private location: Location, private router: Router) {}
+  constructor(
+    private apiService: ApiService,
+    private route: ActivatedRoute,
+    private location: Location,
+    private router: Router,
+  ) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
@@ -60,11 +65,11 @@ export class ResultsCurrentLocationComponent implements OnInit {
               this.shikuchoson = apiResponse.meta.address_shikuchoson;
               this.totalItems = apiResponse.meta.totalItems;
               this.totalPages = apiResponse.meta.totalPages;
-              this.loading = false;
+              this.isLoading = false;
             },
             error: (error: HttpErrorResponse) => {
               this.router.navigate(['error', error.status]);
-            }
+            },
           });
       },
       (error) => {

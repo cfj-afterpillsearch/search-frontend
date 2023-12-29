@@ -1,10 +1,10 @@
-<ng-container *ngIf="loading">
+<ng-container *ngIf="isLoading">
   <div class="flex flex-col items-center">
     <div class="loading loading-spinner loading-lg mt-40"></div>
     <div class="text-base leading-6 font-normal mt-20">現在地周辺の医療機関を検索しています</div>
   </div>
 </ng-container>
-<ng-container *ngIf="!loading">
+<ng-container *ngIf="!isLoading">
   <div class="mb-8">
     <h2 class="text-xl leading-7 font-normal">{{ shikuchoson }}周辺の医療機関</h2>
     <div class="text-sm leading-5 font-normal" *ngIf="totalItems > 0; else noItems">
