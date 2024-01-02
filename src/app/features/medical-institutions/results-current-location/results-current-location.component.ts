@@ -22,6 +22,7 @@ export class ResultsCurrentLocationComponent implements OnInit {
   shikuchoson = '';
   totalItems = 0;
   isLoading = true;
+  canGetLocation = true;
   isOpenSunday = '';
   isOpenHoliday = '';
   currentPage = 1;
@@ -72,8 +73,9 @@ export class ResultsCurrentLocationComponent implements OnInit {
             },
           });
       },
-      (error) => {
-        console.error('現在地の取得に失敗しました', error);
+      () => {
+        this.isLoading = false;
+        this.canGetLocation = false;
       },
     );
   }
