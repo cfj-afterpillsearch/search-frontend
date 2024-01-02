@@ -7,6 +7,9 @@
 <ng-container *ngIf="!isLoading">
   <ng-container *ngIf="!canGetLocation; else searchResult">
     <div class="text-xl leading-7 font-normal">現在地が取得できません。</div>
+    <div class="text-sm leading-5 font-normal">
+      端末、もしくはブラウザの位置情報の許諾に関する設定をご確認ください。
+    </div>
   </ng-container>
   <ng-template #searchResult>
     <div class="mb-8">
