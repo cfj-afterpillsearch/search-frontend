@@ -21,7 +21,7 @@ export class ResultsAddressComponent implements OnInit {
   todofuken = '';
   shikuchoson = '';
   totalItems = 0;
-  loading = true;
+  isLoading = true;
   isOpenSunday = '';
   isOpenHoliday = '';
   currentPage = 1;
@@ -60,11 +60,11 @@ export class ResultsAddressComponent implements OnInit {
           this.medicalInstitutions = apiResponse.results;
           this.totalItems = apiResponse.meta.totalItems;
           this.totalPages = apiResponse.meta.totalPages;
-          this.loading = false;
+          this.isLoading = false;
         },
         error: (error: HttpErrorResponse) => {
           this.router.navigate(['error', error.status]);
-        }
+        },
       });
   }
 
