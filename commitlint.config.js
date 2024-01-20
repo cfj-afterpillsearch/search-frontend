@@ -1,10 +1,6 @@
 module.exports = {
+  extends: ['@commitlint/config-conventional'],
   rules: {
-    'header-max-length': [0, 'always', 100],
-    'type-enum': [
-      2,
-      'always',
-      ['feat', 'fix', 'test', 'refactor', 'style', 'docs', 'perf', 'config', 'security', 'upgrade', 'plus', 'minus'],
-    ],
+    'type-enum': [2, 'always', ['feat', 'fix', 'docs', 'style', 'refactor', 'test', 'chore', 'revert']],
   },
 };
