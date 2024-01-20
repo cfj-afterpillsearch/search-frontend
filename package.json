@@ -45,7 +45,6 @@
     "@typescript-eslint/eslint-plugin": "^5.59.7",
     "@typescript-eslint/parser": "5.59.7",
     "autoprefixer": "^10.4.14",
-    "commitlint-config-gitmoji": "^2.3.1",
     "daisyui": "^3.7.3",
     "eslint": "^8.40.0",
     "eslint-config-prettier": "^8.8.0",
