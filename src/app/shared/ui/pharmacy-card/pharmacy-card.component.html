@@ -19,7 +19,7 @@
   <div class="flex-col space-y-4">
     <a
       class="bg-green-200 p-2 w-full h-12 flex items-center shadow"
-      [attr.href]="'https://www.google.com/search?q=' + pharmacy.name"
+      [attr.href]="'https://www.google.com/search?q=' + pharmacy.name + pharmacy.address"
       target="_blank"
       (click)="searchButtonPushTag(pharmacy)"
     >
