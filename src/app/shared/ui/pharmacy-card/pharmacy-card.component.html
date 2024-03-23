@@ -1,41 +1,14 @@
-<div class="p-2 bg-gray-50 shadow-xl">
-  <div *ngIf="isEmergencyContact" class="badge bg-green-200 mr-1 mb-4">時間外対応：有</div>
-  <h3 class="text-lg leading-7 font-bold">{{ pharmacy.name }}</h3>
-  <div class="mb-4 text-sm leading-5 font-normal">
-    {{ pharmacy.address }}
-    <a [attr.href]="'https://www.google.co.jp/maps/place/' + pharmacy.address" target="_blank">
-      [地図]
-      <fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon>
-    </a>
-  </div>
-  <div class="mb-4">
-    <div class="text-xs leading-4 font-bold">開局時間：</div>
-    <div class="text-base leading-6 font-normal" [innerHTML]="pharmacy.memo_openinghours | newlineToBrPipe"></div>
-  </div>
-  <div class="mb-4">
+<app-card
+  [item]="pharmacy"
+  [itemCategory]="'薬局'"
+  [openingHourLabel]="'開局時間：'"
+  [buttonBgColor]="'bg-green-200'"
+  [searchEventName]="'pharmacy-search-button-click'"
+  [telEventName]="'pharmacy-tel-button-click'"
+>
+  <div *ngIf="isEmergencyContact" class="badge bg-green-200 mr-1 mb-4 badges">時間外対応：有</div>
+  <div class="mb-4 emergency-contact">
     <div *ngIf="isEmergencyContact" class="text-xs leading-4 font-bold">時間外の電話番号：</div>
     <div class="text-base leading-6 font-normal">{{ pharmacy.emergency_contact_phone }}</div>
   </div>
-  <div class="flex-col space-y-4">
-    <a
-      class="bg-green-200 p-2 w-full h-12 flex items-center shadow"
-      [attr.href]="'https://www.google.com/search?q=' + pharmacy.name"
-      target="_blank"
-      (click)="searchButtonPushTag(pharmacy)"
-    >
-      <fa-icon [icon]="faMagnifyingGlass" [size]="'xl'" class="ml-8 mr-4"></fa-icon>
-      <div class="text-sm leading-5 font-normal text-left">この薬局を検索して調べる</div>
-    </a>
-    <a
-      class="bg-green-200 p-2 w-full h-12 flex items-center shadow"
-      [attr.href]="'tel:' + pharmacy.tel"
-      (click)="telButtonPushTag(pharmacy)"
-    >
-      <fa-icon [icon]="faPhone" [size]="'xl'" class="ml-8 mr-4"></fa-icon>
-      <div class="text-sm leading-5 font-normal text-left">
-        <div>この薬局に電話する</div>
-        <div>({{ pharmacy.tel }})</div>
-      </div>
-    </a>
-  </div>
-</div>
+</app-card>
