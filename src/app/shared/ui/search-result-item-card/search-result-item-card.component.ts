@@ -29,7 +29,7 @@ export class SearchResultItemCardComponent {
   faPhone = faPhone;
   faArrowUpRightFromSquare = faArrowUpRightFromSquare;
 
-  searchButtonPushTag(searchResultItem: searchResultItem) {
+  handleClickSearchButton(searchResultItem: searchResultItem) {
     const gtmTag = {
       event: this.searchEventName,
       data: {
@@ -39,7 +39,7 @@ export class SearchResultItemCardComponent {
     this.gtmService.pushTag(gtmTag);
   }
 
-  telButtonPushTag(searchResultItem: searchResultItem) {
+  handleClickTelButton(searchResultItem: searchResultItem) {
     const gtmTag = {
       event: this.telEventName,
       data: {

@@ -18,7 +18,7 @@
       class="{{ buttonBgColor }} p-2 w-full h-12 flex items-center shadow"
       [attr.href]="'https://www.google.com/search?q=' + item.name"
       target="_blank"
-      (click)="searchButtonPushTag(item)"
+      (click)="handleClickSearchButton(item)"
     >
       <fa-icon [icon]="faMagnifyingGlass" [size]="'xl'" class="ml-8 mr-4"></fa-icon>
       <div class="text-sm leading-5 font-normal text-left">この{{ itemCategory }}を検索して調べる</div>
@@ -26,7 +26,7 @@
     <a
       class="{{ buttonBgColor }} p-2 w-full h-12 flex items-center shadow"
       [attr.href]="'tel:' + item.tel"
-      (click)="telButtonPushTag(item)"
+      (click)="handleClickTelButton(item)"
     >
       <fa-icon [icon]="faPhone" [size]="'xl'" class="ml-8 mr-4"></fa-icon>
       <div class="text-sm leading-5 font-normal text-left">
