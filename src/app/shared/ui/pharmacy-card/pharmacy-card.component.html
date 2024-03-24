@@ -7,8 +7,8 @@
   [telEventName]="'pharmacy-tel-button-click'"
 >
   <div *ngIf="isEmergencyContact" class="badge bg-green-200 mr-1 mb-4 badges">時間外対応：有</div>
-  <div class="mb-4 emergency-contact">
-    <div *ngIf="isEmergencyContact" class="text-xs leading-4 font-bold">時間外の電話番号：</div>
+  <div *ngIf="isEmergencyContact" class="mb-4 emergency-contact">
+    <div class="text-xs leading-4 font-bold">時間外の電話番号：</div>
     <div class="text-base leading-6 font-normal">{{ pharmacy.emergency_contact_phone }}</div>
   </div>
 </app-card>
