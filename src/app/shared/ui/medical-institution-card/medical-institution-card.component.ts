@@ -4,20 +4,18 @@ import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { MedicalInstitution } from '../../medical-institution';
-import { GoogleTagManagerService } from 'angular-google-tag-manager';
 import { NewlineToBrPipe } from '../../newline-to-br.pipe';
 import { NgIf } from '@angular/common';
+import { SearchResultItemCardComponent } from '../search-result-item-card/search-result-item-card.component';
 
 @Component({
   selector: 'app-medical-institution-card',
   templateUrl: './medical-institution-card.component.html',
   styleUrls: ['./medical-institution-card.component.css'],
   standalone: true,
-  imports: [FontAwesomeModule, NewlineToBrPipe, NgIf],
+  imports: [FontAwesomeModule, NewlineToBrPipe, NgIf, SearchResultItemCardComponent],
 })
 export class MedicalInstitutionCardComponent {
-  constructor(private gtmService: GoogleTagManagerService) {}
-
   @Input() medicalInstitution: MedicalInstitution = {
     name: '',
     postalcode: '',
@@ -36,24 +34,4 @@ export class MedicalInstitutionCardComponent {
   faMagnifyingGlass = faMagnifyingGlass;
   faPhone = faPhone;
   faArrowUpRightFromSquare = faArrowUpRightFromSquare;
-
-  searchButtonPushTag(medicalInstitution: MedicalInstitution) {
-    const gtmTag = {
-      event: 'medical-institution-search-button-click',
-      data: {
-        name: medicalInstitution.name,
-      },
-    };
-    this.gtmService.pushTag(gtmTag);
-  }
-
-  telButtonPushTag(medicalInstitution: MedicalInstitution) {
-    const gtmTag = {
-      event: 'medical-institution-tel-button-click',
-      data: {
-        name: medicalInstitution.name,
-      },
-    };
-    this.gtmService.pushTag(gtmTag);
-  }
 }

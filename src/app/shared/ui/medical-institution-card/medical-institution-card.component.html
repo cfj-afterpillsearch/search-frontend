@@ -1,45 +1,18 @@
-<div class="p-2 bg-gray-50 shadow-xl">
-  <div class="flex mb-4" *ngIf="medicalInstitution.isOpenSunday !== '' || medicalInstitution.isOpenHoliday !== ''">
+<app-card
+  [item]="medicalInstitution"
+  [itemCategory]="'医療機関'"
+  [openingHourLabel]="'医療機関における緊急避妊にかかる対面診療への対応可能時間帯：'"
+  [buttonBgColor]="'bg-blue-300'"
+  [searchEventName]="'medical-institution-search-button-click'"
+  [telEventName]="'medical-institution-tel-button-click'"
+>
+  <div
+    class="flex mb-4 badges"
+    *ngIf="medicalInstitution.isOpenSunday !== '' || medicalInstitution.isOpenHoliday !== ''"
+  >
     <div *ngIf="medicalInstitution.isOpenSunday === '◯'" class="badge bg-red-100 mr-1">日曜診療：◯</div>
     <div *ngIf="medicalInstitution.isOpenHoliday === '◯'" class="badge bg-yellow-100">祝日診療：◯</div>
     <div *ngIf="medicalInstitution.isOpenSunday === '△'" class="badge bg-red-100 mr-1">日曜診療：△</div>
     <div *ngIf="medicalInstitution.isOpenHoliday === '△'" class="badge bg-yellow-100">祝日診療：△</div>
   </div>
-  <h3 class="text-lg leading-7 font-bold">{{ medicalInstitution.name }}</h3>
-  <div class="mb-4 text-sm leading-5 font-normal">
-    {{ medicalInstitution.address }}
-    <a [attr.href]="'https://www.google.co.jp/maps/place/' + medicalInstitution.address" target="_blank">
-      [地図]
-      <fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon>
-    </a>
-  </div>
-  <div class="mb-4">
-    <div class="text-xs leading-4 font-bold">医療機関における緊急避妊にかかる対面診療への対応可能時間帯：</div>
-    <div
-      class="text-base leading-6 font-normal"
-      [innerHTML]="medicalInstitution.memo_openinghours | newlineToBrPipe"
-    ></div>
-  </div>
-  <div class="flex-col space-y-4">
-    <a
-      class="bg-blue-300 p-2 w-full h-12 flex items-center shadow"
-      [attr.href]="'https://www.google.com/search?q=' + medicalInstitution.name"
-      target="_blank"
-      (click)="searchButtonPushTag(medicalInstitution)"
-    >
-      <fa-icon [icon]="faMagnifyingGlass" [size]="'xl'" class="ml-8 mr-4"></fa-icon>
-      <div class="text-sm leading-5 font-normal text-left">この医療機関を検索して調べる</div>
-    </a>
-    <a
-      class="bg-blue-300 p-2 w-full h-12 flex items-center shadow"
-      [attr.href]="'tel:' + medicalInstitution.tel"
-      (click)="telButtonPushTag(medicalInstitution)"
-    >
-      <fa-icon [icon]="faPhone" [size]="'xl'" class="ml-8 mr-4"></fa-icon>
-      <div class="text-sm leading-5 font-normal text-left">
-        <div>この医療機関に電話する</div>
-        <div>({{ medicalInstitution.tel }})</div>
-      </div>
-    </a>
-  </div>
-</div>
+</app-card>
