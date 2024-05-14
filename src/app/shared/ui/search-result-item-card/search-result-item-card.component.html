@@ -1,0 +1,38 @@
+<div class="p-2 bg-gray-50 shadow-xl">
+  <ng-content select=".badges"></ng-content>
+  <h3 class="text-lg leading-7 font-bold">{{ item.name }}</h3>
+  <div class="mb-4 text-sm leading-5 font-normal">
+    {{ item.address }}
+    <a [attr.href]="'https://www.google.co.jp/maps/place/' + item.address" target="_blank">
+      [地図]
+      <fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon>
+    </a>
+  </div>
+  <div class="mb-4">
+    <div class="text-xs leading-4 font-bold">{{ openingHourLabel }}</div>
+    <div class="text-base leading-6 font-normal" [innerHTML]="item.memo_openinghours | newlineToBrPipe"></div>
+  </div>
+  <ng-content select=".emergency-contact"></ng-content>
+  <div class="flex-col space-y-4">
+    <a
+      class="{{ buttonBgColor }} p-2 w-full h-12 flex items-center shadow"
+      [attr.href]="'https://www.google.com/search?q=' + item.name"
+      target="_blank"
+      (click)="handleClickSearchButton(item)"
+    >
+      <fa-icon [icon]="faMagnifyingGlass" [size]="'xl'" class="ml-8 mr-4"></fa-icon>
+      <div class="text-sm leading-5 font-normal text-left">この{{ itemCategory }}を検索して調べる</div>
+    </a>
+    <a
+      class="{{ buttonBgColor }} p-2 w-full h-12 flex items-center shadow"
+      [attr.href]="'tel:' + item.tel"
+      (click)="handleClickTelButton(item)"
+    >
+      <fa-icon [icon]="faPhone" [size]="'xl'" class="ml-8 mr-4"></fa-icon>
+      <div class="text-sm leading-5 font-normal text-left">
+        <div>この{{ itemCategory }}に電話する</div>
+        <div>({{ item.tel }})</div>
+      </div>
+    </a>
+  </div>
+</div>
