@@ -3,7 +3,7 @@
   <h3 class="text-lg leading-7 font-bold">{{ item.name }}</h3>
   <div class="mb-4 text-sm leading-5 font-normal">
     {{ item.address }}
-    <a [attr.href]="'https://www.google.co.jp/maps/place/' + item.address" target="_blank">
+    <a [attr.href]="generateMapURI(item.address)" target="_blank">
       [地図]
       <fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon>
     </a>
@@ -16,7 +16,7 @@
   <div class="flex-col space-y-4">
     <a
       class="{{ buttonBgColor }} p-2 w-full h-12 flex items-center shadow"
-      [attr.href]="'https://www.google.com/search?q=' + item.name"
+      [attr.href]="generateSearchURI(item.name, item.address)"
       target="_blank"
       (click)="handleClickSearchButton(item)"
     >
@@ -25,7 +25,7 @@
     </a>
     <a
       class="{{ buttonBgColor }} p-2 w-full h-12 flex items-center shadow"
-      [attr.href]="'tel:' + item.tel"
+      [attr.href]="generateTelURI(item.tel)"
       (click)="handleClickTelButton(item)"
     >
       <fa-icon [icon]="faPhone" [size]="'xl'" class="ml-8 mr-4"></fa-icon>
