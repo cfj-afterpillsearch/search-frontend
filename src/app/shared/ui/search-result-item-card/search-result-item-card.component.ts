@@ -48,4 +48,16 @@ export class SearchResultItemCardComponent {
     };
     this.gtmService.pushTag(gtmTag);
   }
+
+  generateMapURI(address: string) {
+    return `https://www.google.com/maps/search/?api=1&query=${address}`;
+  }
+
+  generateSearchURI(name: string, address: string) {
+    return `https://www.google.com/search?q=${name} ${address}`;
+  }
+
+  generateTelURI(tel: string) {
+    return `tel:${tel}`;
+  }
 }
