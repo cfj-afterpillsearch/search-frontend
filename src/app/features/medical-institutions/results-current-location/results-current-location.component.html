@@ -21,13 +21,11 @@
     </div>
     <!-- Display google map -->
     <div id="map" style="width: 100%; height: 400px; margin-top: 16px"></div>
-    <!--
-    <ul class="flex flex-col space-y-4">
+    <ul class="flex flex-col space-y-4" style="height: 400px; overflow-y: auto">
       <li *ngFor="let medicalInstitution of medicalInstitutions" class>
         <app-medical-institution-card [medicalInstitution]="medicalInstitution"></app-medical-institution-card>
       </li>
     </ul>
-    -->
     <app-aps-pagination [totalPages]="totalPages" [currentPage]="currentPage" (pagerEvent)="pager($event)" />
   </ng-template>
 </ng-container>
