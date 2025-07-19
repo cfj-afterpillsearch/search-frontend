@@ -1,25 +1,43 @@
 # search-frontend
 
-これは、afterpill検索のフロントエンドプロジェクトです。
+これは、afterpill 検索のフロントエンドプロジェクトです。
 
-## コミットメッセージ
-本プロジェクトでは、[Conventional Commits](https://www.conventionalcommits.org/ja/v1.0.0/#%e4%bb%95%e6%a7%98)をベースにしたコミットメッセージのフォーマットを採用しています。
+## 概要
 
+このプロジェクトは、医療機関や薬局の検索機能を提供する Angular アプリケーションです。
+
+## セットアップ
+
+### リポジトリのクローン
+
+```bash
+git clone https://github.com/cfj-afterpillsearch/search-frontend.git
+cd search-frontend
 ```
-<type>[optional scope]: <description>
 
-[optional body]
+### 依存関係のインストール
 
-[optional footer]
+```bash
+npm install
 ```
 
-type は以下のいずれかを使うことができます。
+### 環境変数の設定
 
-- feat: 新機能の追加
-- fix: バグ修正
-- docs: ドキュメントの変更
-- style: コードスタイルやフォーマットの変更
-- refactor: コードの構造やリファクタリングに関する変更
-- test: テストコードの追加や変更
-- chore: 運用保守に関連する雑多な作業やタスク
-- revert: コミットの取り消し
+.env ファイルをリポジトリ直下に作成してください。
+記載する内容については @tanimuranaomichi までお問い合わせください。
+
+### 開発サーバーの起動
+
+```bash
+npm run start
+```
+
+開発サーバーが起動すると、`http://localhost:4200` でアクセスできます。
+
+## 貢献
+
+このプロジェクトへの貢献をお待ちしています！詳細については、[コントリビューションガイド](docs/CONTRIBUTING.md)を参照してください。
+
+## デプロイ
+
+このプロジェクトは自動デプロイが設定されています。詳細については、[デプロイメントガイド](docs/DEPLOYMENT.md)を参照してください。
