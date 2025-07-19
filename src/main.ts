@@ -7,6 +7,10 @@ import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 import { GoogleTagManagerService } from 'angular-google-tag-manager';
 
+const script = document.createElement('script');
+script.src = `https://maps.googleapis.com/maps/api/js?key=${environment.GM_API_KEY}`;
+document.head.appendChild(script);
+
 bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom(BrowserModule, AppRoutingModule, FormsModule),
