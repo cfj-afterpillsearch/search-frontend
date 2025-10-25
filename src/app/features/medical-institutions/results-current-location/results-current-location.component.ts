@@ -9,6 +9,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ApsPaginationComponent } from 'src/app/shared/ui/aps-pagination/aps-pagination.component';
 import { Location } from '@angular/common';
 
+declare const google: any; // Google Maps APIを使用するための宣言
+
 @Component({
   selector: 'app-medical-institutions',
   templateUrl: './results-current-location.component.html',
@@ -45,6 +47,33 @@ export class ResultsCurrentLocationComponent implements OnInit {
     });
   }
 
+  // google mapsの初期化
+  initMap(center: { lat: number; lng: number }) {
+    const map = new google.maps.Map(document.getElementById('map'), {
+      center,
+      zoom: 14,
+    });
+
+    // 現在地のピン
+    new google.maps.Marker({
+      position: center,
+      map: map,
+      title: '現在地',
+    });
+
+    // 医療機関のピン（medicalInstitutions配列を利用）
+    this.medicalInstitutions.forEach((institution) => {
+      if (institution.location.lat && institution.location.lng) {
+        new google.maps.Marker({
+          position: { lat: institution.location.lat, lng: institution.location.lng },
+          map: map,
+          title: institution.name, // 医療機関名など
+          icon: 'https://img.icons8.com/?size=30&id=14807&format=png&color=000000',
+        });
+      }
+    });
+  }
+
   getMedicalInstitutionsByCurrentLocation() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -67,6 +96,10 @@ export class ResultsCurrentLocationComponent implements OnInit {
               this.totalItems = apiResponse.meta.totalItems;
               this.totalPages = apiResponse.meta.totalPages;
               this.isLoading = false;
+              // Angularの描画が終わった後に地図を初期化
+              setTimeout(() => {
+                this.initMap({ lat: latitude, lng: longitude });
+              });
             },
             error: (error: HttpErrorResponse) => {
               this.router.navigate(['error', error.status]);
