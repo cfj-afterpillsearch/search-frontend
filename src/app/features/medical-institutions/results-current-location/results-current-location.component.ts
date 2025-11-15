@@ -30,6 +30,8 @@ export class ResultsCurrentLocationComponent implements OnInit {
   currentPage = 1;
   totalPages = 1;
   pageList: number[] = [];
+  map: any = null;
+  selectedIndex: number | null = null;
 
   constructor(
     private apiService: ApiService,
@@ -49,7 +51,7 @@ export class ResultsCurrentLocationComponent implements OnInit {
 
   // google mapsの初期化
   initMap(center: { lat: number; lng: number }) {
-    const map = new google.maps.Map(document.getElementById('map'), {
+    const _map = new google.maps.Map(document.getElementById('map'), {
       center,
       zoom: 14,
     });
@@ -57,21 +59,33 @@ export class ResultsCurrentLocationComponent implements OnInit {
     // 現在地のピン
     new google.maps.Marker({
       position: center,
-      map: map,
+      map: _map,
       title: '現在地',
+    }).addListener('click', () => {
+      _map.panTo(center);
     });
 
     // 医療機関のピン（medicalInstitutions配列を利用）
-    this.medicalInstitutions.forEach((institution) => {
+    this.medicalInstitutions.forEach((institution, idx) => {
       if (institution.location.lat && institution.location.lng) {
-        new google.maps.Marker({
+        const marker = new google.maps.Marker({
           position: { lat: institution.location.lat, lng: institution.location.lng },
-          map: map,
+          map: _map,
           title: institution.name, // 医療機関名など
           icon: 'https://img.icons8.com/?size=30&id=14807&format=png&color=000000',
         });
+
+        marker.addListener('click', () => {
+          _map.panTo(marker.getPosition());
+          this.selectedIndex = idx;
+
+          // indexベースのidにスクロール
+          const targetId = 'medical-institution-' + idx;
+          this.scrollToListItem(targetId);
+        });
       }
     });
+    this.map = _map;
   }
 
   getMedicalInstitutionsByCurrentLocation() {
@@ -129,5 +143,15 @@ export class ResultsCurrentLocationComponent implements OnInit {
     this.currentPage = page;
     this.overwritePageParamater(this.currentPage);
     this.getMedicalInstitutionsByCurrentLocation();
+  }
+
+  private scrollToListItem(elementId: string) {
+    const el = document.getElementById(elementId);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      (el as HTMLElement).focus();
+    } else {
+      console.warn('scroll target not found:', elementId);
+    }
   }
 }
