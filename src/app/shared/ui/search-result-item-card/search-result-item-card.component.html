@@ -24,15 +24,22 @@
       <div class="text-sm leading-5 font-normal text-left">この{{ itemCategory }}を検索して調べる</div>
     </a>
     <a
+      *ngIf="hasValidPhoneNumber(item.tel)"
       class="{{ buttonBgColor }} p-2 w-full h-12 flex items-center shadow"
-      [attr.href]="generateTelURI(item.tel)"
+      [attr.href]="generateTelURI(extractPhoneNumber(item.tel))"
       (click)="handleClickTelButton(item)"
     >
       <fa-icon [icon]="faPhone" [size]="'xl'" class="ml-8 mr-4"></fa-icon>
       <div class="text-sm leading-5 font-normal text-left">
         <div>この{{ itemCategory }}に電話する</div>
-        <div>({{ item.tel }})</div>
+        <div>({{ extractPhoneNumber(item.tel) }})</div>
       </div>
     </a>
+    <div *ngIf="!hasValidPhoneNumber(item.tel)" class="bg-blue-100 p-2 w-full h-12 flex items-center shadow opacity-50">
+      <fa-icon [icon]="faPhone" [size]="'xl'" class="ml-8 mr-4"></fa-icon>
+      <div class="text-sm leading-5 font-normal text-left">
+        <div>{{ getDisplayPhoneNumber(item.tel) }}</div>
+      </div>
+    </div>
   </div>
 </div>
