@@ -19,11 +19,17 @@
       </div>
       <ng-template class="text-sm leading-5 font-normal" #noItems>医療機関は見つかりませんでした。</ng-template>
     </div>
-    <ul class="flex flex-col space-y-4">
-      <li *ngFor="let medicalInstitution of medicalInstitutions" class>
+    <!-- Display google map -->
+    <div id="map" style="width: 100%; height: 400px; margin-top: 16px"></div>
+    <ul class="flex flex-col space-y-4" style="height: 400px; overflow-y: auto">
+      <li
+        *ngFor="let medicalInstitution of medicalInstitutions; let i = index"
+        [id]="'medical-institution-' + i"
+        tabindex="-1"
+        [class.selected]="selectedIndex === i"
+      >
         <app-medical-institution-card [medicalInstitution]="medicalInstitution"></app-medical-institution-card>
       </li>
     </ul>
-    <app-aps-pagination [totalPages]="totalPages" [currentPage]="currentPage" (pagerEvent)="pager($event)" />
   </ng-template>
 </ng-container>
