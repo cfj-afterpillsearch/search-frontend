@@ -154,8 +154,8 @@ export class SearchResultItemCardComponent {
 
     const extractedNumber = match[0];
 
-    // 抽出した電話番号の桁数チェック（半角ハイフンを除去）
-    const digitsOnly = extractedNumber.replace(/[-]/g, '');
+    // 抽出した電話番号の桁数チェック（半角数字以外の文字を除去）
+    const digitsOnly = extractedNumber.replace(/[^0-9]/g, '');
 
     // 10桁未満は無効
     if (digitsOnly.length < 10) {
