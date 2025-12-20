@@ -38,7 +38,7 @@
     <div *ngIf="!hasValidPhoneNumber(item.tel)" class="bg-blue-100 p-2 w-full h-12 flex items-center shadow opacity-50">
       <fa-icon [icon]="faPhone" [size]="'xl'" class="ml-8 mr-4"></fa-icon>
       <div class="text-sm leading-5 font-normal text-left">
-        <div>{{ getDisplayPhoneNumber(item.tel) }}</div>
+        <div>正しい電話番号を取得できませんでした</div>
       </div>
     </div>
   </div>

@@ -179,17 +179,6 @@ export class SearchResultItemCardComponent {
   }
 
   /**
-   * 表示用の電話番号を取得する
-   * 電話番号が抽出できない場合はエラーメッセージを返す
-   * @param tel 電話番号文字列
-   * @returns 表示用の電話番号またはエラーメッセージ
-   */
-  getDisplayPhoneNumber(tel: string): string {
-    const phoneNumber = this.extractPhoneNumber(tel);
-    return phoneNumber || '正しい電話番号を取得できませんでした';
-  }
-
-  /**
    * 電話番号が有効かチェックする
    * @param tel 電話番号文字列
    * @returns 有効な場合true
