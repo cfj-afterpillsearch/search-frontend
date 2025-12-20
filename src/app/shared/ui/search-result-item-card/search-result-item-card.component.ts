@@ -57,7 +57,10 @@ export class SearchResultItemCardComponent {
     return `https://www.google.com/search?q=${name} ${address}`;
   }
 
-  generateTelURI(tel: string) {
+  generateTelURI(tel: string | null) {
+    if (!tel) {
+      return '';
+    }
     return `tel:${tel}`;
   }
 
@@ -132,11 +135,11 @@ export class SearchResultItemCardComponent {
    * - 括弧付き: (03)1234-5678 → 03-1234-5678 に変換
    *
    * @param tel 電話番号を含む文字列
-   * @returns 抽出された電話番号、見つからない場合は空文字
+   * @returns 抽出された電話番号、見つからない場合はnull
    */
-  extractPhoneNumber(tel: string): string {
+  extractPhoneNumber(tel: string): string | null {
     if (!tel || tel.trim() === '') {
-      return '';
+      return null;
     }
 
     // まず括弧付き形式を正規化
@@ -146,7 +149,7 @@ export class SearchResultItemCardComponent {
     const match = normalized.match(phonePattern);
 
     if (!match) {
-      return '';
+      return null;
     }
 
     const extractedNumber = match[0];
@@ -156,20 +159,20 @@ export class SearchResultItemCardComponent {
 
     // 10桁未満は無効
     if (digitsOnly.length < 10) {
-      return '';
+      return null;
     }
 
     // 11桁の場合、IP電話or携帯電話番号orフリーダイヤル（050, 090, 080, 070, 060, 0800）のみ許可
     if (digitsOnly.length === 11) {
-      const isMobilePhone = /^(050|090|080|070|060|0800)/.test(digitsOnly);
-      if (!isMobilePhone) {
-        return '';
+      const isCorrectPhoneNumber = /^(050|090|080|070|060|0800)/.test(digitsOnly);
+      if (!isCorrectPhoneNumber) {
+        return null;
       }
     }
 
     // 12桁以上は無効
     if (digitsOnly.length > 11) {
-      return '';
+      return null;
     }
 
     return extractedNumber;
@@ -192,6 +195,6 @@ export class SearchResultItemCardComponent {
    * @returns 有効な場合true
    */
   hasValidPhoneNumber(tel: string): boolean {
-    return this.extractPhoneNumber(tel) !== '';
+    return this.extractPhoneNumber(tel) !== null;
   }
 }
