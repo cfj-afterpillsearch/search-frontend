@@ -1,5 +1,5 @@
 <div class="flex flex-col items-center space-y-5 mt-5">
-  <div>
+  <section>
     <p>
       アフターピル(緊急避妊薬)が必要な時、日本では医師の処方箋が必要です。例えば、こんなことで困っていませんか？<br />（※2026年春頃から処方箋なしで薬局で購入できる見込みですが、現在は処方薬となっています。）
     </p>
@@ -13,9 +13,9 @@
     <p>
       アフターピル検索では、あなたに合った受診を支援します。土日祝日、地方で近くに産婦人科がない方、平日昼間に病院に行けない方などが、72時間に間に合う選択肢を一緒に探します。
     </p>
-  </div>
+  </section>
 
-  <div>
+  <section>
     <p>
       アフターピルの入手方法は、4つの方法があり、それぞれ良い点・不便な点があります。詳しくは、ピルにゃんの「<a
         href="https://pillnyan.jp/search_afterpill/"
@@ -24,29 +24,40 @@
       >」をご覧になり、ご自身に最適なパターンをお選びください。
     </p>
 
-    <p>＜４パターン＞</p>
-    <p>
-      １）薬局で直接緊急避妊薬を購入する
-      ⇒18歳以上、薬局販売の試験運用のアンケートに協力することが条件、購入できる店舗は全国でも少数。
-    </p>
-    <p>２）病院かクリニックに行く ⇒本サイトで検索できます。</p>
-    <p>３）オンライン診療で宅配 ⇒ご自身で検索ください。宅配で７２時間に間に合う場合は利用できます。</p>
-    <p>
-      ４）オンライン診療の後、薬局で受け取る ⇒本サイトで受けとる薬局を検索できます。
-      オンライン診療の方法については、事前にこちらを必ずお読みください。
-    </p>
-  </div>
+    <h2 class="text-sm text-gray-700 my-2 leading-5">＜４パターン＞</h2>
 
-  <div>
+    <div class="pattern-row">
+      <span class="pattern-label">１）薬局で直接緊急避妊薬を購入する</span>
+      <span class="pattern-desc"
+        >⇒18歳以上、薬局販売の試験運用のアンケートに協力することが条件、購入できる店舗は全国でも少数。</span
+      >
+    </div>
+    <div class="pattern-row">
+      <span class="pattern-label">２）病院かクリニックに行く</span>
+      <span class="pattern-desc">⇒本サイトで検索できます。</span>
+    </div>
+    <div class="pattern-row">
+      <span class="pattern-label">３）オンライン診療で宅配</span>
+      <span class="pattern-desc">⇒ご自身で検索ください。宅配で７２時間に間に合う場合は利用できます。</span>
+    </div>
+    <div class="pattern-row">
+      <span class="pattern-label">４）オンライン診療の後、薬局で受け取る</span>
+      <span class="pattern-desc"
+        >⇒本サイトで受けとる薬局を検索できます。オンライン診療の方法については、事前にこちらを必ずお読みください。</span
+      >
+    </div>
+  </section>
+
+  <section>
     <h2 class="chapter">◆ 対面診療パターン</h2>
     <p>
       直接医療機関に行って医師に診察してもらい、病院でアフターピルを受け取る方法です。<br />
       アフターピル検索では、アフターピルを入手できる医療機関を検索できます。
     </p>
     <app-button [link]="'/medical-institutions'" [model]="'medical-institution'">医療機関をさがす</app-button>
-  </div>
+  </section>
 
-  <div>
+  <section>
     <h2 class="chapter">◆ オンライン診療＋薬局で受け取りパターン</h2>
     <p>
       医師の診察はオンラインで行い、診察後に薬局でアフターピルを受け取る方法です。<br />
@@ -58,5 +69,5 @@
       >」ページをご覧ください。 アフターピル検索では、アフターピルを受け取れる薬局を検索できます。
     </p>
     <app-button [link]="'/pharmacies'" [model]="'pharmacy'">薬局をさがす</app-button>
-  </div>
+  </section>
 </div>
