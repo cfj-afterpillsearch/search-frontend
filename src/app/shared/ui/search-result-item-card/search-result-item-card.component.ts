@@ -72,6 +72,9 @@ export class SearchResultItemCardComponent {
    *     03ー1234ー5678 → 03-1234-5678（長音記号にも対応）
    *     03-1234-5678（担当:田中） → 03-1234-5678（末尾の括弧付き文字列を削除）
    *
+   * 全角ハイフン（－）、マイナス記号（−）、長音記号（ー）を半角ハイフンに変換してから処理を行う
+   *
+   *
    * @param tel 電話番号文字列
    * @returns ハイフン区切り形式の電話番号
    */
@@ -83,11 +86,13 @@ export class SearchResultItemCardComponent {
     // 末尾の括弧で囲われた文字列を削除（半角・全角両対応）
     // パターン: 末尾に (xxx) または （xxx） がある場合、それを削除
     const normalized = tel.replace(/[(（][^)）]*[)）]\s*$/g, '').trim();
+    // 全角ハイフン、マイナス記号、長音記号を半角ハイフンに変換
+    const normalizedNumber = normalized.replace(/[－−ー]/g, '-');
 
     // 括弧付き形式を検出（半角・全角・マイナス記号・長音記号対応）
     // パターン1: (0XX)XXXX-XXXX または （0XX）XXXX－XXXX（先頭に括弧）
-    const headParenPattern = /[(（](0\d{1,4})[)）][-－−ー\s]?(\d{1,4})[-－−ー\s]?(\d{3,4})/;
-    const headMatch = normalized.match(headParenPattern);
+    const headParenPattern = /[(（](0\d{1,4})[)）][-\s]?(\d{1,4})[-\s]?(\d{3,4})/;
+    const headMatch = normalizedNumber.match(headParenPattern);
 
     if (headMatch) {
       // 括弧を取り除いてハイフン区切りに変換
@@ -99,8 +104,8 @@ export class SearchResultItemCardComponent {
     }
 
     // パターン2: 0XX(XXXX)XXXX または 0XX（XXXX）XXXX（中間に括弧）
-    const middleParenPattern = /(0\d{1,4})[-－−ー\s]?[(（](\d{1,4})[)）][-－−ー\s]?(\d{3,4})/;
-    const middleMatch = normalized.match(middleParenPattern);
+    const middleParenPattern = /(0\d{1,4})[-\s]?[(（](\d{1,4})[)）][-\s]?(\d{3,4})/;
+    const middleMatch = normalizedNumber.match(middleParenPattern);
 
     if (middleMatch) {
       // 括弧を取り除いてハイフン区切りに変換
@@ -112,7 +117,7 @@ export class SearchResultItemCardComponent {
     }
 
     // 括弧なしの場合は正規化された文字列を返す
-    return normalized;
+    return normalizedNumber;
   }
 
   /**
@@ -125,7 +130,6 @@ export class SearchResultItemCardComponent {
    * - 携帯電話: 090-XXXX-XXXX, 080-XXXX-XXXX, 070-XXXX-XXXX
    * - フリーダイヤル: 0120-XXX-XXX, 0800-XXX-XXXX
    * - 括弧付き: (03)1234-5678 → 03-1234-5678 に変換
-   * - 半角ハイフン（-）、全角ハイフン（－）、マイナス記号（−）、長音記号（ー）すべてに対応
    *
    * @param tel 電話番号を含む文字列
    * @returns 抽出された電話番号、見つからない場合は空文字
@@ -137,11 +141,9 @@ export class SearchResultItemCardComponent {
 
     // まず括弧付き形式を正規化
     const normalized = this.normalizePhoneNumber(tel);
-    // console.log(normalized);
-    // 日本の電話番号パターンを検索（半角ハイフン、全角ハイフン、マイナス記号、長音記号対応）
-    const phonePattern = /^0[-－−ー\s]?(\d{1,4})[-－−ー\s]?(\d{1,4})[-－−ー\s]?(\d{3,4})$/;
+    // 日本の電話番号パターンを検索
+    const phonePattern = /^0[-\s]?(\d{1,4})[-\s]?(\d{1,4})[-\s]?(\d{3,4})$/;
     const match = normalized.match(phonePattern);
-    // console.log(match);
 
     if (!match) {
       return '';
@@ -149,11 +151,8 @@ export class SearchResultItemCardComponent {
 
     const extractedNumber = match[0];
 
-    // 全角ハイフン、マイナス記号、長音記号を半角ハイフンに変換
-    const normalizedNumber = extractedNumber.replace(/[－−ー]/g, '-');
-
-    // 抽出した電話番号の桁数チェック（半角ハイフン、全角ハイフン、マイナス記号、長音記号を除去）
-    const digitsOnly = normalizedNumber.replace(/[-－−ー]/g, '');
+    // 抽出した電話番号の桁数チェック（半角ハイフンを除去）
+    const digitsOnly = extractedNumber.replace(/[-]/g, '');
 
     // 10桁未満は無効
     if (digitsOnly.length < 10) {
@@ -173,7 +172,7 @@ export class SearchResultItemCardComponent {
       return '';
     }
 
-    return normalizedNumber;
+    return extractedNumber;
   }
 
   /**
