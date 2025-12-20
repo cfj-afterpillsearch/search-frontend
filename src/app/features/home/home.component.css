@@ -14,11 +14,15 @@ a {
   @apply text-base text-gray-700 my-2 font-bold;
 }
 
+.support-message {
+  @apply text-red-600;
+}
+
 .pattern-row {
   @apply text-sm text-gray-700 my-2 leading-5;
 
   .pattern-label {
-    @apply inline;
+    @apply inline font-bold;
   }
 
   .pattern-desc {
